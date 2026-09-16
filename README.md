@@ -130,7 +130,7 @@ sequenceDiagram
 - **Role comes from the title, not the search query.** Search matches descriptions too, so irrelevant titles are filtered out before any volume is counted.
 - **Skills are not modelled.** Descriptions are cut to 500 characters and name a technology in only 13.4% of them.
 
-Measurements and rejected alternatives are in [NOTES.md](NOTES.md) (in Russian).
+
 
 ## Data model
 
@@ -143,7 +143,7 @@ Measurements and rejected alternatives are in [NOTES.md](NOTES.md) (in Russian).
 
 ## Stack
 
-Python, dbt, BigQuery (DuckDB locally), Airflow, Looker Studio, Telegram Bot API.
+Python, dbt, BigQuery (DuckDB locally), Airflow, Docker Compose on a VPS, Looker Studio, Telegram Bot API.
 
 ## Run locally
 
@@ -166,6 +166,6 @@ BigQuery: `python load.py --backend bigquery` and `dbt build --target prod`, wit
 | Collection, raw storage, loading, dbt models and 26 tests | working locally on DuckDB |
 | BigQuery load and dbt `prod` target | written, not run yet |
 | Scheduler, alerts, dashboard | next |
+| Deployment: Docker Compose on a VPS | next |
 | Pair statuses and the vacancy closure rule | next, see NOTES.md |
 
-The previous detailed README (dashboard screens, data model notes, in Russian) is in [docs/README_full_ru.md](docs/README_full_ru.md).
