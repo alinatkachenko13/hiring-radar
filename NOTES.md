@@ -312,15 +312,12 @@ UK, ZA, AU, BR, CA, DE, NL, RU, PL, IN, FR, US.
 **Это целевая схема, а не текущий код.** На самой схеме это не помечается; чего в репозитории пока нет, видно по таблице ниже.
 
 ```mermaid
-flowchart TB
+flowchart LR
     viewer(["`**Viewer**
 [Person]
 Explores the data job market`"])
-    maintainer(["`**Maintainer**
-[Person]
-Gets alerts, fixes the pipeline`"])
 
-    subgraph system["hiring-radar [Software system]"]
+    subgraph system["hiring-radar"]
         dashboard["`**Dashboard**
 [Container: Looker Studio]
 Market, salary and company screens`"]
@@ -353,6 +350,9 @@ Source of vacancies`"]
     telegram["`**Telegram**
 [External system]
 Delivers messages`"]
+    maintainer(["`**Maintainer**
+[Person]
+Gets alerts, fixes the pipeline`"])
 
     viewer -- "opens [HTTPS]" --> dashboard
     dashboard -- "queries marts [SQL]" --> warehouse
