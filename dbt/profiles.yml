@@ -1,0 +1,16 @@
+hiring_radar:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../data/warehouse/hiring_radar.duckdb
+      threads: 4
+    prod:
+      type: bigquery
+      method: service-account
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS') }}"
+      project: "{{ env_var('GCP_PROJECT') }}"
+      dataset: hiring_radar
+      location: "{{ env_var('GCP_LOCATION', 'EU') }}"
+      threads: 4
+      priority: interactive

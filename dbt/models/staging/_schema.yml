@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_vacancies
+    description: >
+      Одна строка на появление вакансии в выдаче (id × роль запроса × дата сбора).
+      Дедупликация ещё впереди.
+    columns:
+      - name: source_id
+        tests: [not_null]
+      - name: observed_on
+        tests: [not_null]
+      - name: country_code
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['gb', 'de', 'nl', 'pl', 'us', 'ca']
+      - name: is_salary_disclosed
+        description: >
+          salary_is_predicted = '0' и salary_min не пустой. По отдельности
+          каждое условие врёт на половине стран.
+        tests: [not_null]

@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: "{{ 'raw' if target.type == 'duckdb' else 'hiring_radar_raw' }}"
+    tables:
+      - name: adzuna_results
+        description: >
+          Одна строка на вакансию в ответе API. Файл на диске не разбирается:
+          extract.py кладёт конверт, load.py переносит его на склад.
+        columns:
+          - name: source_id
+            description: id объявления в Adzuna
+          - name: run_date
+            description: дата сбора, не дата публикации
+          - name: vacancy_json
+            description: объект вакансии как пришёл, без колонок

@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: fct_vacancy_daily
+    description: >
+      Факт: объявление × дата наблюдения. is_gone = строка в день исчезновения
+      из выдачи. Объявления и позиции — разные меры, position_id склеивает
+      компанию + тайтл + страну.
+    columns:
+      - name: vacancy_daily_sk
+        tests: [unique, not_null]
+      - name: source_id
+        tests: [not_null]
+      - name: observed_on
+        tests: [not_null]
+      - name: country_code
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_country')
+              field: country_code
+      - name: role_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_role')
+              field: role_key
+
+  - name: dim_vacancy
+    columns:
+      - name: vacancy_sk
+        tests: [unique, not_null]
+      - name: source_id
+        tests: [not_null]
+
+  - name: dim_company
+    columns:
+      - name: company_sk
+        tests: [unique, not_null]
+
+  - name: dim_country
+    columns:
+      - name: country_code
+        tests: [unique, not_null]
+
+  - name: dim_role
+    columns:
+      - name: role_key
+        tests: [unique, not_null]
+
+  - name: mart_market_daily
+    description: Объём, поток и состав по стране × роли × дате. Только is_relevant.
