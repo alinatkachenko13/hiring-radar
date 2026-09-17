@@ -31,7 +31,7 @@ MAX_PAGES = 150         # предохранитель от бесконечно
                         # us / data engineer за 2 дня даёт ~4000 вакансий = 81 стр.
 SLEEP_SEC = 0.25        # 300 запросов в минуту = 1 запрос в 0.2 с, берём с запасом
 TIMEOUT_SEC = 30
-RETRIES = 3             # только на сетевые ошибки и 5xx
+RETRIES = 3             # на сетевые ошибки, 5xx и 429
 RESUME = True           # пропускать пары, уже собранные сегодня до конца
 
 
@@ -68,6 +68,14 @@ def role_slug(role: str) -> str:
 
 def _dotenv() -> dict:
     return _read_dotenv(PROJECT_DIR / ".env")
+
+
+def telegram_settings() -> tuple[str | None, str | None]:
+    """(токен бота, id чата) для алертов планировщика, из окружения или .env."""
+    dotenv = _dotenv()
+    token = os.environ.get("TELEGRAM_BOT_TOKEN") or dotenv.get("TELEGRAM_BOT_TOKEN")
+    chat_id = os.environ.get("TELEGRAM_CHAT_ID") or dotenv.get("TELEGRAM_CHAT_ID")
+    return token, chat_id
 
 
 GCP_KEY_CANDIDATE = PROJECT_DIR / "gcp-service-account.json"

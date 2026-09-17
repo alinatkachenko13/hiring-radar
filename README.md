@@ -139,11 +139,12 @@ sequenceDiagram
 | `fct_vacancy_daily` | one ad per observation day: salary, disclosure, new or gone, days open |
 | `dim_vacancy` | ad attributes with change history (SCD Type 2) |
 | `dim_company`, `dim_country`, `dim_location`, `dim_role`, `dim_date` | lookups; `dim_role` also filters irrelevant titles |
-| `mart_market_daily`, `mart_salary_daily`, `mart_salary_disclosure`, `mart_company_role`, `mart_city_daily` | dashboard views |
+| `mart_market_daily`, `mart_salary_daily`, `mart_salary_disclosure`, `mart_company_role`, `mart_city_daily` | aggregated market, salary, company and city views |
+| `looker_vacancies` | one flat table the Looker Studio dashboard reads |
 
 ## Stack
 
-Python, dbt, BigQuery (DuckDB locally), Airflow, Docker Compose on a VPS, Looker Studio, Telegram Bot API.
+Python, dbt, BigQuery (DuckDB locally), Airflow, Docker Compose, Looker Studio, Telegram Bot API.
 
 ## Run locally
 
@@ -157,15 +158,17 @@ cd dbt && dbt build --profiles-dir . && cd ..
 python report_marts.py  # summary of the marts
 ```
 
-BigQuery: `python load.py --backend bigquery` and `dbt build --target prod`, with `GCP_PROJECT` set.
+BigQuery: fill the GCP values in `.env` (see `.env.example`), keep the service account key in `gcp-service-account.json` (ignored by git), then run `python load.py --backend bigquery` and `./bq_build.sh`.
+
+Scheduler: add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` to `.env`, run `docker compose up -d --build` and open Airflow at http://localhost:8080. The DAG `hiring_radar_daily` collects, loads the complete day and runs `dbt build` every day at 06:00 UTC.
 
 ## Status
 
 | Part | State |
 |---|---|
-| Collection, raw storage, loading, dbt models and 26 tests | working locally on DuckDB |
-| BigQuery load and dbt `prod` target | written, not run yet |
-| Scheduler, alerts, dashboard | next |
-| Deployment: Docker Compose on a VPS | next |
-| Pair statuses and the vacancy closure rule | next, see NOTES.md |
+| Collection with per-pair statuses, loading of complete days, dbt models and 26 tests | working |
+| BigQuery warehouse and Looker Studio dashboard with 4 screens | working, see [looker/README.md](looker/README.md) |
+| Airflow DAG with retries and Telegram alerts, Docker Compose | built, see [airflow/dags](airflow/dags) and [docker-compose.yml](docker-compose.yml) |
+| Deployment on a VPS | next |
+| Vacancy closure rule | next, see NOTES.md |
 

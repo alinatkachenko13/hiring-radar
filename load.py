@@ -6,9 +6,14 @@ _meta + payload и кладёт по одной строке на ваканси
 По умолчанию склад — локальный DuckDB, чтобы блок 1 можно было проверить без GCP.
 BigQuery: python load.py --backend bigquery (нужен GCP_PROJECT).
 
+Грузится только полный день: все пары страна-роль собраны до конца
+(см. raw_status.py). Неполный день пропускается, скрипт завершается с кодом 1.
+Загрузить неполный день вручную: --allow-incomplete.
+
 Запуск:  python load.py
          python load.py 2026-09-01
          python load.py --backend bigquery
+         python load.py 2026-09-01 --allow-incomplete
 """
 from __future__ import annotations
 
@@ -17,6 +22,7 @@ import json
 import sys
 from pathlib import Path
 
+import raw_status
 from config import (
     BQ_RAW_DATASET,
     BQ_RAW_TABLE,
@@ -40,6 +46,11 @@ def parse_args() -> argparse.Namespace:
         choices=("duckdb", "bigquery"),
         default="duckdb",
         help="duckdb — локально, bigquery — облако",
+    )
+    parser.add_argument(
+        "--allow-incomplete",
+        action="store_true",
+        help="загрузить день, даже если не все пары собраны полностью",
     )
     return parser.parse_args()
 
@@ -309,7 +320,27 @@ def load_bigquery(jsonl_path: Path, run_dates: list[str]) -> None:
 def main() -> int:
     args = parse_args()
     rows, files = collect_rows(args.run_date)
-    run_dates = sorted({row["run_date"] for row in rows})
+
+    run_dates: list[str] = []
+    skipped: list[str] = []
+    for day in sorted({row["run_date"] for row in rows}):
+        problems, source = raw_status.day_problems(day)
+        if problems and not args.allow_incomplete:
+            skipped.append(day)
+            print(f"{day}: день неполный ({source}), не загружаю:")
+            for problem in problems[:10]:
+                print(f"  {problem}")
+            if len(problems) > 10:
+                print(f"  и ещё {len(problems) - 10}")
+            continue
+        if problems:
+            print(f"{day}: день неполный, загружаю по --allow-incomplete")
+        run_dates.append(day)
+
+    if not run_dates:
+        print("Загружать нечего: полных дней нет.")
+        return 1
+    rows = [row for row in rows if row["run_date"] in run_dates]
     unique_ids = {row["source_id"] for row in rows if row["source_id"]}
 
     jsonl_path = WAREHOUSE_DIR / "adzuna_results.jsonl"
@@ -325,7 +356,7 @@ def main() -> int:
         load_duckdb(jsonl_path, run_dates)
     else:
         load_bigquery(jsonl_path, run_dates)
-    return 0
+    return 1 if skipped else 0
 
 
 if __name__ == "__main__":
