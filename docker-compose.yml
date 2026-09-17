@@ -1,0 +1,52 @@
+# Планировщик hiring-radar: Airflow и его база метаданных.
+#
+# Запуск:     docker compose up -d --build
+# Интерфейс:  http://localhost:8080 (пароль admin в логах: docker compose logs airflow)
+#
+# Код проекта монтируется в контейнер целиком, поэтому data/raw, склад DuckDB
+# и логи dbt остаются в папке проекта. Ключи берутся из .env.
+
+name: hiring-radar
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      retries: 5
+    restart: unless-stopped
+
+  airflow:
+    build:
+      context: .
+      dockerfile: docker/airflow.Dockerfile
+    command: standalone
+    env_file: .env
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_FOLDER: /opt/hiring-radar/airflow/dags
+      PROJECT_DIR: /opt/hiring-radar
+      PIPELINE_PYTHON: /home/airflow/pipeline-venv/bin/python
+    user: "${AIRFLOW_UID:-50000}:0"
+    volumes:
+      - .:/opt/hiring-radar
+      - airflow-home:/opt/airflow
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+  airflow-home:
