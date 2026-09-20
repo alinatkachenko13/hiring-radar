@@ -1,5 +1,7 @@
 # hiring-radar
 
+[![CI](https://github.com/alinatkachenko13/hiring-radar/actions/workflows/ci.yml/badge.svg)](https://github.com/alinatkachenko13/hiring-radar/actions/workflows/ci.yml)
+
 A daily pipeline that collects data job vacancies (6 countries, 5 roles), keeps their history in a warehouse and shows how the market changes day to day. Job boards show today's snapshot; the value here is the accumulated history.
 
 ## Architecture
@@ -167,6 +169,7 @@ Scheduler: add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` to `.env`, run `docke
 | Part | State |
 |---|---|
 | Collection with per-pair statuses, loading of complete days, dbt models and 26 tests | working |
+| CI on GitHub Actions: every push loads two fixture days into DuckDB and runs `dbt build` with all tests | working, see [.github/workflows/ci.yml](.github/workflows/ci.yml) |
 | BigQuery warehouse and Looker Studio dashboard with 4 screens | working, see [looker/README.md](looker/README.md) |
 | Airflow DAG with retries and Telegram alerts, Docker Compose | built, see [airflow/dags](airflow/dags) and [docker-compose.yml](docker-compose.yml) |
 | Deployment on a VPS | next |
