@@ -220,6 +220,8 @@ UK, ZA, AU, BR, CA, DE, NL, RU, PL, IN, FR, US.
 
 **Заодно цифра для планирования объёма:** один день сбора по всем 25 парам — порядка 12 000 записей и около 250 запросов. Квота в 50 000 запросов в сутки не жмёт даже близко.
 
+> **Пересмотрено 17.09.** Первый прогон из Airflow: `us / data engineer` сообщил `count` 9 983 за то же окно в 2 дня, это 200 страниц. Пара упёрлась в 150 и получила статус truncated, день на склад не пошёл, как и задумано после GAP 1. Повторов id на страницах нет, выдача действительно выросла. Предел поднят до 400.
+
 ### Разведочный скрипт слит в explore.py
 
 `check_first_answer.py` со второй копией ключей удалён, его функция `count_for` перенесена в `explore.py` с параметром `max_days_old`.
@@ -435,7 +437,7 @@ sequenceDiagram
             opt partial pages left from an earlier run
                 CJ->>RS: delete partial pages, collect the pair from page 1
             end
-            loop each results page, up to 150 pages
+            loop each results page, up to 400 pages
                 CJ->>API: GET /jobs/{country}/search/{page}
                 alt 200 OK
                     API-->>CJ: page of vacancies and total count
@@ -477,7 +479,7 @@ sequenceDiagram
 | country and role pair, 6 × 5 | `COUNTRIES` × `ROLES` в `config.py` |
 | check whether the pair is already fully collected today | `pair_is_complete()`, включается флагом `RESUME` |
 | delete partial pages | `main()`, удаление файлов `stale` |
-| each results page, up to 150 pages | цикл в `collect()`, предел `MAX_PAGES` |
+| each results page, up to 400 pages | цикл в `collect()`, предел `MAX_PAGES` |
 | retry the same page, up to 3 attempts, waits of 1 s, 2 s, 3 s | `fetch_page()`: `RETRIES`, пауза `SLEEP_SEC * attempt * 4` |
 | store the raw page with request metadata | `save()`, конверт `_meta` + `payload` |
 | last page, fewer than 50 vacancies or total count reached | условие выхода в `collect()`: `len(results) < RESULTS_PER_PAGE` или `collected >= found` |

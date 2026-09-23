@@ -172,6 +172,6 @@ Scheduler: add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` to `.env`, run `docke
 | CI on GitHub Actions: every push loads two fixture days into DuckDB and runs `dbt build` with all tests | working, see [.github/workflows/ci.yml](.github/workflows/ci.yml) |
 | BigQuery warehouse and Looker Studio dashboard with 4 screens | working, see [looker/README.md](looker/README.md) |
 | Airflow DAG with retries and Telegram alerts, Docker Compose | built, see [airflow/dags](airflow/dags) and [docker-compose.yml](docker-compose.yml) |
-| Deployment on a VPS | next |
+| Deployment on a VPS | instructions ready, see [docs/deploy.md](docs/deploy.md); not deployed yet |
 | Vacancy closure rule | next, see NOTES.md |
 

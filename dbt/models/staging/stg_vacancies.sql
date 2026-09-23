@@ -34,3 +34,6 @@ select
     source_file
 from {{ source('raw', 'adzuna_results') }}
 where source_id is not null
+  -- Дни до начала истории отсекаются здесь, чтобы ни одна модель ниже
+  -- не знала про пробный сбор. Переменная в dbt_project.yml.
+  and run_date >= date '{{ var("history_starts_on") }}'
