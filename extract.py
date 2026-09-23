@@ -23,17 +23,19 @@ import raw_status
 from config import (
     BASE_URL,
     COUNTRIES,
-    MAX_DAYS_OLD,
     MAX_PAGES,
     RAW_DIR,
+    RESULT_CAP,
     RESULTS_PER_PAGE,
     RESUME,
     RETRIES,
+    RETRY_BACKOFF_SEC,
     ROLES,
     SLEEP_SEC,
     TIMEOUT_SEC,
     credentials,
     role_slug,
+    window_for,
 )
 
 APP_ID, APP_KEY = credentials()
@@ -51,7 +53,17 @@ def mask(text: str) -> str:
     return str(text).replace(APP_KEY, "***").replace(APP_ID, "***")
 
 
-def fetch_page(country: str, role: str, page: int) -> dict | None:
+def backoff(attempt: int) -> float:
+    """Пауза перед повтором: 5, 30, 120 секунд.
+
+    Коротких пауз мало. 23.09 Adzuna отдавал 503 около трёх минут, и три попытки
+    подряд с паузами в секунды сожгли их за шесть секунд: семь пар упали разом.
+    Эта лесенка переживает сбой источника на пару минут без внешнего повтора.
+    """
+    return RETRY_BACKOFF_SEC[min(attempt, len(RETRY_BACKOFF_SEC)) - 1]
+
+
+def fetch_page(country: str, role: str, page: int, window: int | None) -> dict | None:
     """Один запрос к API. Возвращает разобранный ответ или None при ошибке.
 
     Статус проверяется до .json(): при ошибке API отдаёт HTML, и .json()
@@ -63,8 +75,10 @@ def fetch_page(country: str, role: str, page: int) -> dict | None:
         "app_key": APP_KEY,
         "results_per_page": RESULTS_PER_PAGE,
         "what": role,
-        "max_days_old": MAX_DAYS_OLD,
     }
+    # Окна может не быть: тогда запрашивается весь запас по паре.
+    if window is not None:
+        params["max_days_old"] = window
 
     for attempt in range(1, RETRIES + 1):
         last_attempt = attempt == RETRIES
@@ -73,7 +87,7 @@ def fetch_page(country: str, role: str, page: int) -> dict | None:
         except requests.RequestException as error:
             print(f"    сеть: {mask(repr(error))}, попытка {attempt} из {RETRIES}")
             if not last_attempt:
-                time.sleep(SLEEP_SEC * attempt * 4)
+                time.sleep(backoff(attempt))
             continue
 
         if response.status_code == 200:
@@ -86,7 +100,7 @@ def fetch_page(country: str, role: str, page: int) -> dict | None:
         # 5xx: сбой на стороне API. 429: «слишком часто, повторите позже».
         # Оба временные, поэтому повторяются с паузой; для 429 учитываем Retry-After.
         if response.status_code >= 500 or response.status_code == 429:
-            wait = SLEEP_SEC * attempt * 4
+            wait = backoff(attempt)
             retry_after = response.headers.get("Retry-After", "")
             if retry_after.isdigit():
                 wait = max(wait, int(retry_after))
@@ -103,7 +117,9 @@ def fetch_page(country: str, role: str, page: int) -> dict | None:
     return None
 
 
-def save(country: str, role: str, page: int, fetched: dict, found: int) -> None:
+def save(
+    country: str, role: str, page: int, fetched: dict, found: int, window: int | None
+) -> None:
     RAW_DIR.mkdir(parents=True, exist_ok=True)
     path = RAW_DIR / f"raw_{RUN_DATE}_{country}_{role_slug(role)}_p{page}.json"
     document = {
@@ -115,7 +131,8 @@ def save(country: str, role: str, page: int, fetched: dict, found: int) -> None:
             "role_query": role,
             "page": page,
             "results_per_page": RESULTS_PER_PAGE,
-            "max_days_old": MAX_DAYS_OLD,
+            # null означает сбор всего запаса, без окна свежести
+            "max_days_old": window,
             "count_reported": found,
             "request_url": fetched["url"],
             "response_headers": fetched["headers"],
@@ -128,44 +145,61 @@ def save(country: str, role: str, page: int, fetched: dict, found: int) -> None:
 
 
 def collect(country: str, role: str) -> tuple[str, int, int, int]:
-    """Забирает все страницы пары. Возвращает (статус, вакансий, страниц, count из ответа)."""
-    collected = 0
+    """Забирает все страницы пары. Возвращает (статус, вакансий, страниц, count из ответа).
+
+    Считаются разные вакансии, а не строки. Разница принципиальна: за сотой
+    страницей Adzuna повторяет одну и ту же выдачу, и счётчик строк доводил
+    обрезанную пару до состояния «собрана полностью» (NOTES, GAP 7).
+    """
+    window = window_for(country, role)
+    seen: set[str] = set()
     pages = 0
     found = 0
 
     for page in range(1, MAX_PAGES + 1):
-        fetched = fetch_page(country, role, page)
+        fetched = fetch_page(country, role, page, window)
         time.sleep(SLEEP_SEC)
 
         if fetched is None:
-            return raw_status.FAILED, collected, pages, found
+            return raw_status.FAILED, len(seen), pages, found
 
         payload = fetched["payload"]
         results = payload.get("results") or []
         found = payload.get("count", 0)
 
-        save(country, role, page, fetched, found)
-        collected += len(results)
+        save(country, role, page, fetched, found, window)
         pages += 1
+        new = {item["id"] for item in results if item.get("id")} - seen
+        seen |= new
+
+        if page == 1 and found > RESULT_CAP * 0.9:
+            print(f"    ВНИМАНИЕ: выдача {found} близка к потолку {RESULT_CAP}")
 
         print(
-            f"    стр. {page}: получено {len(results)}, "
-            f"накоплено {collected} из {found}"
+            f"    стр. {page}: получено {len(results)}, новых {len(new)}, "
+            f"всего {len(seen)} из {found}"
         )
 
+        # Страница без единой новой вакансии означает, что выдача пошла по кругу.
+        if results and not new:
+            print(f"    выдача повторяется: упёрлись в потолок {RESULT_CAP}, пара обрезана")
+            return raw_status.TRUNCATED, len(seen), pages, found
+
         # Последняя страница: неполная выдача или набрали всё, что обещал count.
-        if len(results) < RESULTS_PER_PAGE or collected >= found:
-            return raw_status.COMPLETE, collected, pages, found
+        if len(results) < RESULTS_PER_PAGE or len(seen) >= found:
+            return raw_status.COMPLETE, len(seen), pages, found
 
     # Выдача не кончилась к пределу страниц: данные обрезаны, это не успех.
     print(f"    упёрлись в предел MAX_PAGES={MAX_PAGES}, пара обрезана")
-    return raw_status.TRUNCATED, collected, pages, found
+    return raw_status.TRUNCATED, len(seen), pages, found
 
 
 def main() -> int:
     pairs = [(country, role) for country in COUNTRIES for role in ROLES]
-    print(f"Сбор за {RUN_DATE}: {len(COUNTRIES)} стран × {len(ROLES)} ролей, "
-          f"окно {MAX_DAYS_OLD} дн.\nСырьё: {RAW_DIR}\n")
+    stock = sum(1 for country, role in pairs if window_for(country, role) is None)
+    print(f"Сбор за {RUN_DATE}: {len(COUNTRIES)} стран × {len(ROLES)} ролей.\n"
+          f"Весь запас: {stock} пар, поток с окном: {len(pairs) - stock}.\n"
+          f"Сырьё: {RAW_DIR}\n")
     raw_status.start_day(RUN_DATE, pairs)
 
     total_vacancies = 0
@@ -195,7 +229,9 @@ def main() -> int:
             for path in files:
                 path.unlink()
         else:
-            print(f"{country} / {role}")
+            window = window_for(country, role)
+            mode = "весь запас" if window is None else f"окно {window} дн."
+            print(f"{country} / {role} ({mode})")
 
         state, collected, pages, found = collect(country, role)
         raw_status.record_pair(
