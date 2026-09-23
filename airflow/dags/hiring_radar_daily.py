@@ -86,4 +86,13 @@ with DAG(
         retry_delay=timedelta(minutes=5),
     )
 
-    run_date >> collect >> load >> transform
+    # Уборка идёт последней и не влияет на данные: сырьё не удаляется, а сжимается.
+    # Падение здесь не должно окрашивать прогон в красный, поэтому повторов нет,
+    # а алерт общий: не сжалось сегодня — сожмётся завтра.
+    compress = BashOperator(
+        task_id="compress",
+        bash_command=f"cd {PROJECT_DIR} && {PYTHON} compress_raw.py",
+        retries=0,
+    )
+
+    run_date >> collect >> load >> transform >> compress
