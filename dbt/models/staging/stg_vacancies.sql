@@ -11,6 +11,10 @@ select
     role_query,
     page,
     count_reported,
+    max_days_old,
+    -- Окна нет — значит, пара собиралась переписью: в выдаче весь запас, и
+    -- пропажа объявления означает, что его сняли, а не что оно состарилось.
+    max_days_old is null as is_census,
     source_id,
     trim(title) as title,
     description,
