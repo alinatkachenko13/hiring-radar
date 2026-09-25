@@ -34,6 +34,7 @@ from config import (
     SLEEP_SEC,
     TIMEOUT_SEC,
     credentials,
+    is_partial_pair,
     role_slug,
     window_for,
 )
@@ -252,7 +253,16 @@ def main() -> int:
     if incomplete:
         print("\nНе собраны полностью:")
         for country, role, state in incomplete:
-            print(f"  {country} / {role}: {state}")
+            expected = state == raw_status.TRUNCATED and is_partial_pair(country, role)
+            note = " — обрезка ожидаема, день не блокируется" if expected else ""
+            print(f"  {country} / {role}: {state}{note}")
+
+    blocking = [
+        (country, role, state)
+        for country, role, state in incomplete
+        if not (state == raw_status.TRUNCATED and is_partial_pair(country, role))
+    ]
+    if blocking:
         print("Повторный запуск дособерёт только их. "
               "Пока хоть одна пара не complete, load.py этот день не загрузит.")
         return 1

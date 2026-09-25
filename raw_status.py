@@ -118,6 +118,18 @@ def pair_state(run_date: str, country: str, role: str) -> str | None:
     return status["pairs"].get(pair_key(country, role), {}).get("status")
 
 
+def expected_truncation(key: str, state: str | None) -> bool:
+    """Обрезка пары, которая и не могла поместиться в потолок выдачи.
+
+    Такая пара не блокирует день: иначе одна пара США держала бы взаперти
+    остальные двадцать девять (см. config.PARTIAL_PAIRS).
+    """
+    if state != TRUNCATED:
+        return False
+    country, _, role = key.partition("/")
+    return config.is_partial_pair(country, role)
+
+
 def day_problems(run_date: str) -> tuple[list[str], str]:
     """Что мешает считать день полным. Пустой список: день полный.
 
@@ -129,8 +141,9 @@ def day_problems(run_date: str) -> tuple[list[str], str]:
         problems = []
         for key in status["expected_pairs"]:
             state = status["pairs"].get(key, {}).get("status")
-            if state != COMPLETE:
-                problems.append(f"{key}: {state or 'not collected'}")
+            if state == COMPLETE or expected_truncation(key, state):
+                continue
+            problems.append(f"{key}: {state or 'not collected'}")
         return problems, "status file"
 
     pairs = set()
@@ -141,5 +154,6 @@ def day_problems(run_date: str) -> tuple[list[str], str]:
         f"{pair_key(country, role)}: incomplete by files"
         for country, role in sorted(pairs)
         if not complete_by_files(run_date, country, role)
+        and not config.is_partial_pair(country, role)
     ]
     return problems, "raw files, no status file"
