@@ -1,0 +1,434 @@
+{
+ "_meta": {
+  "source": "adzuna",
+  "run_date": "2026-09-18",
+  "extracted_at": "2026-09-18T08:55:56.600249+00:00",
+  "country": "gb",
+  "role_query": "data engineer",
+  "page": 1,
+  "results_per_page": 50,
+  "max_days_old": 2,
+  "count_reported": 12,
+  "request_url": "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=***&app_key=***&results_per_page=50&what=data+engineer&max_days_old=2",
+  "response_headers": {
+   "Date": "Fri, 18 Sep 2026 08:55:55 GMT",
+   "Content-Type": "application/json; charset=utf8",
+   "Content-Length": "68089",
+   "Connection": "keep-alive",
+   "Server": "nginx/1.28.3",
+   "Vary": "Content-Type",
+   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+   "Access-Control-Allow-Origin": "*",
+   "X-Catalyst": "5.90132"
+  }
+ },
+ "payload": {
+  "count": 12,
+  "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+  "mean": 78379.06,
+  "results": [
+   {
+    "longitude": -0.139134,
+    "title": "Technical Staff, Data Center Architect",
+    "id": "5885281229",
+    "company": {
+     "display_name": "Dell, Inc.",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "salary_min": 43670.05,
+    "location": {
+     "area": [
+      "UK",
+      "London"
+     ],
+     "display_name": "London, UK",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "salary_max": 43670.05,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885281229?utm_medium=api&utm_source=fixture",
+    "latitude": 51.503378,
+    "contract_time": "part_time",
+    "salary_is_predicted": "1",
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "engineering-jobs",
+     "label": "Engineering Jobs"
+    },
+    "description": "Some product builders follow the rules. Ours rewrite them. Within ISG, innovation isn't just about creating new technology- it's about challenging assumptions and reimagining how work gets done. Engineers define intent, author precise specifications, and orchestrate AI agents that execute at speed and scale. AI is embedded throughout our development process, helping us move faster, learn quicker, and deliver greater impact. Yet the most important contribution remains uniquely human: deciding wh…",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiS0VYWnpqNno4Ukd0MktMLTFWYnBqZyIsImkiOiI1ODg1MjgxMjI5In0.fmLwOqrgtFAYH9TtLKIqgj7d6ROB1hufX8PIfcqYtsg",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "contract_type": "permanent",
+    "created": "2026-09-16T01:01:38Z"
+   },
+   {
+    "longitude": -0.017605,
+    "title": "Subcontract Accounts Payable Specialist – £40,000",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Pearson Carter"
+    },
+    "id": "5885292303",
+    "salary_min": 30000,
+    "location": {
+     "area": [
+      "UK",
+      "Eastern England",
+      "Hertfordshire",
+      "Buntingford"
+     ],
+     "display_name": "Buntingford, Hertfordshire",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "salary_max": 40000,
+    "latitude": 51.9454,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885292303?utm_medium=api&utm_source=fixture",
+    "salary_is_predicted": "0",
+    "contract_time": "full_time",
+    "description": "Subcontract Accounts Payable Specialist – £40,000 Pearson Carter is working with a growing international organisation operating across the data centre construction and engineering sector. They are looking for an experienced Subcontract Accounts Payable Specialist to join their Commercial team in Buntingford. This is a key position supporting major projects across multiple international entities, with responsibility for subcontractor invoice processing, payment administration, commercial control…",
+    "category": {
+     "label": "Accounting & Finance Jobs",
+     "tag": "accounting-finance-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTI5MjMwMyIsInMiOiI2RjZBeXo2ejhSR3QyS0wtMVZicGpnIn0.iT4CdvNPW27MD__hZQQytO5qn1aa5P52ak6gYfmzX1E",
+    "created": "2026-09-16T01:10:57Z",
+    "contract_type": "permanent"
+   },
+   {
+    "description": "PLM Analyst Our client, an innovative engineering and manufacturing organisation, is seeking a PLM Analyst to lead the strategy, development, and day-to-day management of its Product Lifecycle Management (PLM), PDM, and CAD environments. Working closely with engineering, IT, and business stakeholders, you will drive the PLM roadmap, oversee system upgrades and enhancements, manage engineering software assets, and ensure robust data and process governance across the product development lifecycle…",
+    "contract_type": "permanent",
+    "location": {
+     "area": [
+      "UK",
+      "South East England",
+      "Oxfordshire",
+      "Bicester"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Bicester, Oxfordshire"
+    },
+    "category": {
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "IT Jobs"
+    },
+    "salary_min": 50920.18,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiVkFUanhUNno4Ukd2NjRxRTR6aldEQSIsImkiOiI1ODg1MjkyNTU2In0.DXsswNRL4FJi64xsz63diItac5_UK1X5nMz9ZE8s_y8",
+    "title": "Senior PLM Analyst",
+    "longitude": -1.15422,
+    "created": "2026-09-16T01:11:09Z",
+    "company": {
+     "display_name": "Orion Electrotech",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885292556?utm_medium=api&utm_source=fixture",
+    "id": "5885292556",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "latitude": 51.902,
+    "salary_is_predicted": "1",
+    "salary_max": 50920.18,
+    "contract_time": "full_time"
+   },
+   {
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiNkY2QXl6Nno4Ukd0MktMLTFWYnBqZyIsImkiOiI1ODg1NDM4MDgwIn0.M0A0WrJRTHLTurbHBOYnAjHszsVwmkDh1WApOrZ3s5I",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "salary_min": 72291.19,
+    "category": {
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "IT Jobs"
+    },
+    "description": "Company Description Work with Us. Change the World. At AECOM, we're delivering a better world. Whether improving your commute, keeping the lights on, providing access to clean water, or transforming skylines, our work helps people and communities thrive. We are the world's trusted infrastructure consulting firm, partnering with clients to solve the world's most complex challenges and build legacies for future generations. There has never been a better time to be at AECOM. With accelerating infr…",
+    "location": {
+     "display_name": "London, UK",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "London"
+     ]
+    },
+    "created": "2026-09-16T02:12:11Z",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885438080?utm_medium=api&utm_source=fixture",
+    "longitude": -0.139134,
+    "latitude": 51.503378,
+    "title": "Senior MLOps Engineer",
+    "salary_max": 72291.19,
+    "salary_is_predicted": "1",
+    "id": "5885438080",
+    "company": {
+     "display_name": "AECOM",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    }
+   },
+   {
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "London, UK",
+     "area": [
+      "UK",
+      "London"
+     ]
+    },
+    "created": "2026-09-16T02:13:06Z",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiNkY2QXl6Nno4Ukd0MktMLTFWYnBqZyIsImkiOiI1ODg1NDM5NzMwIn0.EDr0O_oQlidX9pTeNWOgBnTx8mu9-XqNZhr1HO7dZME",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "salary_min": 68411.95,
+    "category": {
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "IT Jobs"
+    },
+    "description": "Why work for us? A career at Janus Henderson is more than a job, it's about investing in a brighter future together. Our Mission at Janus Henderson is to help clients define and achieve superior financial outcomes through differentiated insights, disciplined investments, and world-class service. We will do this by protecting and growing our core business, amplifying our strengths and diversifying where we have the right. Our Values are key to driving our success, and are at the heart of everyth…",
+    "salary_is_predicted": "1",
+    "id": "5885439730",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Janus Henderson Investors"
+    },
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885439730?utm_medium=api&utm_source=fixture",
+    "title": "AI Enablement Partner",
+    "latitude": 51.503378,
+    "longitude": -0.139134,
+    "salary_max": 68411.95
+   },
+   {
+    "created": "2026-09-16T02:13:16Z",
+    "description": "Flexible Work Arrangement London, London, United Kingdom Full time R76890 Careers that change lives start here. Medtronic is a global leader in healthcare technology with a Mission to alleviate pain, restore health, and extend life. Our 95,000 employees work across more than 150 countries to put patients first - developing innovative medical technologies that improve the lives of 72 million patients each year. Your unique talents will help shape the future of healthcare while building a career …",
+    "category": {
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "IT Jobs"
+    },
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiS0VYWnpqNno4Ukd0MktMLTFWYnBqZyIsImkiOiI1ODg1NDM5OTgxIn0.WqN0Wt2q3momhuqZEmGZ0gnnx9tru75Ztl9uR4E2FsQ",
+    "salary_is_predicted": "1",
+    "contract_time": "full_time",
+    "salary_max": 63727.91,
+    "latitude": 51.503378,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885439981?utm_medium=api&utm_source=fixture",
+    "location": {
+     "display_name": "London, UK",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "London"
+     ]
+    },
+    "salary_min": 63727.91,
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Medtronic"
+    },
+    "id": "5885439981",
+    "longitude": -0.139134,
+    "title": "Senior Software Engineer - Python"
+   },
+   {
+    "contract_type": "contract",
+    "id": "5885440812",
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Burgess Hill, West Sussex",
+     "area": [
+      "UK",
+      "South East England",
+      "West Sussex",
+      "Burgess Hill"
+     ]
+    },
+    "latitude": 50.9575,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "salary_is_predicted": "1",
+    "longitude": -0.133939,
+    "title": "Campus - Internship Programme - Undergraduate Software Engineer - 2027 (UK - Burgess Hill)",
+    "category": {
+     "tag": "engineering-jobs",
+     "label": "Engineering Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "company": {
+     "display_name": "American Express",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "created": "2026-09-16T02:14:04Z",
+    "description": "Campus - Internship Programme - Undergraduate Software Engineer - 2027 (UK - Burgess Hill) BURGESS HILL, WEST SUSSEX, United Kingdom(Hybrid) Job Description You Lead the Way. We've Got Your Back. With the right backing, people and businesses have the power to progress in incredible ways. When you join Team Amex, you become part of a global and diverse community of colleagues with an unwavering commitment to back our customers, communities and each other. Here, you'll learn and grow as we help y…",
+    "salary_max": 51421.16,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885440812?utm_medium=api&utm_source=fixture",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQ0MDgxMiIsInMiOiJBaE9qMEQ2ejhSR0o2SmFNWFdiWEJRIn0.NM7gus7Oe_duX5zvvat5WEI_GnOWUL_2pLgSo8xSU2o",
+    "contract_time": "full_time",
+    "salary_min": 51421.16
+   },
+   {
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQ0MDgxNSIsInMiOiJnT253eVQ2ejhSR1dFUFZ1OThfNFlRIn0.fCQEgoPGqiixWuYg4XB_bJ4JIDZxD9bzo_EZbYx-6xo",
+    "category": {
+     "label": "IT Jobs",
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "salary_is_predicted": "1",
+    "salary_max": 61206.46,
+    "title": "Campus - Full Time - Software Engineer - 2027 (UK - Burgess Hill)",
+    "description": "Campus - Full Time - Software Engineer - 2027 (UK - Burgess Hill) BURGESS HILL, WEST SUSSEX, United Kingdom(Hybrid) Job Description You Lead the Way. We've Got Your Back. With the right backing, people and businesses have the power to progress in incredible ways. When you join Team Amex, you become part of a global and diverse community of colleagues with an unwavering commitment to back our customers, communities and each other. Here, you'll learn and grow as we help you create a career journe…",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "American Express"
+    },
+    "location": {
+     "display_name": "Burgess Hill, West Sussex",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "South East England",
+      "West Sussex",
+      "Burgess Hill"
+     ]
+    },
+    "contract_type": "contract",
+    "latitude": 50.9575,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885440815?utm_medium=api&utm_source=fixture",
+    "salary_min": 61206.46,
+    "longitude": -0.133939,
+    "id": "5885440815",
+    "contract_time": "full_time",
+    "created": "2026-09-16T02:14:04Z"
+   },
+   {
+    "salary_min": 68884.95,
+    "salary_is_predicted": "1",
+    "id": "5885546300",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "created": "2026-09-16T04:06:13Z",
+    "location": {
+     "area": [
+      "UK",
+      "Yorkshire And The Humber",
+      "South Yorkshire",
+      "Sheffield"
+     ],
+     "display_name": "Sheffield, South Yorkshire",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "salary_max": 68884.95,
+    "category": {
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "IT Jobs"
+    },
+    "longitude": -1.4648,
+    "company": {
+     "display_name": "Teksystems",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "redirect_url": "https://www.adzuna.co.uk/jobs/land/ad/5885546300?se=BIcqxD6z8RGcMc0HYqAkKw&utm_medium=api&utm_source=fixture&v=42C080578CB359F49665F287999653E7AE9ADCDA",
+    "contract_type": "contract",
+    "latitude": 53.383099,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiQkljcXhENno4UkdjTWMwSFlxQWtLdyIsImkiOiI1ODg1NTQ2MzAwIn0.ErOFl3e9VclIF6KSbgt-IJZUCCMQmmDWrICY4G0tCgY",
+    "title": "Data Modeller",
+    "description": "Job Title: Senior Data Engineer / Data Modeller (GCP & BigQuery) Job Description This role focuses on designing and delivering the data foundations for a cloud-based Operational Resilience platform. You will identify, source, structure, and model data within Google Cloud Platform (GCP), primarily using BigQuery, to create high-quality datasets that underpin analytics, AI initiatives, and business decision-making. The emphasis is on data discovery, data architecture, and data modelling rather th…"
+   },
+   {
+    "salary_is_predicted": "0",
+    "created": "2026-09-16T20:05:45Z",
+    "description": "What Are We Looking For? Owing to our continued success, Future Group is looking to recruit a motivated individual to join our team as a Data Cabling Engineer, to assist with the successful delivery of projects throughout the UK & Ireland. This is an exciting opportunity for someone who is keen to develop their career in telecommunications or an experienced engineer who is looking to continue progressing their career with a market leader. Here at Future Group we dont just provide technical supp…",
+    "contract_type": "permanent",
+    "id": "5886592668",
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Haugh, Inverness",
+     "area": [
+      "UK",
+      "Scotland",
+      "Highland",
+      "Inverness",
+      "Haugh"
+     ]
+    },
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "salary_max": 95000,
+    "longitude": -4.214093,
+    "latitude": 57.487685,
+    "category": {
+     "label": "IT Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "it-jobs"
+    },
+    "company": {
+     "display_name": "Future Group",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NjU5MjY2OCIsInMiOiI3a0M3d1Q2ejhSRy1IdlhvY3M2aVlRIn0.fMfx6iHEdsls79STTPiCriBtSwl81lDN0hrhV9XVaI4",
+    "salary_min": 95000,
+    "title": "Data Engineer",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/land/ad/5886592668?se=7kC7wT6z8RG-HvXocs6iYQ&utm_medium=api&utm_source=fixture&v=D439D863BE694F672E0C43FF7633DDEB2ACBFA59"
+   },
+   {
+    "salary_is_predicted": "0",
+    "salary_max": 40000,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/land/ad/5886776362?se=uksByD6z8RGt2KL-1Vbpjg&utm_medium=api&utm_source=fixture&v=B397028705DF02E5E31C9A4E0CD51229E1EFF740",
+    "latitude": 52.657629,
+    "contract_type": "permanent",
+    "created": "2026-09-17T00:53:38Z",
+    "category": {
+     "label": "Engineering Jobs",
+     "tag": "engineering-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "description": "Extra Recruitment are recruiting for a Production Engineer in the Cheslyn Hay area. This is an excellent opportunity to join a well-established electrical manufacturing business that designs and builds high-quality control panels and automation systems. The successful candidate will play a key role in introducing new products into production, improving manufacturing processes and providing technical support across the business. Details of a Production Engineer Cheslyn Hay Monday to Thursday, 8:…",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoidWtzQnlENno4Ukd0MktMLTFWYnBqZyIsImkiOiI1ODg2Nzc2MzYyIn0.m6fxrPd8JW7oSfWkH7zo6dl4WF261MxNxr8QpH-FKmM",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "id": "5886776362",
+    "company": {
+     "display_name": "Extra Recruitment Limited",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "title": "Production Engineer",
+    "longitude": -2.022798,
+    "location": {
+     "display_name": "Cheslyn Hay, Walsall",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "West Midlands",
+      "Walsall",
+      "Cheslyn Hay"
+     ]
+    },
+    "salary_min": 40000
+   },
+   {
+    "id": "5887096790",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Teksystems"
+    },
+    "title": "Data Architect",
+    "longitude": -4.254873,
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Scotland, UK",
+     "area": [
+      "UK",
+      "Scotland"
+     ]
+    },
+    "salary_min": 77867.65,
+    "salary_is_predicted": "1",
+    "salary_max": 77867.65,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/land/ad/5887096790?se=KEXZzj6z8RGt2KL-1Vbpjg&utm_medium=api&utm_source=fixture&v=390030F7B294DC9337B57C199897A16DE211FC69",
+    "latitude": 56.79918,
+    "contract_type": "contract",
+    "created": "2026-09-17T04:47:29Z",
+    "category": {
+     "label": "IT Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "it-jobs"
+    },
+    "description": "Description Data Architect / Solution Architect Location: Glasgow or Edinburgh (Hybrid) Overview One of the top UK's Mutual Life and Pension Companies are seeking an experienced Data Architect / Solution Architect to support a strategic transformation programme focused on bringing policy administration and associated data services back in-house. This role will combine data architecture, solution architecture and large-scale migration expertise, helping define both the target-state architecture …",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NzA5Njc5MCIsInMiOiJLRVhaemo2ejhSR3QyS0wtMVZicGpnIn0.XMqKUYQayqghEl-cTtC22iIDKHcozKeUt2afMNMVXes",
+    "__CLASS__": "Adzuna::API::Response::Job"
+   }
+  ]
+ }
+}

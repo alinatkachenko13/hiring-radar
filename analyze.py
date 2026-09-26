@@ -10,15 +10,16 @@ import json
 import sys
 from collections import Counter, defaultdict
 
+import raw_files
 from config import RAW_DIR
 
 
 def load_documents(run_date: str | None) -> tuple[str, list[dict]]:
-    files = sorted(RAW_DIR.glob("raw_*.json"))
+    files = raw_files.find("raw_*")
     if not files:
         raise SystemExit(f"В {RAW_DIR} нет файлов. Сначала python extract.py")
 
-    documents = [json.loads(path.read_text(encoding="utf-8")) for path in files]
+    documents = [raw_files.read(path) for path in files]
     if run_date is None:
         run_date = max(doc["_meta"]["run_date"] for doc in documents)
     documents = [doc for doc in documents if doc["_meta"]["run_date"] == run_date]

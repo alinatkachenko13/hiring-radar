@@ -6,7 +6,9 @@
 # Код проекта монтируется в контейнер целиком, поэтому data/raw, склад DuckDB
 # и логи dbt остаются в папке проекта. Ключи берутся из .env.
 
-name: hiring-radar
+# Имя проекта и порт вынесены в переменные: на общем сервере имена контейнеров
+# не должны сталкиваться с чужими, а порт 8080 там занимает CI (см. docs/deploy.md).
+name: ${COMPOSE_PROJECT_NAME:-hiring-radar}
 
 services:
   postgres:
@@ -15,6 +17,10 @@ services:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
+    # База метаданных Airflow маленькая: настройки по умолчанию рассчитаны
+    # на сервер под нагрузкой и занимают лишнюю память.
+    command: postgres -c shared_buffers=64MB -c max_connections=30
+    mem_limit: 256m
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
@@ -36,12 +42,22 @@ services:
       AIRFLOW__CORE__DAGS_FOLDER: /opt/hiring-radar/airflow/dags
       PROJECT_DIR: /opt/hiring-radar
       PIPELINE_PYTHON: /home/airflow/pipeline-venv/bin/python
+      # Airflow по умолчанию поднимает 32 рабочих процесса LocalExecutor и
+      # несколько gunicorn-воркеров. Нашему DAG хватает двух задач разом,
+      # а на общем сервере лишние процессы съедают чужую память.
+      AIRFLOW__CORE__PARALLELISM: "4"
+      AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG: "2"
+      AIRFLOW__API__WORKERS: "1"
+      AIRFLOW__DAG_PROCESSOR__PARSING_PROCESSES: "1"
+    mem_limit: ${AIRFLOW_MEM_LIMIT:-2g}
     user: "${AIRFLOW_UID:-50000}:0"
     volumes:
       - .:/opt/hiring-radar
       - airflow-home:/opt/airflow
     ports:
-      - "8080:8080"
+      # Только localhost: публикация вида "8080:8080" обходит фаервол сервера
+      # и открывает Airflow всему интернету (см. docs/deploy.md).
+      - "127.0.0.1:${AIRFLOW_PORT:-8080}:8080"
     depends_on:
       postgres:
         condition: service_healthy
