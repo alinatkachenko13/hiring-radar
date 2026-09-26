@@ -38,16 +38,23 @@ def collection_line(run_date: str) -> str:
     complete = sum(1 for p in pairs.values() if p["status"] == raw_status.COMPLETE)
     vacancies = sum(p.get("collected") or 0 for p in pairs.values())
 
-    line = f"Собрано: {complete} пар из {expected}, {fmt(vacancies)} вакансий"
-
-    # Ожидаемая обрезка не сбой, но в сводке про неё честно сказать стоит.
-    partial = [
-        key for key, value in pairs.items()
+    # Ожидаемая обрезка не сбой, поэтому такие пары считаются собранными:
+    # «29 из 30» читалось как поломка, хотя сбора это не касается.
+    partial = {
+        key: value for key, value in pairs.items()
         if value["status"] == raw_status.TRUNCATED
         and raw_status.expected_truncation(key, value["status"])
-    ]
+    }
+    done = complete + len(partial)
+
+    line = f"Собрано: {done} пар из {expected}, {fmt(vacancies)} вакансий"
     if partial:
-        line += f"\nЧастично (упёрлись в потолок выдачи): {', '.join(partial)}"
+        # Масштаб недобора важнее самого факта: по нему видно, растёт ли разрыв.
+        details = ", ".join(
+            f"{key}: {fmt(value.get('collected') or 0)} из {fmt(value.get('count_reported') or 0)}"
+            for key, value in partial.items()
+        )
+        line += f"\nЧастично, упёрлись в потолок выдачи — {details}"
 
     other = [
         f"{key}: {value['status']}"
