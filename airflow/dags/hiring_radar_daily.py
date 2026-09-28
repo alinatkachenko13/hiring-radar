@@ -1,7 +1,7 @@
 """Ежедневный прогон hiring-radar: сбор, загрузка полного дня, dbt build с тестами.
 
 Шаги повторяются сами. Если шаг упал после всех повторов, уходит одно сообщение
-в Telegram. Дата прогона фиксируется первым шагом и передаётся дальше через XCom,
+в Telegram. В конце дня уходит короткая сводка о том, что собралось. Дата прогона фиксируется первым шагом и передаётся дальше через XCom,
 чтобы повтор после полуночи работал с тем же днём.
 
 Запускается в docker-compose.yml: код проекта смонтирован в PROJECT_DIR,
@@ -86,4 +86,23 @@ with DAG(
         retry_delay=timedelta(minutes=5),
     )
 
-    run_date >> collect >> load >> transform
+    # Уборка идёт последней и не влияет на данные: сырьё не удаляется, а сжимается.
+    # Падение здесь не должно окрашивать прогон в красный, поэтому повторов нет,
+    # а алерт общий: не сжалось сегодня — сожмётся завтра.
+    compress = BashOperator(
+        task_id="compress",
+        bash_command=f"cd {PROJECT_DIR} && {PYTHON} compress_raw.py",
+        retries=0,
+    )
+
+    # Сводка идёт последней и при любом исходе: all_done. Если день не собрался,
+    # алерт уже ушёл, а сводка покажет, что именно осталось неполным.
+    # Повторов нет и падать ей нечем: скрипт не роняет прогон.
+    report = BashOperator(
+        task_id="report",
+        bash_command=f"cd {PROJECT_DIR} && {PYTHON} daily_report.py {RUN_DATE}",
+        retries=0,
+        trigger_rule="all_done",
+    )
+
+    run_date >> collect >> load >> transform >> compress >> report

@@ -1,0 +1,42 @@
+name: CI
+
+# Каждый push и pull request прогоняет проект без Adzuna и без GCP: юнит-тесты
+# питоновской логики, затем загрузка двух дней из tests/fixtures/raw в DuckDB
+# и dbt build со всеми тестами моделей.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  dbt-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      # Версии берутся из requirements.txt, BigQuery-пакеты для CI не нужны.
+      - name: Install
+        run: pip install $(grep -E '^(requests|duckdb|dbt-duckdb|pytest)==' requirements.txt)
+
+      - name: Compile Python
+        run: python -m compileall -q *.py airflow/dags
+
+      # Тесты идут до загрузки: они быстрые и ломаются понятнее, чем dbt.
+      - name: Unit tests
+        run: pytest -q
+
+      - name: Load fixture days
+        run: |
+          mkdir -p data/raw
+          cp tests/fixtures/raw/*.json data/raw/
+          python load.py
+
+      - name: dbt build
+        working-directory: dbt
+        run: dbt build --profiles-dir .

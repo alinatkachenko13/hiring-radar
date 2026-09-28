@@ -33,6 +33,7 @@ classified as (
         latitude,
         longitude,
         redirect_url,
+        seen_in_census,
         case
             when title_l like '%analytics engineer%'
                 then 'analytics_engineer'

@@ -22,6 +22,7 @@ import json
 import sys
 from pathlib import Path
 
+import raw_files
 import raw_status
 from config import (
     BQ_RAW_DATASET,
@@ -52,6 +53,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="загрузить день, даже если не все пары собраны полностью",
     )
+    parser.add_argument(
+        "--keep-temp",
+        action="store_true",
+        help="оставить промежуточные jsonl на диске (для отладки)",
+    )
     return parser.parse_args()
 
 
@@ -69,7 +75,7 @@ def location_parts(vacancy: dict) -> tuple[str | None, str | None, str | None, s
 
 
 def flatten_file(path: Path) -> list[dict]:
-    document = json.loads(path.read_text(encoding="utf-8"))
+    document = raw_files.read(path)
     meta = document["_meta"]
     rows = []
     for vacancy in document.get("payload", {}).get("results") or []:
@@ -111,7 +117,7 @@ def flatten_file(path: Path) -> list[dict]:
 
 
 def collect_rows(run_date: str | None) -> tuple[list[dict], list[Path]]:
-    files = sorted(RAW_DIR.glob("raw_*.json"))
+    files = raw_files.find("raw_*")
     if run_date:
         files = [path for path in files if path.name.startswith(f"raw_{run_date}_")]
     if not files:
@@ -216,7 +222,7 @@ def load_duckdb(jsonl_path: Path, run_dates: list[str]) -> None:
     print(f"В raw.adzuna_results теперь {total} строк (все даты).")
 
 
-def load_bigquery(jsonl_path: Path, run_dates: list[str]) -> None:
+def load_bigquery(jsonl_path: Path, run_dates: list[str]) -> list[Path]:
     try:
         from google.cloud import bigquery
     except ImportError:
@@ -287,6 +293,7 @@ def load_bigquery(jsonl_path: Path, run_dates: list[str]) -> None:
     if existing is None:
         client.create_table(table)
 
+    parts: list[Path] = []
     by_date: dict[str, list[str]] = {day: [] for day in run_dates}
     with jsonl_path.open(encoding="utf-8") as handle:
         for line in handle:
@@ -307,6 +314,7 @@ def load_bigquery(jsonl_path: Path, run_dates: list[str]) -> None:
             continue
         part_path = jsonl_path.with_name(f"adzuna_results_{day}.jsonl")
         part_path.write_text("".join(lines), encoding="utf-8")
+        parts.append(part_path)
         partition_id = f"{table_id}${day.replace('-', '')}"
         with part_path.open("rb") as handle:
             job = client.load_table_from_file(
@@ -315,6 +323,7 @@ def load_bigquery(jsonl_path: Path, run_dates: list[str]) -> None:
         job.result()
         print(f"  партиция {day}: {len(lines)} строк")
     print(f"BigQuery: {table_id}, даты {', '.join(run_dates)}")
+    return parts
 
 
 def main() -> int:
@@ -352,10 +361,21 @@ def main() -> int:
     )
     print(f"Промежуточный jsonl: {jsonl_path}")
 
+    temp_files = [jsonl_path]
     if args.backend == "duckdb":
         load_duckdb(jsonl_path, run_dates)
     else:
-        load_bigquery(jsonl_path, run_dates)
+        temp_files += load_bigquery(jsonl_path, run_dates)
+
+    # Промежуточные jsonl — копия сырья в другом формате, и весят они столько же.
+    # После успешной загрузки они не нужны: склад уже содержит эти строки,
+    # а пересобрать их можно из data/raw за минуту.
+    if not args.keep_temp:
+        freed = sum(path.stat().st_size for path in temp_files if path.exists())
+        for path in temp_files:
+            path.unlink(missing_ok=True)
+        print(f"Промежуточные файлы убраны, освобождено {freed / 1e6:.1f} МБ "
+              f"(оставить: --keep-temp).")
     return 1 if skipped else 0
 
 

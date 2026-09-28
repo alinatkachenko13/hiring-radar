@@ -1,0 +1,437 @@
+{
+ "_meta": {
+  "source": "adzuna",
+  "run_date": "2026-09-18",
+  "extracted_at": "2026-09-18T06:00:51.183787+00:00",
+  "country": "gb",
+  "role_query": "data scientist",
+  "page": 1,
+  "results_per_page": 50,
+  "max_days_old": 2,
+  "count_reported": 12,
+  "request_url": "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=***&app_key=***&results_per_page=50&what=data+scientist&max_days_old=2",
+  "response_headers": {
+   "Date": "Fri, 18 Sep 2026 06:45:52 GMT",
+   "Content-Type": "application/json; charset=utf8",
+   "Content-Length": "69240",
+   "Connection": "keep-alive",
+   "Server": "nginx/1.28.3",
+   "Vary": "Content-Type",
+   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+   "Access-Control-Allow-Origin": "*",
+   "X-Catalyst": "5.90132"
+  }
+ },
+ "payload": {
+  "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+  "results": [
+   {
+    "contract_time": "full_time",
+    "id": "5885292470",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "salary_min": 39000,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoibU5Id255eXo4UkdjNHEyTzg3X1NuZyIsImkiOiI1ODg1MjkyNDcwIn0.iLBaeRDOW0ddffi9KFz9od9OwkFwLMHFATlwk6AiHmc",
+    "title": "Science Teacher",
+    "latitude": 51.389801,
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Philosophy Education"
+    },
+    "salary_is_predicted": "0",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885292470?utm_medium=api&utm_source=fixture",
+    "description": "*]:pointer-events-auto R6Vx5W_threadScrollVars scroll-mb-[calc(var(scroll-root-safe-area-inset-bottom,0px)var(thread-response-height))] scroll-mt-[calc(var(header-height)min(200px,max(70px,20svh)))]\" dir=\"auto\" data-turn-id=\"request-WEB:5561d1c6-e57f-45d8-a5da-973f0c8dc854-6\" data-turn-id-container=\"request-WEB:5561d1c6-e57f-45d8-a5da-973f0c8dc854-6\" data-testid=\"conversation-turn-14\" data-turn=\"assistant\"> Teacher of Science KS3 & KS4 Science Rochester Full-Time or Part-Time September / Octobe…",
+    "category": {
+     "tag": "teaching-jobs",
+     "label": "Teaching Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "location": {
+     "display_name": "Rochester, Kent",
+     "area": [
+      "UK",
+      "South East England",
+      "Kent",
+      "Rochester"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "created": "2026-09-16T01:11:04Z",
+    "longitude": 0.503732,
+    "salary_max": 93600
+   },
+   {
+    "salary_is_predicted": "1",
+    "description": "Company Description Work with Us. Change the World. At AECOM, we're delivering a better world. Whether improving your commute, keeping the lights on, providing access to clean water, or transforming skylines, our work helps people and communities thrive. We are the world's trusted infrastructure consulting firm, partnering with clients to solve the world's most complex challenges and build legacies for future generations. There has never been a better time to be at AECOM. With accelerating infr…",
+    "salary_max": 61523.23,
+    "salary_min": 61523.23,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQzODA2NiIsInMiOiJZRHkzbkN5ejhSR0QyLUJuZGFiOF93In0.wQ_hbqdbAx0EY1FBYivE8xay_FQxQ5tlibOMm4YM8s0",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "created": "2026-09-16T02:12:11Z",
+    "location": {
+     "display_name": "London, UK",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "London"
+     ]
+    },
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885438066?utm_medium=api&utm_source=fixture",
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "engineering-jobs",
+     "label": "Engineering Jobs"
+    },
+    "latitude": 51.503378,
+    "longitude": -0.139134,
+    "company": {
+     "display_name": "AECOM",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "title": "Senior Machine Learning Engineer",
+    "id": "5885438066"
+   },
+   {
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoibU5Id255eXo4UkdjNHEyTzg3X1NuZyIsImkiOiI1ODg1NDM5ODM0In0.7AdQYCjhFzndFONcvhfakzR55P5P47CBd5OiI0oNLnM",
+    "location": {
+     "display_name": "Harrogate, North Yorkshire",
+     "area": [
+      "UK",
+      "Yorkshire And The Humber",
+      "North Yorkshire",
+      "Harrogate"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "salary_max": 38910.12,
+    "title": "QC Reviewer I",
+    "longitude": -1.53911,
+    "created": "2026-09-16T02:13:09Z",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885439834?utm_medium=api&utm_source=fixture",
+    "id": "5885439834",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Labcorp"
+    },
+    "salary_is_predicted": "1",
+    "latitude": 53.990601,
+    "category": {
+     "tag": "scientific-qa-jobs",
+     "label": "Scientific & QA Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "salary_min": 38910.12,
+    "description": "Labcorp is a global leader in laboratory services, providing the insights and answers that help healthcare providers, patients, researchers, pharmaceutical companies and health systems make confident decisions and improve outcomes. Through our unparalleled science, data, technology and laboratory network, we advance diagnostics, accelerate innovation and help address some of the world's most important health challenges. As we shape the future of healthcare, we are leveraging advanced technologi…"
+   },
+   {
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "Eastern England",
+      "Cambridgeshire",
+      "Huntingdon"
+     ],
+     "display_name": "Huntingdon, Cambridgeshire"
+    },
+    "longitude": -0.185363,
+    "created": "2026-09-16T02:13:09Z",
+    "salary_max": 43021.88,
+    "salary_is_predicted": "1",
+    "company": {
+     "display_name": "Labcorp",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "latitude": 52.3293,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885439839?utm_medium=api&utm_source=fixture",
+    "description": "Labcorp is a global leader in laboratory services, providing the insights and answers that help healthcare providers, patients, researchers, pharmaceutical companies and health systems make confident decisions and improve outcomes. Through our unparalleled science, data, technology and laboratory network, we advance diagnostics, accelerate innovation and help address some of the world's most important health challenges. As we shape the future of healthcare, we are leveraging advanced technologi…",
+    "category": {
+     "label": "Scientific & QA Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "scientific-qa-jobs"
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoibU5Id255eXo4UkdjNHEyTzg3X1NuZyIsImkiOiI1ODg1NDM5ODM5In0.KPgcNXT3GPUqZnDJYA8WHm8OuYnbsQhzMfWZSiLx22c",
+    "title": "Principal, Clinical translation and scientific engagement lead, RWD",
+    "contract_time": "full_time",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "id": "5885439839",
+    "salary_min": 43021.88
+   },
+   {
+    "salary_min": 41077.85,
+    "contract_time": "full_time",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "id": "5885439841",
+    "title": "Principal, Clinical translation and scientific engagement lead, RWD",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQzOTg0MSIsInMiOiJtTkh3bnl5ejhSR2M0cTJPODdfU25nIn0.00rtaK14vtER1SeCwBy4pJCmTSEEtLeWx5nMNPh-9So",
+    "description": "Labcorp is a global leader in laboratory services, providing the insights and answers that help healthcare providers, patients, researchers, pharmaceutical companies and health systems make confident decisions and improve outcomes. Through our unparalleled science, data, technology and laboratory network, we advance diagnostics, accelerate innovation and help address some of the world's most important health challenges. As we shape the future of healthcare, we are leveraging advanced technologi…",
+    "category": {
+     "tag": "scientific-qa-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Scientific & QA Jobs"
+    },
+    "salary_is_predicted": "1",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Labcorp"
+    },
+    "latitude": 53.990601,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885439841?utm_medium=api&utm_source=fixture",
+    "longitude": -1.53911,
+    "created": "2026-09-16T02:13:10Z",
+    "salary_max": 41077.85,
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "Yorkshire And The Humber",
+      "North Yorkshire",
+      "Harrogate"
+     ],
+     "display_name": "Harrogate, North Yorkshire"
+    }
+   },
+   {
+    "latitude": 51.503378,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "contract_time": "full_time",
+    "title": "Senior Software Engineer - Python",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885439981?utm_medium=api&utm_source=fixture",
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "it-jobs",
+     "label": "IT Jobs"
+    },
+    "salary_min": 63727.91,
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Medtronic"
+    },
+    "id": "5885439981",
+    "location": {
+     "area": [
+      "UK",
+      "London"
+     ],
+     "display_name": "London, UK",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "created": "2026-09-16T02:13:16Z",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiVUhJYm1peXo4Ukcxa2ZnZWVnd1JQZyIsImkiOiI1ODg1NDM5OTgxIn0.Q7Um3l07r9-g3t-a-ZI5AokLG3N_V32YE1SV1rwEoX8",
+    "salary_is_predicted": "1",
+    "salary_max": 63727.91,
+    "description": "Flexible Work Arrangement London, London, United Kingdom Full time R76890 Careers that change lives start here. Medtronic is a global leader in healthcare technology with a Mission to alleviate pain, restore health, and extend life. Our 95,000 employees work across more than 150 countries to put patients first - developing innovative medical technologies that improve the lives of 72 million patients each year. Your unique talents will help shape the future of healthcare while building a career …",
+    "longitude": -0.139134
+   },
+   {
+    "latitude": 52.483002,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "id": "5885440001",
+    "contract_time": "full_time",
+    "salary_max": 32846.89,
+    "salary_is_predicted": "1",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Mondelez International"
+    },
+    "created": "2026-09-16T02:13:18Z",
+    "longitude": -1.89359,
+    "title": "R&D Scientific&Regulatory Affairs Internship - Taste The Future Program UK",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885440001?utm_medium=api&utm_source=fixture",
+    "salary_min": 32846.89,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQ0MDAwMSIsInMiOiI0dXBGb1N5ejhSR3Y2NHFFNHpqV0RBIn0.BemCj7mTeEGrD9_btRzBLdB2RacMn_6YrdcZUZ5lDbA",
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Scientific & QA Jobs",
+     "tag": "scientific-qa-jobs"
+    },
+    "description": "Birmingham, United Kingdom Full time R-177414 Job Description Are You Ready to Make It Happen at Mondelez International? Join our Mission to Lead the Future of Snacking. Make It Matter. As an organization we are committed to developing the next generation of Makers and Bakers. Joining us at an early career stage in our fast paced and ever changing environment will enable you to do more, learn more and grow more. You will be encouraged to step outside your comfort zone- you may even surprise you…",
+    "location": {
+     "area": [
+      "UK",
+      "West Midlands",
+      "Birmingham"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Birmingham, West Midlands"
+    },
+    "contract_type": "contract"
+   },
+   {
+    "category": {
+     "tag": "scientific-qa-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Scientific & QA Jobs"
+    },
+    "salary_min": 33153.17,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiNHVwRm9TeXo4Ukd2NjRxRTR6aldEQSIsImkiOiI1ODg1NDQwMDA5In0.GZWfRhSnYw_eBf6bZq0BpZ5lkleCbrzq3bo329tY01c",
+    "contract_type": "contract",
+    "location": {
+     "area": [
+      "UK",
+      "South East England",
+      "Berkshire",
+      "Reading"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Reading, Berkshire"
+    },
+    "description": "Reading, United Kingdom Full time R-177524 Job Description Are You Ready to Make It Happen at Mondelez International? Join our Mission to Lead the Future of Snacking. Make It Matter. As an organization we are committed to developing the next generation of Makers and Bakers. Joining us at an early career stage in our fast paced and ever changing environment will enable you to do more, learn more and grow more. You will be encouraged to step outside your comfort zone- you may even surprise yourse…",
+    "salary_is_predicted": "1",
+    "salary_max": 33153.17,
+    "contract_time": "full_time",
+    "id": "5885440009",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "latitude": 51.455002,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885440009?utm_medium=api&utm_source=fixture",
+    "title": "R&D Global Research Internship - Taste The Future Program Reading, UK",
+    "longitude": -0.969088,
+    "created": "2026-09-16T02:13:18Z",
+    "company": {
+     "display_name": "Mondelez International",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    }
+   },
+   {
+    "contract_type": "permanent",
+    "contract_time": "full_time",
+    "description": "Rheolwr Data a Datblygwr Digidol (Gwyddorau Naturiol), Amgueddfa Genedlaethol Caerdydd Math o swydd wag : Dros Dro/Llawn Amser Categori : Digidol (Cyfryngau Digidol) Ystod cyflog : Gradd E: £35,257.19 - £40,170.21 Oriau : 35 awr yr wythnos Gofyniad lefel iaith Gymraeg : Dymunol Crynodeb o'r Swydd Helpwch i ddod chasgliadau gwyddorau naturiol Cymreig o safon fyd-eang i gynulleidfa fyd-eang. A chithaun Rheolwr Data a Datblygwr Digidol yn Amgueddfa Cymru, byddwch yn rheoli ac yn datblygu'r cronfey…",
+    "id": "5885546050",
+    "salary_is_predicted": "0",
+    "created": "2026-09-16T04:04:36Z",
+    "salary_min": 40000,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/land/ad/5885546050?se=asN1mCyz8RG-HvXocs6iYQ&utm_medium=api&utm_source=fixture&v=E740CDDA77E5C72B3BAEB2CC4848891CDBDA5B76",
+    "title": "Data Manager & Digital Developer",
+    "salary_max": 40000,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "location": {
+     "area": [
+      "UK",
+      "Wales",
+      "Cardiff County",
+      "Cardiff",
+      "Cathays"
+     ],
+     "display_name": "Cathays, Cardiff",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Scientific & QA Jobs",
+     "tag": "scientific-qa-jobs"
+    },
+    "longitude": -3.177217,
+    "latitude": 51.485635,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTU0NjA1MCIsInMiOiJhc04xbUN5ejhSRy1IdlhvY3M2aVlRIn0.jK6q1vqRETu2_fEM5TMoJeqDeaKWBh2Oa7gr5Dds6_g",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "National Museum of Wales"
+    }
+   },
+   {
+    "latitude": 53.466949,
+    "salary_is_predicted": "1",
+    "company": {
+     "display_name": "Peel Ports Group",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "id": "5886592465",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/land/ad/5886592465?se=mNHwnyyz8RGc4q2O87_Sng&utm_medium=api&utm_source=fixture&v=AEA9D8B5E4AE297D47C40770B33D6BAD22FAE300",
+    "description": "Finance Systems, Data & Analytics Manager Are you excited by the opportunity to shape how Finance uses data, technology and analytics? Would you like to lead the development of reporting solutions that improve decision-making across a complex and ambitious organisation? We are looking for a Finance Systems, Data & Analytics Manager to join our Group Finance team in Liverpool. This is an opportunity to take ownership of our Finance reporting environment and help us use data, automation and emerg…",
+    "salary_min": 60122.7,
+    "category": {
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "IT Jobs"
+    },
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "North West England",
+      "Merseyside",
+      "Liverpool",
+      "Seaforth"
+     ],
+     "display_name": "Seaforth, Liverpool"
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NjU5MjQ2NSIsInMiOiJtTkh3bnl5ejhSR2M0cTJPODdfU25nIn0.UlOVcKQ8NIwi2DKCd7FZVZReSDKiJSr65piuUK7nA2Q",
+    "created": "2026-09-16T20:03:32Z",
+    "title": "Finance Systems, Data & Analytics Manager",
+    "longitude": -3.020146,
+    "salary_max": 60122.7
+   },
+   {
+    "salary_max": 161800,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "London, UK",
+     "area": [
+      "UK",
+      "London"
+     ]
+    },
+    "category": {
+     "label": "IT Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "it-jobs"
+    },
+    "latitude": 51.503378,
+    "longitude": -0.139134,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiaXVCNG5peXo4UkctSHZYb2NzNmlZUSIsImkiOiI1ODg3NDU3NzYyIn0.k3-S9EAn_DS2qpwHpnou3WTJ4sZEhYgDTNFd3PLTSDA",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Microsoft"
+    },
+    "salary_min": 93500,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5887457762?utm_medium=api&utm_source=fixture",
+    "title": "Principal Software Engineer, FDE",
+    "salary_is_predicted": "0",
+    "created": "2026-09-17T10:50:36Z",
+    "contract_type": "contract",
+    "contract_time": "full_time",
+    "description": "Overview In the Microsoft Frontier Company Engineering team, you won’t just build software; you’ll deliver real outcomes for some of the world’s most complex organizations. We are a global team of world-class engineers who have been working in a Forward Deployed Engineering (FDE) model for more than a decade, embedding directly within customer teams to solve their toughest challenges, side-by-side, and shipping production-ready solutions in days, not months. As a Principal Software Engineer, yo…",
+    "id": "5887457762"
+   },
+   {
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Wakefield, West Yorkshire",
+     "area": [
+      "UK",
+      "Yorkshire And The Humber",
+      "West Yorkshire",
+      "Wakefield"
+     ]
+    },
+    "contract_type": "permanent",
+    "created": "2026-09-17T10:54:11Z",
+    "longitude": -1.4991,
+    "salary_max": 25878,
+    "latitude": 53.682999,
+    "salary_is_predicted": "0",
+    "company": {
+     "display_name": "ALS Global",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5887463062?utm_medium=api&utm_source=fixture",
+    "description": "At ALS, we encourage you to dream big. When you join us, you’ll be part of a global team harnessing the power of scientific testing and data-driven insights to build a healthier future. The Role We are excited to announce a fantastic opportunity for a Laboratory Analyst to join our dynamic team at ALS Environmental in Wakefield. This is an excellent opportunity for someone looking to build or develop a career in environmental science and laboratory analysis within a global business that is comm…",
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Scientific & QA Jobs",
+     "tag": "scientific-qa-jobs"
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoibU5Id255eXo4UkdjNHEyTzg3X1NuZyIsImkiOiI1ODg3NDYzMDYyIn0.JSJIZS83UmSYnQxN0R7jbmKMCjsLuqKt0h23S7TBYiI",
+    "title": "Analyst",
+    "contract_time": "full_time",
+    "id": "5887463062",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "salary_min": 25878
+   }
+  ],
+  "count": 12,
+  "mean": 76863.95
+ }
+}

@@ -1,0 +1,403 @@
+{
+ "_meta": {
+  "source": "adzuna",
+  "run_date": "2026-09-17",
+  "extracted_at": "2026-09-17T15:25:45.812791+00:00",
+  "country": "de",
+  "role_query": "data engineer",
+  "page": 1,
+  "results_per_page": 50,
+  "max_days_old": 2,
+  "count_reported": 12,
+  "request_url": "https://api.adzuna.com/v1/api/jobs/de/search/1?app_id=***&app_key=***&results_per_page=50&what=data+engineer&max_days_old=2",
+  "response_headers": {
+   "Date": "Thu, 17 Sep 2026 15:25:45 GMT",
+   "Content-Type": "application/json; charset=utf8",
+   "Content-Length": "68395",
+   "Connection": "keep-alive",
+   "Server": "nginx/1.28.3",
+   "Vary": "Content-Type",
+   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+   "Access-Control-Allow-Origin": "*",
+   "X-Catalyst": "5.90132"
+  }
+ },
+ "payload": {
+  "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+  "mean": 89977.78,
+  "count": 12,
+  "results": [
+   {
+    "id": "5885243044",
+    "salary_min": 120,
+    "title": "Technical Content Lead",
+    "location": {
+     "display_name": "Berlin, Deutschland",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "Deutschland",
+      "Berlin"
+     ]
+    },
+    "redirect_url": "https://www.adzuna.de/details/5885243044?utm_medium=api&utm_source=fixture",
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Sonstige/Allgemeine Stellen",
+     "tag": "other-general-jobs"
+    },
+    "company": {
+     "display_name": "Soda Data",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "longitude": 13.420806,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "salary_is_predicted": "0",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiUkpyYUVxeXk4UkcyRDl2TXVlcFJWQSIsImkiOiI1ODg1MjQzMDQ0In0.JKfPvggGOotQaev2llqMRaqYX1fylDSkzY_jrKYfDPU",
+    "salary_max": 130,
+    "contract_time": "full_time",
+    "latitude": 52.507706,
+    "created": "2026-09-16T01:43:16Z",
+    "description": "Data quality is the bottleneck of the AI era. Every Fortune 500 is trying to solve it. We're the team they call. Soda is the data quality layer for Disney, Ralph Lauren, CBRE, HelloFresh, 2K Games, and Nubank. Our open-source engine, Soda Core, is used by companies like Tesla, Slack, Adyen, Walmart, and JPMC. The category is growing fast because AI doesn't work on bad data. We're hiring one person to own content at Soda, end to end. Soda's mission is to monitor the world's decisions. We're buil…"
+   },
+   {
+    "id": "5885243049",
+    "salary_min": 120,
+    "location": {
+     "area": [
+      "Deutschland",
+      "Berlin"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Berlin, Deutschland"
+    },
+    "title": "AI Content Engineer",
+    "category": {
+     "tag": "other-general-jobs",
+     "label": "Sonstige/Allgemeine Stellen",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Soda Data"
+    },
+    "redirect_url": "https://www.adzuna.de/details/5885243049?utm_medium=api&utm_source=fixture",
+    "longitude": 13.420806,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "salary_is_predicted": "0",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTI0MzA0OSIsInMiOiJSSnJhRXF5eThSRzJEOXZNdWVwUlZBIn0.SRqht3k_N6Oo6HXRWZGRRY-DDyCsuR6vSxZRPITfqCQ",
+    "salary_max": 130,
+    "contract_time": "full_time",
+    "description": "Data quality is the bottleneck of the AI era. Every Fortune 500 is trying to solve it. We're the team they call. Soda is the data quality layer for Disney, Ralph Lauren, CBRE, HelloFresh, 2K Games, and Nubank. Our open-source engine, Soda Core, is used by companies like Tesla, Slack, Adyen, Walmart, and JPMC. The category is growing fast because AI doesn't work on bad data. We're hiring one person to own content at Soda, end to end. Soda's mission is to monitor the world's decisions. We're buil…",
+    "created": "2026-09-16T01:43:16Z",
+    "latitude": 52.507706
+   },
+   {
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "id": "5885447047",
+    "location": {
+     "area": [
+      "Deutschland",
+      "Berlin",
+      "Mitte"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Mitte, Berlin"
+    },
+    "salary_is_predicted": "0",
+    "title": "Senior AI Specialist (w/m/d)",
+    "redirect_url": "https://www.adzuna.de/details/5885447047?utm_medium=api&utm_source=fixture",
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "unknown",
+     "label": "Unknown"
+    },
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "GDV Gesamtverband der Versicherer"
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQ0NzA0NyIsInMiOiJSSnJhRXF5eThSRzJEOXZNdWVwUlZBIn0.k3r709TFbOE0gUb0DD55q3TgXyv3t0m7SRKgl5b0dNA",
+    "longitude": 13.40933,
+    "created": "2026-09-16T03:34:28Z",
+    "description": "Senior AI Specialist (w/m/d) Gesellschaft. Politik. Wirtschaft. Der Gesamtverband der Deutschen Versicherungswirtschaft (GDV) in Berlin ist die Dachorganisation der Versicherer in Deutschland. Gegenüber Parlament, Regierung und Öffentlichkeit – national wie auf europäischer Ebene – vertreten wir die Interessen einer spannenden, leistungsfähigen und vielfältigen Branche. Sie kommen aus dem Bereich der KI und verstehen es, Technologie in erfolgreiche Lösungen zu übersetzen? Als Senior AI Speciali…",
+    "latitude": 52.52219
+   },
+   {
+    "created": "2026-09-16T04:13:59Z",
+    "description": "Reliable data, resilient services and scalable architectures are at the heart of every CRM interaction at idealo. As a Staff Engineer, you'll shape the technical foundation behind identity resolution, subscriptions, data flows, and message delivery while ensuring GDPR compliance and supporting personalized user experiences. This role combines backend engineering, data engineering and architectural leadership . You'll influence how data flows across systems, how services communicate through even…",
+    "contract_type": "permanent",
+    "latitude": 52.507706,
+    "longitude": 13.420806,
+    "contract_time": "full_time",
+    "category": {
+     "tag": "engineering-jobs",
+     "label": "Technikerstellen",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "company": {
+     "display_name": "idealo internet GmbH",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "redirect_url": "https://www.adzuna.de/details/5885479285?utm_medium=api&utm_source=fixture",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQ3OTI4NSIsInMiOiJSSnJhRXF5eThSRzJEOXZNdWVwUlZBIn0.dBcELvg0mbz4bW2eL22S_Od-HBWoH1afxBG9ccEsEPM",
+    "salary_is_predicted": "0",
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Berlin, Deutschland",
+     "area": [
+      "Deutschland",
+      "Berlin"
+     ]
+    },
+    "title": "Staff Engineer (m|w|d) - CRM Tech",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "id": "5885479285"
+   },
+   {
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Unknown",
+     "tag": "unknown"
+    },
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "contract_time": "full_time",
+    "longitude": 6.743718,
+    "created": "2026-09-16T05:09:46Z",
+    "company": {
+     "display_name": "K4S GmbH",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTU0Nzc0NCIsInMiOiI2TDQwRHF5eThSR0Z6SWh0a3lZT2p3In0.Z7jWT5PaJ5U6J-Gw-UeH0gHeUYU51e3NVvcXPXiQIwU",
+    "salary_is_predicted": "0",
+    "redirect_url": "https://www.adzuna.de/details/5885547744?utm_medium=api&utm_source=fixture",
+    "id": "5885547744",
+    "title": "SAP BI / Data Engineer (m/w/d)",
+    "latitude": 51.443356,
+    "location": {
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Essen"
+     ],
+     "display_name": "Essen, Nordrhein-Westfalen",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "description": "Über unseren Kunden Für unseren Mandanten, ein international tätiges Unternehmen aus dem produzierenden Umfeld, suchen wir einen SAP BI / Data Engineer (m/w/d) zur unbefristeten Festanstellung. Das Unternehmen ist seit vielen Jahren erfolgreich am Markt etabliert und verbindet stabile Strukturen mit einer kontinuierlichen Weiterentwicklung seiner Prozesse und Systeme. Dabei investiert es gezielt in moderne Technologien und die Digitalisierung interner Abläufe. Als Arbeitgeber bietet das Unterne…"
+   },
+   {
+    "contract_time": "full_time",
+    "description": "Du bist interessiert an der Stelle als Senior Business Analyst (m/w/d) bei ALL IN GROUP GmbH (myposter) ? Auf Instaffo kannst du dich für diesen und weitere Jobs ohne großen Aufwand bewerben. Erstelle dein Profil in unter 2 Minuten und starte den Bewerbungsprozess mit nur wenigen Klicks. Bitte beachte, dass für diese Stelle eine Arbeitserlaubnis für Deutschland erforderlich ist. Die Sprachanforderungen für diese Stelle sind: Deutsch - Fließend (C1) Die geschätzte Gehaltsspanne von XING entspric…",
+    "created": "2026-09-16T05:12:23Z",
+    "latitude": 48.15067,
+    "longitude": 11.43553,
+    "id": "5885550674",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "redirect_url": "https://www.adzuna.de/details/5885550674?utm_medium=api&utm_source=fixture",
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Unknown",
+     "tag": "unknown"
+    },
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Instaffo GmbH"
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTU1MDY3NCIsInMiOiJSSnJhRXF5eThSRzJEOXZNdWVwUlZBIn0.Hjv9_h6DyWZpWKzpibuLVgWZwU2aqjoMSljoYaPxsXQ",
+    "salary_is_predicted": "0",
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Aubing-Lochhausen-Langwied, München",
+     "area": [
+      "Deutschland",
+      "Bayern",
+      "München (Kreis)",
+      "München",
+      "Aubing-Lochhausen-Langwied"
+     ]
+    },
+    "title": "Senior Business Analyst (m/w/d)"
+   },
+   {
+    "title": "Data Engineer / BI-Architekt*in (m/w/d)",
+    "category": {
+     "tag": "unknown",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Unknown"
+    },
+    "longitude": 9.18071,
+    "id": "5885808026",
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Mitte, Stuttgart",
+     "area": [
+      "Deutschland",
+      "Baden-Württemberg",
+      "Stuttgart",
+      "Mitte"
+     ]
+    },
+    "latitude": 48.77713,
+    "salary_is_predicted": "0",
+    "contract_type": "permanent",
+    "created": "2026-09-16T09:55:41Z",
+    "description": "Stuttgarts Spitzenreiter in Sachen Wohnungsbau und Projektentwicklung, Heimatgeber für 50.000 Stuttgarter*innen, schlagkräftiger Akteur im Klimaschutz: Unsere wirtschaftliche Stärke und unsere Leistungskraft sind das Fundament unseres Erfolgs. Wir gestalten das Stuttgart von morgen – lebenswert, bezahlbar, klimafit! Jetzt suchen wir Sie als Data Engineer / BI-Architekt*in (m/w/d) Vollzeit Stuttgart - Hybrid - Mit Berufserfahrung Wie Sie uns unterstützen: Sie verantworten den gesamten Lebenszykl…",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiSXI3M0RLeXk4UkdiVF9IWm5WMkJYUSIsImkiOiI1ODg1ODA4MDI2In0.zooJsr_TZse0VkD0b7tOSzt0AC_qGK9lNpzUMkabUgY",
+    "redirect_url": "https://www.adzuna.de/land/ad/5885808026?se=Ir73DKyy8RGbT_HZnV2BXQ&utm_medium=api&utm_source=fixture&v=A7D8D507690978DD0188E73EB078AC16316B0B98",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Stuttgarter Wohnungs- und Städtebaugesellschaft mbH"
+    }
+   },
+   {
+    "id": "5885821277",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTgyMTI3NyIsInMiOiJMQXZwRDZ5eThSRzJEOXZNdWVwUlZBIn0.Z6lpihUZA5LnZ3GbBJcjLYgaUI8Fa_7cRLtYJhus2dM",
+    "company": {
+     "display_name": "CompuSafe Data Systems AG",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "graduate-jobs",
+     "label": "Stellen für Hochschulabsolventen"
+    },
+    "redirect_url": "https://www.adzuna.de/details/5885821277?utm_medium=api&utm_source=fixture",
+    "title": "Senior Data Migration Engineer - Datenbankentwicklung/BI, Ingenieur",
+    "salary_is_predicted": "0",
+    "location": {
+     "display_name": "München, München (Kreis)",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "Deutschland",
+      "Bayern",
+      "München (Kreis)",
+      "München"
+     ]
+    },
+    "latitude": 48.137418,
+    "description": " Diese Tätigkeiten kommen auf Dich zu: - Untersuchung der bestehenden Quellsysteme, Datenstrukturen, Speicherorte, Bibliotheken und Verzeichnisstrukturen - Bewertung vorhandener Bildbestände, Metadaten sowie deren Beziehungen und Abhängigkeiten - Ermittlung der verfügbaren Frontify-Importmechanismen und Entwicklung einer geeigneten Migrationsarchitektur - Entwicklung automatisierter Skripte zur Extraktion von Bilddateien und Metadaten - Konzeption und Umsetzung von Transformations- und Mappingl…",
+    "created": "2026-09-16T10:09:49Z",
+    "longitude": 11.555737
+   },
+   {
+    "description": "BORA entwickelt und produziert Premium-Kücheneinbaugeräte mit intelligenten Technologien, hohem Designanspruch und echter Leidenschaft. Vom revolutionären Kochfeldabzug über den Profi-Dampfbackofen BORA X BO bis hin zu Kühl- und Gefriersystemen sowie Beleuchtung: Unser Portfolio wächst stetig – genauso wie unser Anspruch an Qualität, Perfektion und Innovation. Das Team In der Abteilung Business Solutions sind die Teams Application & Master Data, Enterprise Application Integration und Business I…",
+    "created": "2026-09-15T01:25:27Z",
+    "redirect_url": "https://www.adzuna.de/land/ad/5883974715?se=Ir73DKyy8RGbT_HZnV2BXQ&utm_medium=api&utm_source=fixture&v=85411313369EA902723F82D25D923A6BA05C1279",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4Mzk3NDcxNSIsInMiOiJJcjczREt5eThSR2JUX0hablYyQlhRIn0.fJc7CKqtAbAVDvCwa9u5LDs422ViJSgy4Rcrt6TVgaM",
+    "salary_is_predicted": "0",
+    "company": {
+     "display_name": "BORA Gruppe Deutschland",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "id": "5883974715",
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "other-general-jobs",
+     "label": "Sonstige/Allgemeine Stellen"
+    },
+    "title": "Data Engineer (all genders)",
+    "location": {
+     "area": [
+      "Deutschland"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Deutschland"
+    }
+   },
+   {
+    "company": {
+     "display_name": "technotrans SE",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "created": "2026-09-15T01:28:10Z",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4Mzk3NjI3OSIsInMiOiJJcjczREt5eThSR2JUX0hablYyQlhRIn0.2Ld8EEy4CbdV_-N5nPuqzaDb4-hVO2TZKlShHoI1qkE",
+    "description": "Unser Bereich Data Analytics begleitet alle Unternehmensbereiche mit datenbasierten Entscheidungsgrundlagen und bildet die Basis für unsere Business-Intelligence-Landschaft. Er umfasst unter anderem Reporting, Data Governance, Data Engineering und Analyse. Mit deiner Expertise als Business Intelligence Engineer (m/w/d) modellierst du konsistente Datenstrukturen und arbeitest aktiv an der Weiterentwicklung unseres Data Warehouses, sodass unsere Fachbereiche auf qualitativ hochwertige und perform…",
+    "redirect_url": "https://www.adzuna.de/land/ad/5883976279?se=Ir73DKyy8RGbT_HZnV2BXQ&utm_medium=api&utm_source=fixture&v=B12B808BC941758FCBDCA494A694EEE3150C1E55",
+    "salary_is_predicted": "0",
+    "latitude": 51.98821,
+    "location": {
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Warendorf (Kreis)",
+      "Sassenberg"
+     ],
+     "display_name": "Sassenberg, Warendorf (Kreis)",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "category": {
+     "tag": "other-general-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Sonstige/Allgemeine Stellen"
+    },
+    "id": "5883976279",
+    "longitude": 8.04117,
+    "title": "SAP Data Engineer (m/w/d)"
+   },
+   {
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "TARGOBANK"
+    },
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "description": "TARGOBANK als Arbeitgeberin BANK.ECHT.ANDERS. That’s our mission as an employer. We want to become the best bank for all our customers and employees, which is why we’re looking for people who want to make a difference together. As part of our IT team, you’ll play an active role in shaping our bank’s digital future. In an international environment with over 500 colleagues from around 40 countries, you’ll take a solution-oriented approach to a wide range of tasks—from further developing proven sy…",
+    "created": "2026-09-15T02:24:34Z",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NDAzNzczMiIsInMiOiJJcjczREt5eThSR2JUX0hablYyQlhRIn0.jNCSm0yPMclUTv4-jlZ1ATq5edupky0g4M_tRdxB5mU",
+    "redirect_url": "https://www.adzuna.de/land/ad/5884037732?se=Ir73DKyy8RGbT_HZnV2BXQ&utm_medium=api&utm_source=fixture&v=679804B316CCFA6AB9DE1ACE12A2F0A832CA2BB7",
+    "salary_is_predicted": "0",
+    "latitude": 51.443356,
+    "location": {
+     "display_name": "Duisburg, Nordrhein-Westfalen",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Duisburg"
+     ]
+    },
+    "category": {
+     "label": "IT-Stellen",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "it-jobs"
+    },
+    "contract_time": "full_time",
+    "longitude": 6.743718,
+    "id": "5884037732",
+    "title": "Senior Data Engineer - Develop & Maintain IT Applications - SQL (f/m/d)"
+   },
+   {
+    "latitude": 51.443356,
+    "location": {
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Duisburg"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Duisburg, Nordrhein-Westfalen"
+    },
+    "category": {
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "IT-Stellen"
+    },
+    "contract_time": "full_time",
+    "id": "5884037781",
+    "longitude": 6.743718,
+    "title": "Senior Data Engineer / Data Architect Risk Regulation (f/m/d)",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "TARGOBANK"
+    },
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "created": "2026-09-15T02:24:34Z",
+    "description": "TARGOBANK als Arbeitgeberin BANK.ECHT.ANDERS. That’s our mission as an employer. We want to become the best bank for all our customers and employees, which is why we’re looking for people who want to make a difference together. As part of our IT team, you’ll play an active role in shaping our bank’s digital future. In an international environment with over 500 colleagues from around 40 countries, you’ll take a solution-oriented approach to a wide range of tasks—from further developing proven sy…",
+    "redirect_url": "https://www.adzuna.de/land/ad/5884037781?se=Ir73DKyy8RGbT_HZnV2BXQ&utm_medium=api&utm_source=fixture&v=9632D5EC15EDB7DD220A478921C85025394D5DAC",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NDAzNzc4MSIsInMiOiJJcjczREt5eThSR2JUX0hablYyQlhRIn0.j-6JgSGZ_OJIJED0YmgPLv154jrF5T_Ww05wfInSs2Q",
+    "salary_is_predicted": "0"
+   }
+  ]
+ }
+}

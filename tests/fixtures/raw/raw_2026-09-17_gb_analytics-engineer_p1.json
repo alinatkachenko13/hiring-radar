@@ -1,0 +1,431 @@
+{
+ "_meta": {
+  "source": "adzuna",
+  "run_date": "2026-09-17",
+  "extracted_at": "2026-09-17T15:25:04.192444+00:00",
+  "country": "gb",
+  "role_query": "analytics engineer",
+  "page": 1,
+  "results_per_page": 50,
+  "max_days_old": 2,
+  "count_reported": 12,
+  "request_url": "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=***&app_key=***&results_per_page=50&what=analytics+engineer&max_days_old=2",
+  "response_headers": {
+   "Date": "Thu, 17 Sep 2026 15:25:03 GMT",
+   "Content-Type": "application/json; charset=utf8",
+   "Content-Length": "69214",
+   "Connection": "keep-alive",
+   "Server": "nginx/1.28.3",
+   "Vary": "Content-Type",
+   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+   "Access-Control-Allow-Origin": "*",
+   "X-Catalyst": "5.90132"
+  }
+ },
+ "payload": {
+  "results": [
+   {
+    "salary_is_predicted": "1",
+    "salary_min": 59642.99,
+    "company": {
+     "display_name": "Amazon",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885438097?utm_medium=api&utm_source=fixture",
+    "category": {
+     "label": "Engineering Jobs",
+     "tag": "engineering-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "description": "Description Amazon opened its virtual doors in 1995 and strives to be the world's most customer-centric company, where customers can find and discover anything they might want to buy online. The goal of Amazon Logistics is to build a world class last mile operation. Amazon Logistics aims to exceed the expectations of our customers by ensuring that their orders, no matter how large or small, are delivered as quickly, accurately, and cost effectively as possible. The European Amazon Logistics tea…",
+    "latitude": 51.503378,
+    "id": "5885438097",
+    "created": "2026-09-16T02:12:11Z",
+    "longitude": -0.139134,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiM04yajlhdXk4UkdDcDk2MHRqWFI3ZyIsImkiOiI1ODg1NDM4MDk3In0.eQ1CvaL9T26DcidLPzxBe8BTYm3bNPK8woaYxc5b56Y",
+    "salary_max": 59642.99,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "location": {
+     "area": [
+      "UK",
+      "London"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "London, UK"
+    },
+    "title": "Process/Design Engineer Amazon Logistics, EU Design Engineering"
+   },
+   {
+    "description": "Campus - Internship Programme - Undergraduate Product Manager - 2027 (UK - London) LONDON, United Kingdom(Hybrid) Job Description Amex Manifest You Lead the Way. We've Got Your Back. With the right backing, people and businesses have the power to progress in incredible ways. When you join Team Amex, you become part of a global and diverse community of colleagues with an unwavering commitment to backing our customers, communities, and each other. Here, you'll learn and grow as we help you create…",
+    "title": "Campus - Internship Programme - Undergraduate Product Manager - 2027 (UK - London)",
+    "contract_type": "contract",
+    "salary_max": 65757,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQ0MDgxNyIsInMiOiJLaEhsOXF1eThSR0Z6SWh0a3lZT2p3In0.4TB1LMuKA2EeDueWnSN7QTPR99p7Mvyx9ZRUe1o2Yh4",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "American Express"
+    },
+    "salary_min": 65757,
+    "category": {
+     "tag": "it-jobs",
+     "label": "IT Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "contract_time": "full_time",
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "London, UK",
+     "area": [
+      "UK",
+      "London"
+     ]
+    },
+    "latitude": 51.503378,
+    "id": "5885440817",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885440817?utm_medium=api&utm_source=fixture",
+    "salary_is_predicted": "1",
+    "created": "2026-09-16T02:14:04Z",
+    "longitude": -0.139134,
+    "__CLASS__": "Adzuna::API::Response::Job"
+   },
+   {
+    "latitude": 50.9575,
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Burgess Hill, West Sussex",
+     "area": [
+      "UK",
+      "South East England",
+      "West Sussex",
+      "Burgess Hill"
+     ]
+    },
+    "id": "5885440821",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885440821?utm_medium=api&utm_source=fixture",
+    "salary_is_predicted": "1",
+    "created": "2026-09-16T02:14:04Z",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "longitude": -0.133939,
+    "title": "Campus - Internship Programme - Undergraduate Product Manager - 2027 (UK - Burgess Hill)",
+    "description": "Campus - Internship Programme - Undergraduate Product Manager - 2027 (UK - Burgess Hill) BURGESS HILL, WEST SUSSEX, United Kingdom(Hybrid) Job Description Amex Manifest You Lead the Way. We've Got Your Back. With the right backing, people and businesses have the power to progress in incredible ways. When you join Team Amex, you become part of a global and diverse community of colleagues with an unwavering commitment to backing our customers, communities, and each other. Here, you'll learn and g…",
+    "salary_max": 60461.02,
+    "contract_type": "contract",
+    "company": {
+     "display_name": "American Express",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQ0MDgyMSIsInMiOiJLaEhsOXF1eThSR0Z6SWh0a3lZT2p3In0.eG8OiXyMUk6qm2o3bEN_9gJ29lAwTPrgcajUheP31Vo",
+    "salary_min": 60461.02,
+    "contract_time": "full_time",
+    "category": {
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "IT Jobs"
+    }
+   },
+   {
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "title": "Campus - Full Time - Product Manager - 2027 (UK - Burgess Hill)",
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "IT Jobs",
+     "tag": "it-jobs"
+    },
+    "latitude": 50.9575,
+    "created": "2026-09-16T02:14:04Z",
+    "longitude": -0.133939,
+    "contract_time": "full_time",
+    "company": {
+     "display_name": "American Express",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "location": {
+     "display_name": "Burgess Hill, West Sussex",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "South East England",
+      "West Sussex",
+      "Burgess Hill"
+     ]
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiM04yajlhdXk4UkdDcDk2MHRqWFI3ZyIsImkiOiI1ODg1NDQwODI0In0.CYZhBCXkvBzfl370men1t7JIzxfL39_3IWTujaz8dFw",
+    "salary_max": 57749.78,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885440824?utm_medium=api&utm_source=fixture",
+    "description": "Campus - Full Time - Product Manager - 2027 (UK - Burgess Hill) BURGESS HILL, WEST SUSSEX, United Kingdom(Hybrid) Job Description You Lead the Way. We've Got Your Back. With the right backing, people and businesses have the power to progress in incredible ways. When you join Team Amex, you become part of a global and diverse community of colleagues with an unwavering commitment to backing our customers, communities, and each other. Here, you'll learn and grow as we help you create a career jour…",
+    "id": "5885440824",
+    "salary_is_predicted": "1",
+    "salary_min": 57749.78
+   },
+   {
+    "location": {
+     "area": [
+      "UK",
+      "London"
+     ],
+     "display_name": "London, UK",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "latitude": 51.503378,
+    "id": "5885440834",
+    "salary_is_predicted": "1",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885440834?utm_medium=api&utm_source=fixture",
+    "created": "2026-09-16T02:14:05Z",
+    "longitude": -0.139134,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "title": "Campus - Full Time - Product Manager - 2027 (UK - London)",
+    "description": "Campus - Full Time - Product Manager - 2027 (UK - London) LONDON, United Kingdom(Hybrid) Job Description You Lead the Way. We've Got Your Back. With the right backing, people and businesses have the power to progress in incredible ways. When you join Team Amex, you become part of a global and diverse community of colleagues with an unwavering commitment to backing our customers, communities, and each other. Here, you'll learn and grow as we help you create a career journey that's unique and mea…",
+    "salary_max": 63918.12,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiS2hIbDlxdXk4UkdGeklodGt5WU9qdyIsImkiOiI1ODg1NDQwODM0In0.vz86os8I9gSytq9Tw2ksVzAQSKFxzMqLkJp8AnoWyko",
+    "company": {
+     "display_name": "American Express",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "salary_min": 63918.12,
+    "category": {
+     "label": "IT Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "it-jobs"
+    },
+    "contract_time": "full_time"
+   },
+   {
+    "salary_is_predicted": "0",
+    "salary_min": 31000,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885452713?utm_medium=api&utm_source=fixture",
+    "description": "About The Role Right across infrastructure, there’s a requirement to not only maintain, but also renew and reimagine. Whatever stage you’re at in your career, with us you’ll have an opportunity to grow and develop. Delivering essential infrastructure services for life, while being safety first, and client and customer centric in a friendly, fun and respectful environment where you are encouraged to thrive. Where will you be working? At M Group Water we help our clients safeguard the water suppl…",
+    "id": "5885452713",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQ1MjcxMyIsInMiOiIzTjJqOWF1eThSR0NwOTYwdGpYUjdnIn0._Rhp_z4rZc6Qa_qlovrFJ79cXWdVOZiynSbkcaJvVDo",
+    "contract_type": "permanent",
+    "salary_max": 31000,
+    "location": {
+     "display_name": "Reading, Berkshire",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "South East England",
+      "Berkshire",
+      "Reading"
+     ]
+    },
+    "contract_time": "full_time",
+    "company": {
+     "display_name": "M Group Services",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "category": {
+     "tag": "graduate-jobs",
+     "label": "Graduate Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "latitude": 51.455002,
+    "created": "2026-09-16T02:36:11Z",
+    "longitude": -0.969088,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "title": "Graduate Design Engineer"
+   },
+   {
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885589016?utm_medium=api&utm_source=fixture",
+    "salary_is_predicted": "1",
+    "created": "2026-09-16T05:02:39Z",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "longitude": -1.89359,
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Birmingham, West Midlands",
+     "area": [
+      "UK",
+      "West Midlands",
+      "Birmingham"
+     ]
+    },
+    "latitude": 52.483002,
+    "id": "5885589016",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Jacobs"
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiS2hIbDlxdXk4UkdGeklodGt5WU9qdyIsImkiOiI1ODg1NTg5MDE2In0.M2dVkgO0vcPYWSc20LvfsEXYlHVZkeMy7RSZ8oVgYlY",
+    "salary_min": 39853.94,
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Graduate Jobs",
+     "tag": "graduate-jobs"
+    },
+    "title": "Graduate Project Manager - Cities & Places (Birmingham)",
+    "description": "Graduate Project Manager - Cities & Places (Birmingham) Join the Jacobs Graduate Development Program (GDP) and help shape better environments, communities and societies. Bring your passion, creativity and ambition - and together, we'll create lasting change. What You'll Get Our two-year Graduate Development Program is designed to accelerate your growth as you begin your Jacobs career. Through blended learning, mentoring, progress reviews and networking, you'll build capability across four key a…",
+    "salary_max": 39853.94,
+    "contract_type": "permanent"
+   },
+   {
+    "contract_type": "permanent",
+    "salary_max": 43224.18,
+    "description": "Graduate Project Manager - Cities & Places (London) Join the Jacobs Graduate Development Program (GDP) and help shape better environments, communities and societies. Bring your passion, creativity and ambition - and together, we'll create lasting change. What You'll Get Our two-year Graduate Development Program is designed to accelerate your growth as you begin your Jacobs career. Through blended learning, mentoring, progress reviews and networking, you'll build capability across four key areas…",
+    "title": "Graduate Project Manager - Cities & Places (London)",
+    "category": {
+     "tag": "graduate-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Graduate Jobs"
+    },
+    "salary_min": 43224.18,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiS2hIbDlxdXk4UkdGeklodGt5WU9qdyIsImkiOiI1ODg1NTg5MDI0In0.c5EaLXqzpzDXVTh2gKzq3Km5QaCHWmaBFfOc5MRHIhc",
+    "company": {
+     "display_name": "Jacobs",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "id": "5885589024",
+    "latitude": 51.503378,
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "London, UK",
+     "area": [
+      "UK",
+      "London"
+     ]
+    },
+    "longitude": -0.139134,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "created": "2026-09-16T05:02:39Z",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885589024?utm_medium=api&utm_source=fixture",
+    "salary_is_predicted": "1"
+   },
+   {
+    "id": "5884162088",
+    "description": "Process Engineer - Cable Assembly Job Type: Full-time Location: Chelmsford Salary: £40,000 DOE We are seeking a Process Engineer to join our clients' cable assembly shop floor. This role is ideal for someone with a strong background in manufacturing and assembly, who is skilled at optimizing production processes and ensuring operational excellence. Day-to-day of the role: Develop, configure, and optimize industrial processes from inception through to start up and certification. Assess processes…",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/land/ad/5884162088?se=3N2j9auy8RGCp960tjXR7g&utm_medium=api&utm_source=fixture&v=BB48D6FE83959851A6AE4675138A50BED5760676",
+    "salary_min": 40000,
+    "salary_is_predicted": "0",
+    "location": {
+     "area": [
+      "UK",
+      "Eastern England",
+      "Essex",
+      "Chelmsford"
+     ],
+     "display_name": "Chelmsford, Essex",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "salary_max": 40000,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiM04yajlhdXk4UkdDcDk2MHRqWFI3ZyIsImkiOiI1ODg0MTYyMDg4In0.k1SpGGxEmbJg1rNuY-c9QXp7m7jQSjiRodZmswtr-VY",
+    "longitude": 0.469708,
+    "created": "2026-09-15T02:40:53Z",
+    "latitude": 51.735802,
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Engineering Jobs",
+     "tag": "engineering-jobs"
+    },
+    "company": {
+     "display_name": "Reed",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "contract_time": "full_time",
+    "title": "Process Engineer",
+    "__CLASS__": "Adzuna::API::Response::Job"
+   },
+   {
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5884258786?utm_medium=api&utm_source=fixture",
+    "salary_is_predicted": "1",
+    "longitude": -2.23438,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "created": "2026-09-15T04:44:12Z",
+    "id": "5884258786",
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Manchester, Greater Manchester",
+     "area": [
+      "UK",
+      "North West England",
+      "Greater Manchester",
+      "Manchester"
+     ]
+    },
+    "latitude": 53.480701,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiS2hIbDlxdXk4UkdGeklodGt5WU9qdyIsImkiOiI1ODg0MjU4Nzg2In0.MVHyi28S0Cln1tdJ2jcP951knGrwLU9frGU2IqgVHHI",
+    "company": {
+     "display_name": "Jacobs",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "category": {
+     "tag": "graduate-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Graduate Jobs"
+    },
+    "salary_min": 32871.87,
+    "contract_type": "permanent",
+    "salary_max": 32871.87,
+    "title": "Graduate Project Controller (Manchester)",
+    "description": "Graduate Project Controller (Manchester) Join the Jacobs Graduate Development Program (GDP) and help shape better environments, communities and societies. Bring your passion, creativity and ambition - and together, we'll create lasting change. What You'll Get Our two-year Graduate Development Program is designed to accelerate your growth as you begin your Jacobs career. Through blended learning, mentoring, progress reviews and networking, you'll build capability across four key areas: human ski…"
+   },
+   {
+    "company": {
+     "display_name": "Jacobs",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiS2hIbDlxdXk4UkdGeklodGt5WU9qdyIsImkiOiI1ODg0MjU4ODA3In0.QN_sdqIZGETUommtE0Gi-qmyBRAervsozLee1WezMjg",
+    "category": {
+     "tag": "graduate-jobs",
+     "label": "Graduate Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "salary_min": 33842.41,
+    "salary_max": 33842.41,
+    "contract_type": "permanent",
+    "description": "Graduate Planner - Project Controls (Manchester) Join the Jacobs Graduate Development Program (GDP) and help shape better environments, communities and societies. Bring your passion, creativity and ambition - and together, we'll create lasting change. What You'll Get Our two-year Graduate Development Program is designed to accelerate your growth as you begin your Jacobs career. Through blended learning, mentoring, progress reviews and networking, you'll build capability across four key areas: h…",
+    "title": "Graduate Planner - Project Controls (Manchester)",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5884258807?utm_medium=api&utm_source=fixture",
+    "salary_is_predicted": "1",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "longitude": -2.23438,
+    "created": "2026-09-15T04:44:12Z",
+    "id": "5884258807",
+    "latitude": 53.480701,
+    "location": {
+     "area": [
+      "UK",
+      "North West England",
+      "Greater Manchester",
+      "Manchester"
+     ],
+     "display_name": "Manchester, Greater Manchester",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    }
+   },
+   {
+    "location": {
+     "area": [
+      "UK",
+      "London"
+     ],
+     "display_name": "London, UK",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "latitude": 51.503378,
+    "id": "5884258808",
+    "created": "2026-09-15T04:44:12Z",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "longitude": -0.139134,
+    "salary_is_predicted": "1",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5884258808?utm_medium=api&utm_source=fixture",
+    "description": "Graduate Planner - Project Controls (London) Join the Jacobs Graduate Development Program (GDP) and help shape better environments, communities and societies. Bring your passion, creativity and ambition - and together, we'll create lasting change. What You'll Get Our two-year Graduate Development Program is designed to accelerate your growth as you begin your Jacobs career. Through blended learning, mentoring, progress reviews and networking, you'll build capability across four key areas: human…",
+    "title": "Graduate Planner - Project Controls (London)",
+    "salary_max": 36072.36,
+    "contract_type": "permanent",
+    "salary_min": 36072.36,
+    "category": {
+     "tag": "graduate-jobs",
+     "label": "Graduate Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Jacobs"
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NDI1ODgwOCIsInMiOiJLaEhsOXF1eThSR0Z6SWh0a3lZT2p3In0.aRY0ftdnTslTtuy6kAZ_-CWcpXmACZ4WDf84yPhF1DM"
+   }
+  ],
+  "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+  "count": 12,
+  "mean": 64208.54
+ }
+}
