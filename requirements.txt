@@ -3,3 +3,4 @@ duckdb==1.3.2
 dbt-duckdb==1.9.4
 google-cloud-bigquery==3.34.0
 dbt-bigquery==1.12.1
+pytest==9.1.1          # только для тестов, на сервере не нужен

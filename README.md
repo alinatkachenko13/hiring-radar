@@ -161,6 +161,12 @@ cd dbt && dbt build --profiles-dir . && cd ..
 python report_marts.py  # summary of the marts
 ```
 
+Tests: `pytest` covers the Python logic that decides things — whether a day is complete, how raw pages turn into warehouse rows, what the daily summary says. No network and no warehouse needed, so it runs on a bare checkout:
+
+```bash
+pytest
+```
+
 BigQuery: fill the GCP values in `.env` (see `.env.example`), keep the service account key in `gcp-service-account.json` (ignored by git), then run `python load.py --backend bigquery` and `./bq_build.sh`.
 
 Scheduler: add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` to `.env`, run `docker compose up -d --build` and open Airflow at http://localhost:8080 (on a shared server the port is set by `AIRFLOW_PORT`, see [docs/deploy.md](docs/deploy.md)). The DAG `hiring_radar_daily` collects, loads the complete day and runs `dbt build` every day at 06:00 UTC.
@@ -170,7 +176,7 @@ Scheduler: add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` to `.env`, run `docke
 | Part | State |
 |---|---|
 | Collection with per-pair statuses, loading of complete days, dbt models and 26 tests | working |
-| CI on GitHub Actions: every push loads two fixture days into DuckDB and runs `dbt build` with all tests | working, see [.github/workflows/ci.yml](.github/workflows/ci.yml) |
+| CI on GitHub Actions: every push runs the unit tests, loads two fixture days into DuckDB and runs `dbt build` with all model tests | working, see [.github/workflows/ci.yml](.github/workflows/ci.yml) |
 | BigQuery warehouse and Looker Studio dashboard with 4 screens | working, see [looker/README.md](looker/README.md) |
 | Airflow DAG with retries and Telegram alerts, Docker Compose | built, see [airflow/dags](airflow/dags) and [docker-compose.yml](docker-compose.yml) |
 | Deployment on a VPS | deployed, the daily run happens on the server, see [docs/deploy.md](docs/deploy.md) |
