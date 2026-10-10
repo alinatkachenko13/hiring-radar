@@ -6,6 +6,7 @@
 """
 import os
 from pathlib import Path
+from typing import NamedTuple
 
 PROJECT_DIR = Path(__file__).resolve().parent
 RAW_DIR = PROJECT_DIR / "data" / "raw"
@@ -98,8 +99,13 @@ def _read_dotenv(path: Path) -> dict:
     return values
 
 
-def credentials() -> tuple[str, str]:
-    """Возвращает (app_id, app_key) или падает с внятным сообщением."""
+class AdzunaKeys(NamedTuple):
+    app_id: str
+    app_key: str
+
+
+def credentials() -> AdzunaKeys:
+    """Ключи Adzuna или падение с внятным сообщением."""
     dotenv = _read_dotenv(PROJECT_DIR / ".env")
     app_id = os.environ.get("ADZUNA_APP_ID") or dotenv.get("ADZUNA_APP_ID")
     app_key = os.environ.get("ADZUNA_APP_KEY") or dotenv.get("ADZUNA_APP_KEY")
@@ -109,7 +115,7 @@ def credentials() -> tuple[str, str]:
             "Либо export ADZUNA_APP_ID=... и ADZUNA_APP_KEY=...,\n"
             "либо положите их в файл .env рядом с extract.py (см. .env.example)."
         )
-    return app_id, app_key
+    return AdzunaKeys(app_id, app_key)
 
 
 def role_slug(role: str) -> str:
@@ -120,12 +126,17 @@ def _dotenv() -> dict:
     return _read_dotenv(PROJECT_DIR / ".env")
 
 
-def telegram_settings() -> tuple[str | None, str | None]:
-    """(токен бота, id чата) для алертов планировщика, из окружения или .env."""
+class TelegramSettings(NamedTuple):
+    token: str | None
+    chat_id: str | None
+
+
+def telegram_settings() -> TelegramSettings:
+    """Токен бота и id чата для алертов планировщика, из окружения или .env."""
     dotenv = _dotenv()
     token = os.environ.get("TELEGRAM_BOT_TOKEN") or dotenv.get("TELEGRAM_BOT_TOKEN")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID") or dotenv.get("TELEGRAM_CHAT_ID")
-    return token, chat_id
+    return TelegramSettings(token, chat_id)
 
 
 GCP_KEY_CANDIDATE = PROJECT_DIR / "gcp-service-account.json"

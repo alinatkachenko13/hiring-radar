@@ -16,6 +16,7 @@ import os
 import sys
 import time
 from datetime import date, datetime, timezone
+from typing import NamedTuple
 
 import requests
 
@@ -145,8 +146,16 @@ def save(
     )
 
 
-def collect(country: str, role: str) -> tuple[str, int, int, int]:
-    """Забирает все страницы пары. Возвращает (статус, вакансий, страниц, count из ответа).
+class PairResult(NamedTuple):
+    """Итог сбора одной пары. Поля названы как аргументы raw_status.record_pair."""
+    state: str            # raw_status.COMPLETE, FAILED или TRUNCATED
+    collected: int        # разных вакансий
+    pages: int            # сохранённых страниц
+    count_reported: int   # count из ответа Adzuna
+
+
+def collect(country: str, role: str) -> PairResult:
+    """Забирает все страницы пары.
 
     Считаются разные вакансии, а не строки. Разница принципиальна: за сотой
     страницей Adzuna повторяет одну и ту же выдачу, и счётчик строк доводил
@@ -162,7 +171,7 @@ def collect(country: str, role: str) -> tuple[str, int, int, int]:
         time.sleep(SLEEP_SEC)
 
         if fetched is None:
-            return raw_status.FAILED, len(seen), pages, found
+            return PairResult(raw_status.FAILED, len(seen), pages, found)
 
         payload = fetched["payload"]
         results = payload.get("results") or []
@@ -184,15 +193,15 @@ def collect(country: str, role: str) -> tuple[str, int, int, int]:
         # Страница без единой новой вакансии означает, что выдача пошла по кругу.
         if results and not new:
             print(f"    выдача повторяется: упёрлись в потолок {RESULT_CAP}, пара обрезана")
-            return raw_status.TRUNCATED, len(seen), pages, found
+            return PairResult(raw_status.TRUNCATED, len(seen), pages, found)
 
         # Последняя страница: неполная выдача или набрали всё, что обещал count.
         if len(results) < RESULTS_PER_PAGE or len(seen) >= found:
-            return raw_status.COMPLETE, len(seen), pages, found
+            return PairResult(raw_status.COMPLETE, len(seen), pages, found)
 
     # Выдача не кончилась к пределу страниц: данные обрезаны, это не успех.
     print(f"    упёрлись в предел MAX_PAGES={MAX_PAGES}, пара обрезана")
-    return raw_status.TRUNCATED, len(seen), pages, found
+    return PairResult(raw_status.TRUNCATED, len(seen), pages, found)
 
 
 def main() -> int:
@@ -234,15 +243,16 @@ def main() -> int:
             mode = "весь запас" if window is None else f"окно {window} дн."
             print(f"{country} / {role} ({mode})")
 
-        state, collected, pages, found = collect(country, role)
+        result = collect(country, role)
         raw_status.record_pair(
-            RUN_DATE, country, role, state,
-            pages=pages, collected=collected, count_reported=found,
+            RUN_DATE, country, role, result.state,
+            pages=result.pages, collected=result.collected,
+            count_reported=result.count_reported,
         )
-        total_vacancies += collected
-        total_pages += pages
-        if state != raw_status.COMPLETE:
-            incomplete.append((country, role, state))
+        total_vacancies += result.collected
+        total_pages += result.pages
+        if result.state != raw_status.COMPLETE:
+            incomplete.append((country, role, result.state))
 
     print(f"\nЗа этот запуск: {total_vacancies} записей в {total_pages} файлах.")
     if skipped:
