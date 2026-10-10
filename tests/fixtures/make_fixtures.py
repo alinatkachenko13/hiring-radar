@@ -46,7 +46,8 @@ def main() -> None:
             first_page[day] = json.loads(pages[0].read_text(encoding="utf-8"))
             by_id[day] = {}
             for page in pages:
-                for vacancy in json.loads(page.read_text(encoding="utf-8"))["payload"].get("results") or []:
+                payload = json.loads(page.read_text(encoding="utf-8"))["payload"]
+                for vacancy in payload.get("results") or []:
                     by_id[day].setdefault(str(vacancy["id"]), vacancy)
 
         common = sorted(set(by_id[DAYS[0]]) & set(by_id[DAYS[1]]))[:N_COMMON]

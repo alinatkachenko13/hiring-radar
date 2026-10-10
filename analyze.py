@@ -6,7 +6,6 @@
 Запуск:  python analyze.py [ГГГГ-ММ-ДД]
          без аргумента берётся последняя дата, найденная в data/raw
 """
-import json
 import sys
 from collections import Counter, defaultdict
 

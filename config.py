@@ -65,11 +65,12 @@ PARTIAL_PAIRS = {("us", "data engineer")}
 SLEEP_SEC = 0.25        # 300 запросов в минуту = 1 запрос в 0.2 с, берём с запасом
 TIMEOUT_SEC = 30
 RETRIES = 3             # на сетевые ошибки, 5xx и 429
-RETRY_BACKOFF_SEC = [5, 30, 120]    # паузы между попытками: сбой источника
-                                    # длится минуты, а не секунды (NOTES, 23.09)
+# Паузы между попытками: сбой источника длится минуты, а не секунды (NOTES, 23.09).
+RETRY_BACKOFF_SEC = [5, 30, 120]
 RESUME = True           # пропускать пары, уже собранные сегодня до конца
-RAW_COMPRESS_AFTER_DAYS = 14    # старше этого сырьё лежит сжатым (compress_raw.py):
-                                # перепись даёт ~50 МБ в день, gzip жмёт их в ~10 раз
+# Старше этого сырьё лежит сжатым (compress_raw.py): перепись даёт ~50 МБ в день,
+# gzip жмёт их в ~10 раз.
+RAW_COMPRESS_AFTER_DAYS = 14
 
 
 def is_partial_pair(country: str, role: str) -> bool:
