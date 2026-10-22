@@ -14,8 +14,9 @@ select
         as n_positions_open,
     count(distinct case when f.is_new and not f.is_gone then f.position_id end)
         as n_positions_new,
-    {{ median_expr('case when not f.is_gone then f.days_open end') }}
-        as days_open_p50,
+    {{ median_expr('f.listing_lifetime_days') }} as listing_lifetime_p50,
+    count(distinct case when f.listing_lifetime_days is not null then f.source_id end)
+        as n_lifetime_known,
     {{ median_expr('case when not f.is_gone and f.is_salary_disclosed then f.salary_mid end') }}
         as salary_mid_p50
 from {{ ref('fct_vacancy_daily') }} as f

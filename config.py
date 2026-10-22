@@ -6,6 +6,7 @@
 """
 import os
 from pathlib import Path
+from typing import NamedTuple
 
 PROJECT_DIR = Path(__file__).resolve().parent
 RAW_DIR = PROJECT_DIR / "data" / "raw"
@@ -26,13 +27,63 @@ ROLES = [
 ]
 
 RESULTS_PER_PAGE = 50   # максимум, который отдаёт Adzuna
-MAX_DAYS_OLD = 2        # окно свежести: пропуск запуска компенсируется следующим
-MAX_PAGES = 150         # предохранитель от бесконечной пагинации, не рабочий лимит
-                        # us / data engineer за 2 дня даёт ~4000 вакансий = 81 стр.
+MAX_DAYS_OLD = 2        # окно свежести по умолчанию: пропуск запуска компенсируется следующим
+MAX_PAGES = 400         # предохранитель от бесконечной пагинации, не рабочий лимит
+
+# Потолок выдачи Adzuna: 100 страниц по 50. Глубже API не отдаёт ошибку,
+# а молча повторяет сотую страницу, поэтому обрезку видно только по
+# повторяющимся id (NOTES, GAP 7).
+RESULT_CAP = 100 * RESULTS_PER_PAGE
+
+# Режим сбора выбирается по паре и упирается в тот же потолок.
+#
+# Без окна (весь запас) собираются пары, чей запас меньше потолка. Только такой
+# сбор даёт срок жизни объявления: вакансия пропадает из выдачи, когда её сняли,
+# а не когда ей исполнилось трое суток.
+#
+# С окном собираются пары, чей запас в потолок не помещается. По ним считается
+# только поток новых вакансий.
+STOCK_COUNTRIES = ["nl", "pl", "de", "ca"]
+STOCK_PAIRS = {
+    ("gb", "analytics engineer"),
+    ("gb", "data analyst"),
+    ("gb", "ml engineer"),
+}
+# Пары, где даже поток за двое суток не влезает в потолок: окно сужается.
+# Цена — страховка: пропущенный запуск такая пара теряет безвозвратно.
+WINDOW_OVERRIDES = {("us", "data engineer"): 1}
+
+# Пары, которые не помещаются в потолок даже с окном в один день. Их обрезка
+# ожидаема и не считается сбоем дня: иначе одна пара блокировала бы загрузку
+# остальных двадцати девяти.
+#
+# us / data engineer: 7 754 вакансии за сутки при потолке в 5 000 (25.09).
+# Сузить окно некуда, один день — минимум. США собирается ради объёма и
+# контраста, зарплаты оттуда в расчёт не идут, поэтому неполнота по одной роли
+# приемлема. Правильное решение — резать выдачу по штатам (NOTES, GAP 7).
+PARTIAL_PAIRS = {("us", "data engineer")}
+
 SLEEP_SEC = 0.25        # 300 запросов в минуту = 1 запрос в 0.2 с, берём с запасом
 TIMEOUT_SEC = 30
 RETRIES = 3             # на сетевые ошибки, 5xx и 429
+# Паузы между попытками: сбой источника длится минуты, а не секунды (NOTES, 23.09).
+RETRY_BACKOFF_SEC = [5, 30, 120]
 RESUME = True           # пропускать пары, уже собранные сегодня до конца
+# Старше этого сырьё лежит сжатым (compress_raw.py): перепись даёт ~50 МБ в день,
+# gzip жмёт их в ~10 раз.
+RAW_COMPRESS_AFTER_DAYS = 14
+
+
+def is_partial_pair(country: str, role: str) -> bool:
+    """Ожидается ли, что пара не влезет в потолок выдачи."""
+    return (country, role) in PARTIAL_PAIRS
+
+
+def window_for(country: str, role: str) -> int | None:
+    """Окно свежести пары в днях. None — окна нет, собирается весь запас."""
+    if country in STOCK_COUNTRIES or (country, role) in STOCK_PAIRS:
+        return None
+    return WINDOW_OVERRIDES.get((country, role), MAX_DAYS_OLD)
 
 
 def _read_dotenv(path: Path) -> dict:
@@ -48,8 +99,13 @@ def _read_dotenv(path: Path) -> dict:
     return values
 
 
-def credentials() -> tuple[str, str]:
-    """Возвращает (app_id, app_key) или падает с внятным сообщением."""
+class AdzunaKeys(NamedTuple):
+    app_id: str
+    app_key: str
+
+
+def credentials() -> AdzunaKeys:
+    """Ключи Adzuna или падение с внятным сообщением."""
     dotenv = _read_dotenv(PROJECT_DIR / ".env")
     app_id = os.environ.get("ADZUNA_APP_ID") or dotenv.get("ADZUNA_APP_ID")
     app_key = os.environ.get("ADZUNA_APP_KEY") or dotenv.get("ADZUNA_APP_KEY")
@@ -59,7 +115,7 @@ def credentials() -> tuple[str, str]:
             "Либо export ADZUNA_APP_ID=... и ADZUNA_APP_KEY=...,\n"
             "либо положите их в файл .env рядом с extract.py (см. .env.example)."
         )
-    return app_id, app_key
+    return AdzunaKeys(app_id, app_key)
 
 
 def role_slug(role: str) -> str:
@@ -70,12 +126,17 @@ def _dotenv() -> dict:
     return _read_dotenv(PROJECT_DIR / ".env")
 
 
-def telegram_settings() -> tuple[str | None, str | None]:
-    """(токен бота, id чата) для алертов планировщика, из окружения или .env."""
+class TelegramSettings(NamedTuple):
+    token: str | None
+    chat_id: str | None
+
+
+def telegram_settings() -> TelegramSettings:
+    """Токен бота и id чата для алертов планировщика, из окружения или .env."""
     dotenv = _dotenv()
     token = os.environ.get("TELEGRAM_BOT_TOKEN") or dotenv.get("TELEGRAM_BOT_TOKEN")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID") or dotenv.get("TELEGRAM_CHAT_ID")
-    return token, chat_id
+    return TelegramSettings(token, chat_id)
 
 
 GCP_KEY_CANDIDATE = PROJECT_DIR / "gcp-service-account.json"

@@ -1,0 +1,431 @@
+{
+ "_meta": {
+  "source": "adzuna",
+  "run_date": "2026-09-17",
+  "extracted_at": "2026-09-17T15:25:10.909746+00:00",
+  "country": "gb",
+  "role_query": "data analyst",
+  "page": 1,
+  "results_per_page": 50,
+  "max_days_old": 2,
+  "count_reported": 12,
+  "request_url": "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=***&app_key=***&results_per_page=50&what=data+analyst&max_days_old=2",
+  "response_headers": {
+   "Date": "Thu, 17 Sep 2026 15:25:10 GMT",
+   "Content-Type": "application/json; charset=utf8",
+   "Content-Length": "70071",
+   "Connection": "keep-alive",
+   "Server": "nginx/1.28.3",
+   "Vary": "Content-Type",
+   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+   "Access-Control-Allow-Origin": "*",
+   "X-Catalyst": "5.90132"
+  }
+ },
+ "payload": {
+  "count": 12,
+  "results": [
+   {
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Cognitive Credit"
+    },
+    "salary_min": 43144.4,
+    "salary_is_predicted": "1",
+    "description": "Cognitive Credit is expanding the Market Data Team that oversees the integrity of the bond and loan pricing and reference data that underpins our Global Credit product. We are looking for a market data analyst who is frustrated working in a large institution, enjoys solving puzzles, likes to build automated processes, and has a fine attention to detail. The analyst will have a background in evaluated pricing, independent price verification (IPV), fixed income trade support, or credit fund valua…",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTMwMDcyOCIsInMiOiJlSllmLUt1eThSR2JUX0hablYyQlhRIn0.nJUbUEWYKyLwTODfWjuXA53-R6EbSxdhhU1vwc8zMnE",
+    "created": "2026-09-16T01:16:05Z",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885300728?utm_medium=api&utm_source=fixture",
+    "location": {
+     "display_name": "Victoria, South West London",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "London",
+      "South West London",
+      "Victoria"
+     ]
+    },
+    "salary_max": 43144.4,
+    "latitude": 51.494974,
+    "title": "Market Data Analyst",
+    "longitude": -0.144354,
+    "id": "5885300728",
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "it-jobs",
+     "label": "IT Jobs"
+    }
+   },
+   {
+    "category": {
+     "tag": "it-jobs",
+     "label": "IT Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "salary_is_predicted": "1",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "WESCO"
+    },
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885438315?utm_medium=api&utm_source=fixture",
+    "created": "2026-09-16T02:12:22Z",
+    "salary_min": 33546.5,
+    "title": "Analyst - Cost",
+    "id": "5885438315",
+    "salary_max": 33546.5,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQzODMxNSIsInMiOiJSSmItX0t1eThSRzUxZHI4OUw4aW5RIn0.3AsAR5ps-OoY_EVCTeeoJjMNtkVttNp610MdsTX8mKk",
+    "latitude": 51.417,
+    "location": {
+     "display_name": "Bracknell, Berkshire",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "South East England",
+      "Berkshire",
+      "Bracknell"
+     ]
+    },
+    "description": "As a Cost Analyst, you will be responsible and accountable for product cost data file maintenance and standard cost governance, including the loading and maintenance of cost files (both direct and via 3rd party data sources). You will work closely with Senior Analysts, suppliers and category management during annual increase process to ensure timely receipt of files and deadlines are met. You will be accountable for timely resolution of commercial/corporate mailbox support requests. You will wo…",
+    "longitude": -0.746479,
+    "__CLASS__": "Adzuna::API::Response::Job"
+   },
+   {
+    "salary_max": 65757,
+    "latitude": 51.503378,
+    "title": "Campus - Internship Programme - Undergraduate Product Manager - 2027 (UK - London)",
+    "longitude": -0.139134,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiTGlpMi02dXk4UkdiVF9IWm5WMkJYUSIsImkiOiI1ODg1NDQwODE3In0.i_qicVXsKL6IDibiwQD2hUVry9Uc8cfY062ct3CrnDs",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885440817?utm_medium=api&utm_source=fixture",
+    "location": {
+     "area": [
+      "UK",
+      "London"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "London, UK"
+    },
+    "id": "5885440817",
+    "category": {
+     "label": "IT Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "it-jobs"
+    },
+    "contract_time": "full_time",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "company": {
+     "display_name": "American Express",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "contract_type": "contract",
+    "salary_min": 65757,
+    "salary_is_predicted": "1",
+    "description": "Campus - Internship Programme - Undergraduate Product Manager - 2027 (UK - London) LONDON, United Kingdom(Hybrid) Job Description Amex Manifest You Lead the Way. We've Got Your Back. With the right backing, people and businesses have the power to progress in incredible ways. When you join Team Amex, you become part of a global and diverse community of colleagues with an unwavering commitment to backing our customers, communities, and each other. Here, you'll learn and grow as we help you create…",
+    "created": "2026-09-16T02:14:04Z"
+   },
+   {
+    "contract_time": "full_time",
+    "category": {
+     "tag": "it-jobs",
+     "label": "IT Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "created": "2026-09-16T02:14:04Z",
+    "salary_min": 60461.02,
+    "salary_max": 60461.02,
+    "location": {
+     "area": [
+      "UK",
+      "South East England",
+      "West Sussex",
+      "Burgess Hill"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Burgess Hill, West Sussex"
+    },
+    "description": "Campus - Internship Programme - Undergraduate Product Manager - 2027 (UK - Burgess Hill) BURGESS HILL, WEST SUSSEX, United Kingdom(Hybrid) Job Description Amex Manifest You Lead the Way. We've Got Your Back. With the right backing, people and businesses have the power to progress in incredible ways. When you join Team Amex, you become part of a global and diverse community of colleagues with an unwavering commitment to backing our customers, communities, and each other. Here, you'll learn and g…",
+    "longitude": -0.133939,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "salary_is_predicted": "1",
+    "company": {
+     "display_name": "American Express",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885440821?utm_medium=api&utm_source=fixture",
+    "title": "Campus - Internship Programme - Undergraduate Product Manager - 2027 (UK - Burgess Hill)",
+    "id": "5885440821",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiUkpiLV9LdXk4Ukc1MWRyODlMOGluUSIsImkiOiI1ODg1NDQwODIxIn0.1p6dAJfgc5Edd8flkVLAwxj0RBn6woILopi03u2hpac",
+    "latitude": 50.9575,
+    "contract_type": "contract"
+   },
+   {
+    "salary_max": 57749.78,
+    "latitude": 50.9575,
+    "title": "Campus - Full Time - Product Manager - 2027 (UK - Burgess Hill)",
+    "longitude": -0.133939,
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885440824?utm_medium=api&utm_source=fixture",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQ0MDgyNCIsInMiOiJMaWkyLTZ1eThSR2JUX0hablYyQlhRIn0.Ru4L-SP7zvW5EG-qYR9AO7MmmViSvMQkJvvrt6_fAxY",
+    "location": {
+     "area": [
+      "UK",
+      "South East England",
+      "West Sussex",
+      "Burgess Hill"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Burgess Hill, West Sussex"
+    },
+    "id": "5885440824",
+    "category": {
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "IT Jobs"
+    },
+    "contract_time": "full_time",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "company": {
+     "display_name": "American Express",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "salary_min": 57749.78,
+    "salary_is_predicted": "1",
+    "description": "Campus - Full Time - Product Manager - 2027 (UK - Burgess Hill) BURGESS HILL, WEST SUSSEX, United Kingdom(Hybrid) Job Description You Lead the Way. We've Got Your Back. With the right backing, people and businesses have the power to progress in incredible ways. When you join Team Amex, you become part of a global and diverse community of colleagues with an unwavering commitment to backing our customers, communities, and each other. Here, you'll learn and grow as we help you create a career jour…",
+    "created": "2026-09-16T02:14:04Z"
+   },
+   {
+    "title": "Campus - Full Time - Product Manager - 2027 (UK - London)",
+    "longitude": -0.139134,
+    "salary_max": 63918.12,
+    "latitude": 51.503378,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NTQ0MDgzNCIsInMiOiJMaWkyLTZ1eThSR2JUX0hablYyQlhRIn0.lpK7cYt17qhvfbRUdCJLX3W8cjhGqd9sIDpa-s7hPhQ",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885440834?utm_medium=api&utm_source=fixture",
+    "id": "5885440834",
+    "category": {
+     "label": "IT Jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "it-jobs"
+    },
+    "contract_time": "full_time",
+    "location": {
+     "area": [
+      "UK",
+      "London"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "London, UK"
+    },
+    "salary_min": 63918.12,
+    "salary_is_predicted": "1",
+    "description": "Campus - Full Time - Product Manager - 2027 (UK - London) LONDON, United Kingdom(Hybrid) Job Description You Lead the Way. We've Got Your Back. With the right backing, people and businesses have the power to progress in incredible ways. When you join Team Amex, you become part of a global and diverse community of colleagues with an unwavering commitment to backing our customers, communities, and each other. Here, you'll learn and grow as we help you create a career journey that's unique and mea…",
+    "created": "2026-09-16T02:14:05Z",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "American Express"
+    }
+   },
+   {
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiUkpiLV9LdXk4Ukc1MWRyODlMOGluUSIsImkiOiI1ODg1NDUyNDY5In0.OLFqpOPW3xuqJetPOxVrh-FO_QjyosZ0-pix42GsLBs",
+    "latitude": 51.5336,
+    "title": "Public Health Intelligence Analyst",
+    "id": "5885452469",
+    "contract_type": "permanent",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5885452469?utm_medium=api&utm_source=fixture",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Baltimore Consulting Limited"
+    },
+    "salary_is_predicted": "0",
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "London",
+      "Uxbridge",
+      "Hillingdon"
+     ],
+     "display_name": "Hillingdon, Uxbridge"
+    },
+    "salary_min": 44184,
+    "salary_max": 48519,
+    "longitude": -0.452584,
+    "description": "Public Health Intelligence Analyst Permanent opportunity Hybrid working Salary - £44,184 to £48,519 (dependent on experience) London Borough of Hillingdon CVs are being reviewed immediately; interviews will likely take place early – mid November. Are you passionate about turning complex data into meaningful insights that improve population health outcomes? This is a fantastic opportunity for a Public Health Intelligence Analyst to join a high-performing Public Health Team, reporting directly to…",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "category": {
+     "label": "IT Jobs",
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "contract_time": "full_time",
+    "created": "2026-09-16T02:36:09Z"
+   },
+   {
+    "category": {
+     "label": "IT Jobs",
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "id": "5885547492",
+    "location": {
+     "area": [
+      "UK",
+      "West Midlands",
+      "Herefordshire",
+      "Hereford"
+     ],
+     "display_name": "Hereford, Herefordshire",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "created": "2026-09-16T04:08:58Z",
+    "description": "*Senior Data Analyst* Location: Hereford (Hybrid 3 days per week) Employment Type: Permanent Status: Actively Hiring Salary: £55,000-£60,000  Excellent Benefits WRK digital are proud to be partnering exclusively with a high-profile e-commerce organisation who are currently shortlisting for a Senior Data Analyst to join them on a permanent basis. As a Senior Data Analyst, you will work hands-on with some of the best modern tools in BI and analytics. You will ensure data accuracy and consistent r…",
+    "salary_is_predicted": "0",
+    "contract_type": "permanent",
+    "salary_min": 60000,
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "WRK DIGITAL LTD"
+    },
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "longitude": -2.71755,
+    "title": "Senior Data Analyst",
+    "latitude": 52.056,
+    "salary_max": 60000,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiZUpZZi1LdXk4UkdiVF9IWm5WMkJYUSIsImkiOiI1ODg1NTQ3NDkyIn0.xJjUruRqTcObKfN1er4k8bp5OoUhCtMD1eJ5zqfxLCg",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/land/ad/5885547492?se=eJYf-Kuy8RGbT_HZnV2BXQ&utm_medium=api&utm_source=fixture&v=87D8BC3CD9F94728FAEDAA9CA21649CF515E0B30"
+   },
+   {
+    "description": "4 Month Contract With A Local Authority Job Purpose We are seeking an experienced Programme Manager to lead and coordinate service systems transition activity within a designated portfolio as part of the Local Government Reorganisation (LGR) programme. The postholder will be responsible for ensuring service systems are assessed, prioritised, planned, and transitioned in a controlled and effective manner to support safe, legal, and operationally effective services from Vesting Day. Working acros…",
+    "longitude": -0.340832,
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "salary_min": 67411.72,
+    "salary_max": 67411.72,
+    "location": {
+     "display_name": "Warnham, Horsham",
+     "area": [
+      "UK",
+      "South East England",
+      "West Sussex",
+      "Horsham",
+      "Warnham"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "created": "2026-09-15T02:03:16Z",
+    "category": {
+     "label": "IT Jobs",
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "contract_type": "contract",
+    "title": "Programme Manager - Service Systems",
+    "id": "5884135822",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiUkpiLV9LdXk4Ukc1MWRyODlMOGluUSIsImkiOiI1ODg0MTM1ODIyIn0.5krI0Epm_2mikgHpxLB3emMyyRQ1JMWgX5G8h2H_0FY",
+    "latitude": 51.082938,
+    "salary_is_predicted": "1",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5884135822?utm_medium=api&utm_source=fixture",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Civic Recruitment Limited"
+    }
+   },
+   {
+    "salary_is_predicted": "0",
+    "salary_min": 130000,
+    "contract_type": "contract",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/land/ad/5884161929?se=eJYf-Kuy8RGbT_HZnV2BXQ&utm_medium=api&utm_source=fixture&v=93072A2EEAEF939F998CD29A9DD3DCF221E10DBD",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NDE2MTkyOSIsInMiOiJlSllmLUt1eThSR2JUX0hablYyQlhRIn0.-boUzPD5NMt2gCQnL5KmFPzvXIUtKH2eM70OMl0Yb9E",
+    "description": "Our client, a leading global SaaS organisation is looking for a Senior Data Analyst to work on exciting AI/ML user experience projects for a 12 month contract. Hybrid with 3 days on site. Responsibilities; Providing data sources that help build the AI/ML user experience Build and maintain scalable data pipelines for BigQuery using Cloud Composer and Airflow. Provide observability and monitoring using Monte Carlo and Looker as well as operational tools such as NewRelic and Splunk, driving reliab…",
+    "created": "2026-09-15T02:40:43Z",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Executive Facilities"
+    },
+    "title": "Senior Data Analyst",
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "it-jobs",
+     "label": "IT Jobs"
+    },
+    "contract_time": "full_time",
+    "id": "5884161929",
+    "salary_max": 130000,
+    "location": {
+     "area": [
+      "UK",
+      "London"
+     ],
+     "display_name": "London, UK",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    }
+   },
+   {
+    "contract_time": "full_time",
+    "category": {
+     "tag": "graduate-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Graduate Jobs"
+    },
+    "id": "5884163643",
+    "title": "Graduate Data Analyst",
+    "salary_max": 52000,
+    "location": {
+     "display_name": "London, UK",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "UK",
+      "London"
+     ]
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NDE2MzY0MyIsInMiOiJlSllmLUt1eThSR2JUX0hablYyQlhRIn0.TlznXznSYTbfDZ0L8PEgWFRZ6rzJ7AyBylR4YzZZ3TE",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/land/ad/5884163643?se=eJYf-Kuy8RGbT_HZnV2BXQ&utm_medium=api&utm_source=fixture&v=C5BD46231571C660493173366E07F72695C43955",
+    "description": "We are recruiting on behalf of a growing organisation based in London who are looking for a talented and analytically minded Graduate Data Analyst to join their team on a permanent basis. This is a genuine graduate role for someone who is passionate about data and wants to use it to drive real business decisions. You will be working within a data-focused team, turning complex datasets into clear, actionable insights that shape strategy across the organisation. The Organisation A well-establishe…",
+    "created": "2026-09-15T02:45:53Z",
+    "salary_is_predicted": "0",
+    "contract_type": "permanent",
+    "salary_min": 48000,
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Consula Group LTD"
+    },
+    "__CLASS__": "Adzuna::API::Response::Job"
+   },
+   {
+    "category": {
+     "label": "IT Jobs",
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "id": "5884331709",
+    "longitude": -1.54912,
+    "title": "Data Analyst (Pricing)",
+    "latitude": 53.799599,
+    "salary_max": 41146.54,
+    "location": {
+     "area": [
+      "UK",
+      "Yorkshire And The Humber",
+      "West Yorkshire",
+      "Leeds"
+     ],
+     "display_name": "Leeds, West Yorkshire",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoiZUpZZi1LdXk4UkdiVF9IWm5WMkJYUSIsImkiOiI1ODg0MzMxNzA5In0.aFhJup3Q99z9XIW-jsTxBxrDyR1zlxLhBTpqartVBQE",
+    "redirect_url": "https://www.adzuna.co.uk/jobs/details/5884331709?utm_medium=api&utm_source=fixture",
+    "created": "2026-09-15T05:51:20Z",
+    "description": "Data Analyst (Pricing) Location: Thorpe Park , Leeds, Hybrid working. Unfortunately this role is not able to offer Sponsorship and requires you to work from our office in Leeds, United Kingdom, two days a week. Join us as a Pricing Analyst! You'll play a key role in helping us make informed, responsible investment decisions. You'll carry out detailed data analysis and valuations on UK debt portfolios, using tools like SAS to build a clear picture of each opportunity. Working closely with our De…",
+    "salary_is_predicted": "1",
+    "salary_min": 41146.54,
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Lowell"
+    },
+    "__CLASS__": "Adzuna::API::Response::Job"
+   }
+  ],
+  "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+  "mean": 59389.91
+ }
+}
