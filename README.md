@@ -176,7 +176,7 @@ Scheduler: add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` to `.env`, run `docke
 | Part | State |
 |---|---|
 | Collection with per-pair statuses, loading of complete days, dbt models and 26 tests | working |
-| CI on GitHub Actions: every push runs the unit tests, loads two fixture days into DuckDB and runs `dbt build` with all model tests | working, see [.github/workflows/ci.yml](.github/workflows/ci.yml) |
+| CI on GitHub Actions (Python 3.13): every push checks PEP 8 with ruff, runs the unit tests, loads two fixture days into DuckDB and runs `dbt build` with all model tests | working, see [.github/workflows/ci.yml](.github/workflows/ci.yml) |
 | BigQuery warehouse and Looker Studio dashboard with 4 screens | working, see [looker/README.md](looker/README.md) |
 | Airflow DAG with retries and Telegram alerts, Docker Compose | built, see [airflow/dags](airflow/dags) and [docker-compose.yml](docker-compose.yml) |
 | Deployment on a VPS | deployed, the daily run happens on the server, see [docs/deploy.md](docs/deploy.md) |
