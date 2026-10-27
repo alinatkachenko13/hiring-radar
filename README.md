@@ -181,5 +181,5 @@ Scheduler: add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` to `.env`, run `docke
 | Airflow DAG with retries and Telegram alerts, Docker Compose | built, see [airflow/dags](airflow/dags) and [docker-compose.yml](docker-compose.yml) |
 | Deployment on a VPS | deployed, the daily run happens on the server, see [docs/deploy.md](docs/deploy.md) |
 | Vacancy closure rule | reworked: a removal counts only where the whole stock is collected, see NOTES.md |
-| Lifetime metric on real data | waiting for three census days in a row, first removals expected 26.09 |
+| Lifetime metric on real data | checked on 20 census days (23.09–20.10, 23 pairs): age of removed ads runs from 0 to 1005 days, median 13, so there is no artificial cutoff; survival estimate (Kaplan–Meier) not built yet, see NOTES.md |
 
