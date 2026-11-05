@@ -20,6 +20,9 @@ select
     any_value(location_city) as location_city,
     any_value(latitude) as latitude,
     any_value(longitude) as longitude,
-    any_value(redirect_url) as redirect_url
+    any_value(redirect_url) as redirect_url,
+    -- Одну вакансию возвращают несколько запросов. Достаточно одного
+    -- переписного: значит, в этот день мы видели весь запас её пары.
+    {{ any_true('is_census') }} as seen_in_census
 from {{ ref('stg_vacancies') }}
 group by source_id, observed_on

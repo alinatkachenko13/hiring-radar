@@ -11,6 +11,14 @@ select
     role_query,
     page,
     count_reported,
+    max_days_old,
+    -- Перепись — это окна нет и пара собрана до конца. Без окна в выдаче весь
+    -- запас, и пропажа объявления означает, что его сняли, а не что оно
+    -- состарилось. Но запас, упёршийся в потолок выдачи (truncated), полным не
+    -- считается: часть объявлений в него просто не попала. Пустой pair_status у
+    -- старых партиций: тогда грузились только полные дни.
+    pair_status,
+    (max_days_old is null and coalesce(pair_status, 'complete') = 'complete') as is_census,
     source_id,
     trim(title) as title,
     description,
@@ -34,3 +42,6 @@ select
     source_file
 from {{ source('raw', 'adzuna_results') }}
 where source_id is not null
+  -- Дни до начала истории отсекаются здесь, чтобы ни одна модель ниже
+  -- не знала про пробный сбор. Переменная в dbt_project.yml.
+  and run_date >= date '{{ var("history_starts_on") }}'

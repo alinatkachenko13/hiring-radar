@@ -33,8 +33,12 @@ select
     f.is_new,
     f.is_gone,
     not f.is_gone as is_open,
+    -- Витрине нужен явный признак: по этой стране про срок жизни говорить можно,
+    -- по остальным — нет. Иначе график молча смешает разное.
+    f.is_lifetime_tracked,
     f.days_open,
     f.days_since_posted,
+    f.listing_lifetime_days,
     c.currency,
     c.show_salary
 from {{ ref('fct_vacancy_daily') }} as f

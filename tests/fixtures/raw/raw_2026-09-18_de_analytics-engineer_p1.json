@@ -1,0 +1,411 @@
+{
+ "_meta": {
+  "source": "adzuna",
+  "run_date": "2026-09-18",
+  "extracted_at": "2026-09-18T09:57:11.803654+00:00",
+  "country": "de",
+  "role_query": "analytics engineer",
+  "page": 1,
+  "results_per_page": 50,
+  "max_days_old": 2,
+  "count_reported": 12,
+  "request_url": "https://api.adzuna.com/v1/api/jobs/de/search/1?app_id=***&app_key=***&results_per_page=50&what=analytics+engineer&max_days_old=2",
+  "response_headers": {
+   "Date": "Fri, 18 Sep 2026 09:57:11 GMT",
+   "Content-Type": "application/json; charset=utf8",
+   "Content-Length": "22501",
+   "Connection": "keep-alive",
+   "Server": "nginx/1.28.3",
+   "Vary": "Content-Type",
+   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+   "Access-Control-Allow-Origin": "*",
+   "X-Catalyst": "5.90132"
+  }
+ },
+ "payload": {
+  "results": [
+   {
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "Exclusive Associates"
+    },
+    "redirect_url": "https://www.adzuna.de/details/5886331927?utm_medium=api&utm_source=fixture",
+    "created": "2026-09-16T16:59:47Z",
+    "location": {
+     "display_name": "Mainz, Rheinland-Pfalz",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "Deutschland",
+      "Rheinland-Pfalz",
+      "Mainz"
+     ]
+    },
+    "category": {
+     "tag": "unknown",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Unknown"
+    },
+    "longitude": 8.236366,
+    "description": "Überblick Als Data Platform Engineer arbeitest du an spannenden Projekten zur Modellierung und Weiterentwicklung moderner Datenplattformen. Du profitierst von einer strukturierten Einarbeitung, klaren Entwicklungspfaden und der Möglichkeit, dich fachlich in Richtung Datenarchitektur zu entwickeln. Wir bieten hybride Arbeitsmodelle sowie regelmäßige Weiterbildungsangebote, damit du fachlich am Ball bleiben kannst. In deiner Tätigkeit nutzt du typische Datenbank- und Plattformtechnologien wie Ora…",
+    "id": "5886331927",
+    "contract_time": "full_time",
+    "title": "Data Platform Engineer (Analytics Systems) (m/w/d) - J24769",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "salary_is_predicted": "0",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NjMzMTkyNyIsInMiOiJqclU3VVVlejhSR2NNYzBIWXFBa0t3In0.gGLcYn0BL18CkAkrKkOW9Jiakq1WOrFPiOpbGYXKoIk",
+    "latitude": 49.979007
+   },
+   {
+    "redirect_url": "https://www.adzuna.de/details/5887799610?utm_medium=api&utm_source=fixture",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "SkelTech GmbH"
+    },
+    "category": {
+     "label": "Unknown",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "unknown"
+    },
+    "longitude": 6.81526,
+    "created": "2026-09-17T17:01:24Z",
+    "location": {
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Rhein-Erft-Kreis",
+      "Frechen"
+     ],
+     "display_name": "Frechen, Rhein-Erft-Kreis",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "id": "5887799610",
+    "description": "Wir suchen Verstärkung für die Konzeption, Automatisierung und Weiterentwicklung moderner Datenplattformen. In dieser Position arbeitest du mit Azure und Databricks, entwickelst skalierbare Plattformlösungen und unterstützt unsere Data Engineers und Projektteams mit einheitlichen Standards und Best Practices. Aufgaben Du konzipierst und implementierst moderne Data Platforms mit Databricks und einem Hyperscaler, insbesondere Azure oder AWS. Du setzt skalierbare Plattformarchitekturen, Entwicklun…",
+    "title": "Senior - Data Plattform Engineering (m/w/d) Azure und Databricks",
+    "contract_time": "full_time",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoianJVN1VVZXo4UkdjTWMwSFlxQWtLdyIsImkiOiI1ODg3Nzk5NjEwIn0.BG8o5gC4zUbIIyFLGw8ro9pXIJ6s_HEYMzVpi4GdRsw",
+    "salary_is_predicted": "0",
+    "latitude": 50.91005
+   },
+   {
+    "latitude": 50.91005,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoianJVN1VVZXo4UkdjTWMwSFlxQWtLdyIsImkiOiI1ODg3Nzk5Nzc3In0.bGs5XBCy4GLAYoFwtbvOi0E2HYraMCMgALNs2k3-6A0",
+    "salary_is_predicted": "0",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "title": "Senior - Data Engineering (m/w/d) Azure und Databricks",
+    "contract_time": "full_time",
+    "description": "Wir suchen Verstärkung für die Entwicklung, den Betrieb und die Optimierung moderner Datenplattformen. In dieser Position entwickelst du End-to-End-Datenlösungen mit Azure und Databricks und arbeitest eng mit Data Engineers, Analytics-Teams und Fachbereichen zusammen. Aufgaben Du entwickelst, betreibst und optimierst moderne Datenplattformen auf Azure und Databricks. Du konzipierst und implementierst skalierbare ETL- und ELT-Pipelines sowie Data-Lake- und Lakehouse-Architekturen. Du entwickelst…",
+    "id": "5887799777",
+    "longitude": 6.81526,
+    "category": {
+     "label": "Unknown",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "unknown"
+    },
+    "created": "2026-09-17T17:01:24Z",
+    "location": {
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Rhein-Erft-Kreis",
+      "Frechen"
+     ],
+     "display_name": "Frechen, Rhein-Erft-Kreis",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "redirect_url": "https://www.adzuna.de/details/5887799777?utm_medium=api&utm_source=fixture",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "SkelTech GmbH"
+    }
+   },
+   {
+    "category": {
+     "label": "Unknown",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "unknown"
+    },
+    "longitude": 7.464954,
+    "location": {
+     "display_name": "Dortmund, Nordrhein-Westfalen",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Dortmund"
+     ]
+    },
+    "created": "2026-09-17T17:01:46Z",
+    "redirect_url": "https://www.adzuna.de/details/5887802116?utm_medium=api&utm_source=fixture",
+    "company": {
+     "display_name": "adesso SE",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "latitude": 51.504967,
+    "salary_is_predicted": "0",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoianJVN1VVZXo4UkdjTWMwSFlxQWtLdyIsImkiOiI1ODg3ODAyMTE2In0._I8pkFuG14BuKR-JRFYVFqkuliJQapj8ctHkiU7aO2Y",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "title": "Senior Data Engineer - Data Integration & Analytics (all genders)",
+    "contract_time": "full_time",
+    "description": "adesso steht für IT-Exzellenz und damit auch für exzellente Entwicklungsmöglichkeiten für alle adessi. Wir wachsen gemeinsam und lernen voneinander – an unseren Projekten, im Team und mit herausragenden Trainingsangeboten. Wir haben IT im Herzen, die Branche im Blick und den Erfolg unserer Kunden im Sinn. Denn erfolgreiches Geschäft entsteht durch innovative Ideen, zukunftsfähige Strategien und kluge IT-Lösungen. Immer sind dabei Menschen beteiligt, die etwas bewegen wollen und das einfach mach…",
+    "id": "5887802116"
+   },
+   {
+    "redirect_url": "https://www.adzuna.de/details/5887802119?utm_medium=api&utm_source=fixture",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "adesso SE"
+    },
+    "category": {
+     "label": "Unknown",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "unknown"
+    },
+    "longitude": 6.808387,
+    "location": {
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Düsseldorf"
+     ],
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Düsseldorf, Nordrhein-Westfalen"
+    },
+    "created": "2026-09-17T17:01:46Z",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "title": "Senior Data Engineer - Data Integration & Analytics (all genders)",
+    "contract_time": "full_time",
+    "id": "5887802119",
+    "description": "adesso steht für IT-Exzellenz und damit auch für exzellente Entwicklungsmöglichkeiten für alle adessi. Wir wachsen gemeinsam und lernen voneinander – an unseren Projekten, im Team und mit herausragenden Trainingsangeboten. Wir haben IT im Herzen, die Branche im Blick und den Erfolg unserer Kunden im Sinn. Denn erfolgreiches Geschäft entsteht durch innovative Ideen, zukunftsfähige Strategien und kluge IT-Lösungen. Immer sind dabei Menschen beteiligt, die etwas bewegen wollen und das einfach mach…",
+    "latitude": 51.226802,
+    "salary_is_predicted": "0",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoianJVN1VVZXo4UkdjTWMwSFlxQWtLdyIsImkiOiI1ODg3ODAyMTE5In0.5WLPMl1tiFG6BifmDYgnoGZc2_91oIxYh7BgBfhnlmg"
+   },
+   {
+    "longitude": 8.045585,
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "unknown",
+     "label": "Unknown"
+    },
+    "location": {
+     "display_name": "Siegen, Siegen-Wittgenstein (Kreis)",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Siegen-Wittgenstein (Kreis)",
+      "Siegen"
+     ]
+    },
+    "created": "2026-09-17T17:01:47Z",
+    "redirect_url": "https://www.adzuna.de/details/5887802155?utm_medium=api&utm_source=fixture",
+    "company": {
+     "display_name": "adesso SE",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "latitude": 50.886993,
+    "salary_is_predicted": "0",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NzgwMjE1NSIsInMiOiJqclU3VVVlejhSR2NNYzBIWXFBa0t3In0._Xah_JDKD4NIpw4eQrwKrmapXr1qyr96Hl3YMa1i-G0",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "title": "Senior Data Engineer - Data Integration & Analytics (all genders)",
+    "contract_time": "full_time",
+    "description": "adesso steht für IT-Exzellenz und damit auch für exzellente Entwicklungsmöglichkeiten für alle adessi. Wir wachsen gemeinsam und lernen voneinander – an unseren Projekten, im Team und mit herausragenden Trainingsangeboten. Wir haben IT im Herzen, die Branche im Blick und den Erfolg unserer Kunden im Sinn. Denn erfolgreiches Geschäft entsteht durch innovative Ideen, zukunftsfähige Strategien und kluge IT-Lösungen. Immer sind dabei Menschen beteiligt, die etwas bewegen wollen und das einfach mach…",
+    "id": "5887802155"
+   },
+   {
+    "contract_time": "full_time",
+    "title": "Senior Data Engineer - Data Integration & Analytics (all genders)",
+    "id": "5887802159",
+    "description": "adesso steht für IT-Exzellenz und damit auch für exzellente Entwicklungsmöglichkeiten für alle adessi. Wir wachsen gemeinsam und lernen voneinander – an unseren Projekten, im Team und mit herausragenden Trainingsangeboten. Wir haben IT im Herzen, die Branche im Blick und den Erfolg unserer Kunden im Sinn. Denn erfolgreiches Geschäft entsteht durch innovative Ideen, zukunftsfähige Strategien und kluge IT-Lösungen. Immer sind dabei Menschen beteiligt, die etwas bewegen wollen und das einfach mach…",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "latitude": 51.737096,
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NzgwMjE1OSIsInMiOiJqclU3VVVlejhSR2NNYzBIWXFBa0t3In0.CyVT6nJfFDNSvMLPOC_sQf7zmaTWQSQHhYfOc7lWtIY",
+    "salary_is_predicted": "0",
+    "company": {
+     "display_name": "adesso SE",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "redirect_url": "https://www.adzuna.de/details/5887802159?utm_medium=api&utm_source=fixture",
+    "location": {
+     "display_name": "Paderborn, Paderborn (Kreis)",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Paderborn (Kreis)",
+      "Paderborn"
+     ]
+    },
+    "created": "2026-09-17T17:01:47Z",
+    "category": {
+     "tag": "unknown",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "label": "Unknown"
+    },
+    "longitude": 8.753842
+   },
+   {
+    "created": "2026-09-17T17:01:47Z",
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Münster, Nordrhein-Westfalen",
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Münster"
+     ]
+    },
+    "longitude": 7.621504,
+    "category": {
+     "label": "Unknown",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "unknown"
+    },
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "adesso SE"
+    },
+    "redirect_url": "https://www.adzuna.de/details/5887802164?utm_medium=api&utm_source=fixture",
+    "latitude": 51.955292,
+    "salary_is_predicted": "0",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoianJVN1VVZXo4UkdjTWMwSFlxQWtLdyIsImkiOiI1ODg3ODAyMTY0In0.a8GBzz3NdD5IFlkBWvhbZ2mPfCeE2EAWpZpQ8OzIo8U",
+    "contract_time": "full_time",
+    "title": "Senior Data Engineer - Data Integration & Analytics (all genders)",
+    "description": "adesso steht für IT-Exzellenz und damit auch für exzellente Entwicklungsmöglichkeiten für alle adessi. Wir wachsen gemeinsam und lernen voneinander – an unseren Projekten, im Team und mit herausragenden Trainingsangeboten. Wir haben IT im Herzen, die Branche im Blick und den Erfolg unserer Kunden im Sinn. Denn erfolgreiches Geschäft entsteht durch innovative Ideen, zukunftsfähige Strategien und kluge IT-Lösungen. Immer sind dabei Menschen beteiligt, die etwas bewegen wollen und das einfach mach…",
+    "id": "5887802164",
+    "__CLASS__": "Adzuna::API::Response::Job"
+   },
+   {
+    "description": "Salary: 60.000 - 85.000 € per year Requirements: • Mindestens 3 Jahre einschlägige Berufserfahrung im Business-Intelligence-Umfeld, vorzugsweise in einem Software- oder Tech-Unternehmen • Starke Hands-on-Mentalität und Freude daran, selbst Pipelines, Modelle und Reports zu bauen • Sehr gutes Verständnis von Business-Zusammenhängen und Zahlenlogiken • Erfahrung im Arbeiten an der Schnittstelle zwischen Tech, Product und Finance • Sehr gute SQL-Kenntnisse sowie Erfahrung mit Python im Analytics-K…",
+    "contract_time": "full_time",
+    "title": "Analytics Engineer (w/m/d)",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoianJVN1VVZXo4UkdjTWMwSFlxQWtLdyIsImkiOiI1ODg3MjIwMTEwIn0.y_fwnLHYAZlYzbq2Za_5Qfpm3abxn-Ntz6VEiV4JmWw",
+    "latitude": 48.69447,
+    "company": {
+     "display_name": "EVEX Deutschland GmbH",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "redirect_url": "https://www.adzuna.de/details/5887220110?utm_medium=api&utm_source=fixture",
+    "location": {
+     "display_name": "Leinfelden-Echterdingen, Esslingen (Kreis)",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "Deutschland",
+      "Baden-Württemberg",
+      "Esslingen (Kreis)",
+      "Leinfelden-Echterdingen"
+     ]
+    },
+    "created": "2026-09-17T07:37:20Z",
+    "salary_max": 85000,
+    "longitude": 9.14057,
+    "category": {
+     "label": "IT-Stellen",
+     "tag": "it-jobs",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "id": "5887220110",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "salary_is_predicted": "0",
+    "salary_min": 60000
+   },
+   {
+    "category": {
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "graduate-jobs",
+     "label": "Stellen für Hochschulabsolventen"
+    },
+    "longitude": 9.987297,
+    "created": "2026-09-17T10:09:41Z",
+    "location": {
+     "display_name": "Hamburg, Deutschland",
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "area": [
+      "Deutschland",
+      "Hamburg"
+     ]
+    },
+    "redirect_url": "https://www.adzuna.de/details/5887331722?utm_medium=api&utm_source=fixture",
+    "company": {
+     "display_name": "freenet",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "latitude": 53.557429,
+    "salary_is_predicted": "0",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNTg4NzMzMTcyMiIsInMiOiJqclU3VVVlejhSR2NNYzBIWXFBa0t3In0.ZfbAkXVFMmH9aNZ5KKH-FPc4_i6VJlXfGPtw4reAwg0",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "title": "Data Scientist Customer Analytics (w/m/d) - Business Analysis, Datenbankentwicklung/BI, Ingenieur",
+    "id": "5887331722",
+    "description": " Das erwartet dich Unser Bereich Customer Management entwickelt und betreibt auf einer skalierbaren AWS-Plattform datengetriebene Lösungen, die Kundenbedürfnisse entlang des gesamten Customer Lifecycles frühzeitig erkennen und Kundenansprachen intelligent automatisieren. Dafür arbeiten DevOps, Data Engineers und Data Scientists gemeinsam an modernen Technologien, um messbaren Mehrwert für unsere Kunden zu schaffen und neue datengetriebene Geschäftspotenziale zu erschließen. In diesem Umfeld ent…"
+   },
+   {
+    "salary_is_predicted": "0",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoianJVN1VVZXo4UkdjTWMwSFlxQWtLdyIsImkiOiI1ODg3ODAyMTAxIn0.oDVe3HDCzU-_oXD7ct1GvPycwRGA15Czwc9gQdb5owc",
+    "latitude": 51.444823,
+    "id": "5887802101",
+    "description": "adesso steht für IT-Exzellenz und damit auch für exzellente Entwicklungsmöglichkeiten für alle adessi. Wir wachsen gemeinsam und lernen voneinander – an unseren Projekten, im Team und mit herausragenden Trainingsangeboten. Wir haben IT im Herzen, die Branche im Blick und den Erfolg unserer Kunden im Sinn. Denn erfolgreiches Geschäft entsteht durch innovative Ideen, zukunftsfähige Strategien und kluge IT-Lösungen. Immer sind dabei Menschen beteiligt, die etwas bewegen wollen und das einfach mach…",
+    "contract_time": "full_time",
+    "title": "Senior Data Engineer - Data Integration & Analytics (all genders)",
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "location": {
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Essen"
+     ],
+     "display_name": "Essen, Nordrhein-Westfalen",
+     "__CLASS__": "Adzuna::API::Response::Location"
+    },
+    "created": "2026-09-17T17:01:46Z",
+    "category": {
+     "label": "Unknown",
+     "tag": "unknown",
+     "__CLASS__": "Adzuna::API::Response::Category"
+    },
+    "longitude": 7.014478,
+    "company": {
+     "display_name": "adesso SE",
+     "__CLASS__": "Adzuna::API::Response::Company"
+    },
+    "redirect_url": "https://www.adzuna.de/details/5887802101?utm_medium=api&utm_source=fixture"
+   },
+   {
+    "__CLASS__": "Adzuna::API::Response::Job",
+    "id": "5887964838",
+    "description": "(Senior) Data Engineer (gn) Vollzeit/ Teilzeit (hybrid) Deine Aufgabe bei DKV Mobility? Als Teil einer führenden europäischen B2B Plattform für On-the-Road Paymentlösungen, arbeitest Du in einem spannenden Umfeld. Unsere Aufgaben definieren sich durch unseren Purpose: To drive the transition towards an efficient and sustainable future of mobility. Wir bieten Dir zahlreiche Möglichkeiten, in einem dynamischen und agilen Umfeld die Mobilität von morgen mitzugestalten. Unsere rund 2.700 Mitarbeite…",
+    "title": "(Senior) Data Engineer (gn) full-time / part-time (hybrid)",
+    "contract_time": "full_time",
+    "adref": "eyJhbGciOiJIUzI1NiJ9.eyJzIjoianJVN1VVZXo4UkdjTWMwSFlxQWtLdyIsImkiOiI1ODg3OTY0ODM4In0.hLWk9fo5iAB_vJyjaPDxcPM8CUJxvc5ekDl_zoWzEc4",
+    "salary_is_predicted": "0",
+    "latitude": 51.31802,
+    "redirect_url": "https://www.adzuna.de/details/5887964838?utm_medium=api&utm_source=fixture",
+    "company": {
+     "__CLASS__": "Adzuna::API::Response::Company",
+     "display_name": "DKV Mobility"
+    },
+    "longitude": 6.88514,
+    "category": {
+     "label": "Unknown",
+     "__CLASS__": "Adzuna::API::Response::Category",
+     "tag": "unknown"
+    },
+    "created": "2026-09-17T18:25:59Z",
+    "location": {
+     "__CLASS__": "Adzuna::API::Response::Location",
+     "display_name": "Eggerscheidt, Ratingen",
+     "area": [
+      "Deutschland",
+      "Nordrhein-Westfalen",
+      "Mettmann (Kreis)",
+      "Ratingen",
+      "Eggerscheidt"
+     ]
+    }
+   }
+  ],
+  "__CLASS__": "Adzuna::API::Response::JobSearchResults",
+  "mean": 72500,
+  "count": 12
+ }
+}

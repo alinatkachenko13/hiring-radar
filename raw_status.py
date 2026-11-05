@@ -14,6 +14,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import config
+import raw_files
 
 COMPLETE = "complete"
 FAILED = "failed"
@@ -30,11 +31,8 @@ def status_path(run_date: str) -> Path:
 
 def pair_files(run_date: str, country: str, role: str) -> list[Path]:
     """Файлы пары за дату, по возрастанию номера страницы."""
-    pattern = f"raw_{run_date}_{country}_{config.role_slug(role)}_p*.json"
-    return sorted(
-        config.RAW_DIR.glob(pattern),
-        key=lambda path: int(path.stem.rsplit("_p", 1)[1]),
-    )
+    pattern = f"raw_{run_date}_{country}_{config.role_slug(role)}_p*"
+    return sorted(raw_files.find(pattern), key=raw_files.page_number)
 
 
 def complete_by_files(run_date: str, country: str, role: str) -> bool:
@@ -47,13 +45,23 @@ def complete_by_files(run_date: str, country: str, role: str) -> bool:
     files = pair_files(run_date, country, role)
     if not files:
         return False
-    last = json.loads(files[-1].read_text(encoding="utf-8"))
-    results = last["payload"].get("results") or []
+
+    # Считаются разные вакансии: за потолком выдачи Adzuna повторяет одну и ту же
+    # страницу, и арифметика «номер страницы × размер» такую пару объявляла полной.
+    seen: set[str] = set()
+    results: list = []
+    last = None
+    for path in files:
+        last = raw_files.read(path)
+        results = last["payload"].get("results") or []
+        ids = {item["id"] for item in results if item.get("id")}
+        if results and not ids - seen:
+            return False    # страница без новых вакансий: пара обрезана потолком
+        seen |= ids
+
     if len(results) < config.RESULTS_PER_PAGE:
         return True
-    # Все страницы до последней полные, иначе обход бы на них остановился.
-    collected = (last["_meta"]["page"] - 1) * config.RESULTS_PER_PAGE + len(results)
-    return collected >= last["_meta"]["count_reported"]
+    return len(seen) >= last["_meta"]["count_reported"]
 
 
 def read_status(run_date: str) -> dict | None:
@@ -91,13 +99,25 @@ def record_pair(
     pages: int | None = None,
     collected: int | None = None,
     count_reported: int | None = None,
+    window: int | None = None,
+    demoted: bool = False,
+    unfittable: bool = False,
 ) -> None:
+    """Записывает итог пары.
+
+    window — окно, которым пара собрана (None: весь запас), demoted — пара
+    спустилась с предпочтительного окна, unfittable — выдача обрезана на самой
+    узкой ступени, то есть пара не влезает в потолок вовсе.
+    """
     status = read_status(run_date) or start_day(run_date, [(country, role)])
     status["pairs"][pair_key(country, role)] = {
         "status": state,
         "pages": pages,
         "collected": collected,
         "count_reported": count_reported,
+        "window_days": window,
+        "demoted": demoted,
+        "unfittable": unfittable,
         "finished_at": datetime.now(timezone.utc).isoformat(),
     }
     _write(run_date, status)
@@ -110,6 +130,22 @@ def pair_state(run_date: str, country: str, role: str) -> str | None:
     return status["pairs"].get(pair_key(country, role), {}).get("status")
 
 
+def expected_truncation(key: str, state: str | None, entry: dict | None = None) -> bool:
+    """Обрезка пары, которая и не могла поместиться в потолок выдачи.
+
+    Такая пара не блокирует день: иначе одна пара США держала бы взаперти
+    остальные двадцать девять. Что пара не влезает, говорит сам сбор
+    (unfittable в записи: обрезка на самом узком окне) или, для записей без
+    этого поля, config.PARTIAL_PAIRS.
+    """
+    if state != TRUNCATED:
+        return False
+    if entry and entry.get("unfittable"):
+        return True
+    country, _, role = key.partition("/")
+    return config.is_partial_pair(country, role)
+
+
 def day_problems(run_date: str) -> tuple[list[str], str]:
     """Что мешает считать день полным. Пустой список: день полный.
 
@@ -120,18 +156,21 @@ def day_problems(run_date: str) -> tuple[list[str], str]:
     if status is not None:
         problems = []
         for key in status["expected_pairs"]:
-            state = status["pairs"].get(key, {}).get("status")
-            if state != COMPLETE:
-                problems.append(f"{key}: {state or 'not collected'}")
+            entry = status["pairs"].get(key, {})
+            state = entry.get("status")
+            if state == COMPLETE or expected_truncation(key, state, entry):
+                continue
+            problems.append(f"{key}: {state or 'not collected'}")
         return problems, "status file"
 
     pairs = set()
-    for path in config.RAW_DIR.glob(f"raw_{run_date}_*.json"):
-        meta = json.loads(path.read_text(encoding="utf-8"))["_meta"]
+    for path in raw_files.find(f"raw_{run_date}_*"):
+        meta = raw_files.read(path)["_meta"]
         pairs.add((meta["country"], meta["role_query"]))
     problems = [
         f"{pair_key(country, role)}: incomplete by files"
         for country, role in sorted(pairs)
         if not complete_by_files(run_date, country, role)
+        and not config.is_partial_pair(country, role)
     ]
     return problems, "raw files, no status file"

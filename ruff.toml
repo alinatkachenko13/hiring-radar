@@ -1,0 +1,10 @@
+# PEP 8 через ruff: pycodestyle (E, W) и pyflakes (F). Предел строки 99,
+# PEP 8 разрешает его, если команда договорилась.
+line-length = 99
+target-version = "py313"
+# Правила pycodestyle про отступы и пробелы (E1, E2, E3) в ruff пока в preview.
+# Версия ruff закреплена в requirements.txt, так что набор правил не плывёт.
+preview = true
+
+[lint]
+select = ["E", "W", "F"]
