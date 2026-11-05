@@ -24,6 +24,8 @@ import config  # noqa: E402  — только после ключей
 
 FIXTURE_RAW = Path(__file__).parent / "fixtures" / "raw"
 
+FROM_CONFIG = object()   # окно пары берётся из config.window_for
+
 
 def vacancies(count: int, start: int = 1) -> list[dict]:
     """Вакансии с разными id — для проверок полноты пары."""
@@ -51,6 +53,7 @@ def write_raw(raw_dir):
         results: list[dict],
         count_reported: int | None = None,
         gzipped: bool = False,
+        max_days_old: object = FROM_CONFIG,
     ) -> Path:
         document = {
             "_meta": {
@@ -61,7 +64,10 @@ def write_raw(raw_dir):
                 "role_query": role,
                 "page": page,
                 "results_per_page": config.RESULTS_PER_PAGE,
-                "max_days_old": config.window_for(country, role),
+                "max_days_old": (
+                    config.window_for(country, role)
+                    if max_days_old is FROM_CONFIG else max_days_old
+                ),
                 "count_reported": len(results) if count_reported is None else count_reported,
             },
             "payload": {"results": results},

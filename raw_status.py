@@ -99,13 +99,25 @@ def record_pair(
     pages: int | None = None,
     collected: int | None = None,
     count_reported: int | None = None,
+    window: int | None = None,
+    demoted: bool = False,
+    unfittable: bool = False,
 ) -> None:
+    """Записывает итог пары.
+
+    window — окно, которым пара собрана (None: весь запас), demoted — пара
+    спустилась с предпочтительного окна, unfittable — выдача обрезана на самой
+    узкой ступени, то есть пара не влезает в потолок вовсе.
+    """
     status = read_status(run_date) or start_day(run_date, [(country, role)])
     status["pairs"][pair_key(country, role)] = {
         "status": state,
         "pages": pages,
         "collected": collected,
         "count_reported": count_reported,
+        "window_days": window,
+        "demoted": demoted,
+        "unfittable": unfittable,
         "finished_at": datetime.now(timezone.utc).isoformat(),
     }
     _write(run_date, status)
@@ -118,14 +130,18 @@ def pair_state(run_date: str, country: str, role: str) -> str | None:
     return status["pairs"].get(pair_key(country, role), {}).get("status")
 
 
-def expected_truncation(key: str, state: str | None) -> bool:
+def expected_truncation(key: str, state: str | None, entry: dict | None = None) -> bool:
     """Обрезка пары, которая и не могла поместиться в потолок выдачи.
 
     Такая пара не блокирует день: иначе одна пара США держала бы взаперти
-    остальные двадцать девять (см. config.PARTIAL_PAIRS).
+    остальные двадцать девять. Что пара не влезает, говорит сам сбор
+    (unfittable в записи: обрезка на самом узком окне) или, для записей без
+    этого поля, config.PARTIAL_PAIRS.
     """
     if state != TRUNCATED:
         return False
+    if entry and entry.get("unfittable"):
+        return True
     country, _, role = key.partition("/")
     return config.is_partial_pair(country, role)
 
@@ -140,8 +156,9 @@ def day_problems(run_date: str) -> tuple[list[str], str]:
     if status is not None:
         problems = []
         for key in status["expected_pairs"]:
-            state = status["pairs"].get(key, {}).get("status")
-            if state == COMPLETE or expected_truncation(key, state):
+            entry = status["pairs"].get(key, {})
+            state = entry.get("status")
+            if state == COMPLETE or expected_truncation(key, state, entry):
                 continue
             problems.append(f"{key}: {state or 'not collected'}")
         return problems, "status file"

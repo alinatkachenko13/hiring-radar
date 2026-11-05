@@ -4,8 +4,11 @@
 -- Три условия, без которых пропажа ничего не значит (NOTES, GAP 3-7):
 --   1. вакансию видели переписью, то есть сбором без окна свежести. При сборе
 --      с окном объявление уходит из выдачи по возрасту, а не потому, что снято;
---   2. её страна переписывалась и в день пропажи, и в предыдущий: иначе это
---      сбой сбора, а не рынок;
+--   2. та пара страна × роль, которой её видели, переписывалась и в день
+--      пропажи, и в предыдущий: иначе это сбой сбора или смена режима пары, а
+--      не рынок. Проверка по стране целиком не годится: когда одна пара страны
+--      перешла на поток, остальные продолжают перепись, и все объявления
+--      перешедшей пары разом выглядели бы снятыми;
 --   3. объявления нет два наблюдения подряд. Выдача шевелится во время сбора,
 --      и одиночный пропуск ничего не доказывает.
 
@@ -25,14 +28,47 @@ date_seq as (
     from observation_dates
 ),
 
--- Дни, когда страна действительно переписывалась. Пропажу засчитываем только
--- на фоне переписи: нет переписи — нет и вывода о том, что объявление сняли.
-census_days as (
+-- Пары страна × роль, переписанные в конкретный день. Пропажу засчитываем только
+-- на фоне переписи той же пары: нет переписи — нет и вывода о том, что объявление
+-- сняли.
+census_pair_days as (
     select distinct
         observed_on,
-        country_code
-    from present
-    where seen_in_census
+        country_code,
+        role_query
+    from {{ ref('stg_vacancies') }}
+    where is_census
+),
+
+-- Какими переписанными парами видели объявление в каждый день.
+ad_census_pairs as (
+    select distinct
+        source_id,
+        observed_on,
+        country_code,
+        role_query
+    from {{ ref('stg_vacancies') }}
+    where is_census
+),
+
+-- Объявление, которое можно признать снятым в день d: в позавчерашний день его
+-- видели переписью пары, и эта же пара переписывалась и вчера, и сегодня.
+closable as (
+    select distinct
+        c.source_id,
+        d.observed_on
+    from date_seq as d
+    inner join ad_census_pairs as c
+        on c.observed_on = d.prev2_on
+    inner join census_pair_days as gap_day
+        on gap_day.observed_on = d.prev_on
+        and gap_day.country_code = c.country_code
+        and gap_day.role_query = c.role_query
+    inner join census_pair_days as today
+        on today.observed_on = d.observed_on
+        and today.country_code = c.country_code
+        and today.role_query = c.role_query
+    where d.prev2_on is not null
 ),
 
 first_seen as (
@@ -96,12 +132,9 @@ gone as (
     inner join last_census_day as l
         on l.source_id = p.source_id
         and l.last_present_on = d.prev2_on
-    inner join census_days as gap_day
-        on gap_day.observed_on = d.prev_on
-        and gap_day.country_code = p.country_code
-    inner join census_days as today
-        on today.observed_on = d.observed_on
-        and today.country_code = p.country_code
+    inner join closable as k
+        on k.source_id = p.source_id
+        and k.observed_on = d.observed_on
     inner join first_seen as f
         on f.source_id = p.source_id
     where d.prev2_on is not null

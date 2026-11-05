@@ -106,4 +106,16 @@ with DAG(
         trigger_rule="all_done",
     )
 
-    run_date >> collect >> load >> transform >> compress >> report
+    # Итог дня. Состояние запуска в Airflow считается по задачам-листьям графа,
+    # а report идёт при любом исходе (all_done) и сам зелёный: пока он был
+    # единственным листом, упавший сбор показывался как success, и 26 дней
+    # (11.10–05.11.2026) никто не видел красного. Эта задача зелёная, только
+    # если день дошёл до конца: упал collect, load или transform — upstream_failed,
+    # и запуск красный. Падение compress её не касается, как и задумано выше.
+    day_loaded = BashOperator(
+        task_id="day_loaded",
+        bash_command="true",
+    )
+
+    run_date >> collect >> load >> transform >> [compress, day_loaded]
+    compress >> report

@@ -130,7 +130,7 @@ sequenceDiagram
 - **Two volume measures.** Ads are unique ids; positions are company + title + country. On the first full run, 32.5% of unique ads repeated one position across cities.
 - **Salary counts as disclosed only when two fields agree.** The provider's flag alone was wrong for 3 of 5 countries, the salary field alone for the other 2.
 - **Role comes from the title, not the search query.** Search matches descriptions too, so irrelevant titles are filtered out before any volume is counted.
-- **Two collection modes.** Where the whole stock fits under the API's 5 000-result ceiling, it is collected without a freshness window: only then does a vacancy leaving the feed mean it was taken down rather than aged out. The rest is collected as a flow and carries no lifetime metric.
+- **Two collection modes.** Where the whole stock fits under the API's 5 000-result ceiling, it is collected without a freshness window: only then does a vacancy leaving the feed mean it was taken down rather than aged out. The rest is collected as a flow and carries no lifetime metric. A pair whose stock nears the ceiling steps down on its own (whole stock, then a two-day window, then one day), and a vacancy counts as removed only if the same country-and-role pair was fully collected on both days around its disappearance.
 - **Skills are not modelled.** Descriptions are cut to 500 characters and name a technology in only 13.4% of them.
 
 

@@ -36,8 +36,10 @@ from config import (
     TIMEOUT_SEC,
     credentials,
     is_partial_pair,
+    over_fallback_share,
     role_slug,
     window_for,
+    window_ladder,
 )
 
 APP_ID, APP_KEY = credentials()
@@ -152,16 +154,24 @@ class PairResult(NamedTuple):
     collected: int        # разных вакансий
     pages: int            # сохранённых страниц
     count_reported: int   # count из ответа Adzuna
+    window: int | None = None   # окно, которым собрана пара; None — весь запас
+    demoted: bool = False       # пара спустилась с предпочтительного окна
+    unfittable: bool = False    # обрезана на самой узкой ступени: не влезает вовсе
 
 
-def collect(country: str, role: str) -> PairResult:
-    """Забирает все страницы пары.
+def collect(
+    country: str, role: str, window: int | None, can_narrow: bool = False
+) -> PairResult:
+    """Забирает все страницы пары одним окном.
 
     Считаются разные вакансии, а не строки. Разница принципиальна: за сотой
     страницей Adzuna повторяет одну и ту же выдачу, и счётчик строк доводил
     обрезанную пару до состояния «собрана полностью» (NOTES, GAP 7).
+
+    can_narrow — есть ли ступень уже этой. Тогда выдача, не влезающая в потолок,
+    бросается сразу после первой страницы: ещё девяносто девять запросов
+    дали бы тот же результат, обрезку.
     """
-    window = window_for(country, role)
     seen: set[str] = set()
     pages = 0
     found = 0
@@ -182,8 +192,10 @@ def collect(country: str, role: str) -> PairResult:
         new = {item["id"] for item in results if item.get("id")} - seen
         seen |= new
 
-        if page == 1 and found > RESULT_CAP * 0.9:
+        if page == 1 and over_fallback_share(found):
             print(f"    ВНИМАНИЕ: выдача {found} близка к потолку {RESULT_CAP}")
+            if can_narrow:
+                return PairResult(raw_status.TRUNCATED, len(seen), pages, found)
 
         print(
             f"    стр. {page}: получено {len(results)}, новых {len(new)}, "
@@ -204,6 +216,35 @@ def collect(country: str, role: str) -> PairResult:
     return PairResult(raw_status.TRUNCATED, len(seen), pages, found)
 
 
+def describe(window: int | None) -> str:
+    return "весь запас" if window is None else f"окно {window} дн."
+
+
+def collect_pair(country: str, role: str) -> PairResult:
+    """Собирает пару, спускаясь по лестнице окон, пока выдача не влезет в потолок.
+
+    Пара, у которой запас перерос потолок, не должна навсегда блокировать день
+    (так 11.10.2026 встала ca / data engineer). Обрезка на самой узкой ступени —
+    это пара, которая не влезает вовсе: такая день не блокирует.
+    """
+    ladder = window_ladder(country, role)
+    for step, window in enumerate(ladder):
+        last = step == len(ladder) - 1
+        if step:
+            print(f"    переход: {describe(window)}")
+        result = collect(country, role, window, can_narrow=not last)
+        if result.state != raw_status.TRUNCATED or last:
+            return result._replace(
+                window=window,
+                demoted=step > 0,
+                unfittable=result.state == raw_status.TRUNCATED,
+            )
+        # Страницы обрезанного окна не нужны: сырьё пары должно быть одного окна.
+        for path in raw_status.pair_files(RUN_DATE, country, role):
+            path.unlink()
+    raise AssertionError("лестница окон не бывает пустой")
+
+
 def main() -> int:
     pairs = [(country, role) for country in COUNTRIES for role in ROLES]
     stock = sum(1 for country, role in pairs if window_for(country, role) is None)
@@ -216,6 +257,8 @@ def main() -> int:
     total_pages = 0
     skipped = 0
     incomplete: list[tuple[str, str, str]] = []
+    unfittable: set[tuple[str, str]] = set()
+    demoted: list[str] = []
 
     for country, role in pairs:
         files = raw_status.pair_files(RUN_DATE, country, role)
@@ -239,20 +282,23 @@ def main() -> int:
             for path in files:
                 path.unlink()
         else:
-            window = window_for(country, role)
-            mode = "весь запас" if window is None else f"окно {window} дн."
-            print(f"{country} / {role} ({mode})")
+            print(f"{country} / {role} ({describe(window_for(country, role))})")
 
-        result = collect(country, role)
+        result = collect_pair(country, role)
         raw_status.record_pair(
             RUN_DATE, country, role, result.state,
             pages=result.pages, collected=result.collected,
             count_reported=result.count_reported,
+            window=result.window, demoted=result.demoted, unfittable=result.unfittable,
         )
         total_vacancies += result.collected
         total_pages += result.pages
         if result.state != raw_status.COMPLETE:
             incomplete.append((country, role, result.state))
+        if result.unfittable:
+            unfittable.add((country, role))
+        if result.demoted:
+            demoted.append(f"{country} / {role}: {describe(result.window)}")
 
     print(f"\nЗа этот запуск: {total_vacancies} записей в {total_pages} файлах.")
     if skipped:
@@ -260,17 +306,29 @@ def main() -> int:
               "удалите за эту дату файлы raw_* и status_* в data/raw.")
     print("Дубли между ролями ожидаемы и снимаются дедупликацией по id в staging.")
 
+    if demoted:
+        print("\nСпустились по лестнице окон (запас не влез в потолок выдачи):")
+        for line in demoted:
+            print(f"  {line}")
+
+    def expected(country: str, role: str, state: str) -> bool:
+        """Обрезка пары, которая не влезает в потолок даже на самой узкой ступени."""
+        return state == raw_status.TRUNCATED and (
+            (country, role) in unfittable or is_partial_pair(country, role)
+        )
+
     if incomplete:
         print("\nНе собраны полностью:")
         for country, role, state in incomplete:
-            expected = state == raw_status.TRUNCATED and is_partial_pair(country, role)
-            note = " — обрезка ожидаема, день не блокируется" if expected else ""
+            note = ""
+            if expected(country, role, state):
+                note = " — обрезка ожидаема, день не блокируется"
             print(f"  {country} / {role}: {state}{note}")
 
     blocking = [
         (country, role, state)
         for country, role, state in incomplete
-        if not (state == raw_status.TRUNCATED and is_partial_pair(country, role))
+        if not expected(country, role, state)
     ]
     if blocking:
         print("Повторный запуск дособерёт только их. "

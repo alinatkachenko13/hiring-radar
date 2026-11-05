@@ -43,7 +43,7 @@ def collection_line(run_date: str) -> str:
     partial = {
         key: value for key, value in pairs.items()
         if value["status"] == raw_status.TRUNCATED
-        and raw_status.expected_truncation(key, value["status"])
+        and raw_status.expected_truncation(key, value["status"], value)
     }
     done = complete + len(partial)
 
@@ -55,6 +55,16 @@ def collection_line(run_date: str) -> str:
             for key, value in partial.items()
         )
         line += f"\nЧастично, упёрлись в потолок выдачи — {details}"
+
+    # Пара, спустившаяся на узкое окно, не сбой, но по ней пропала метрика срока
+    # жизни, и о таком переходе стоит знать в тот же день.
+    demoted = [
+        f"{key}: окно {value['window_days']} дн."
+        for key, value in pairs.items()
+        if value.get("demoted")
+    ]
+    if demoted:
+        line += "\nЗапас не влез в потолок, перешли на поток — " + ", ".join(demoted)
 
     other = [
         f"{key}: {value['status']}"

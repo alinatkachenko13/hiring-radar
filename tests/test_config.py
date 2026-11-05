@@ -16,6 +16,35 @@ def test_stock_pairs_collected_without_window(country, role):
     assert config.window_for(country, role) is None
 
 
+def test_canada_data_engineer_is_a_flow_pair():
+    """Запас перерос потолок 11.10.2026 и держал день взаперти 26 суток."""
+    assert config.window_for("ca", "data engineer") == config.MAX_DAYS_OLD
+
+
+def test_other_canadian_roles_still_fit_the_stock():
+    for role in ("analytics engineer", "data analyst", "data scientist", "ml engineer"):
+        assert config.window_for("ca", role) is None
+
+
+def test_ladder_steps_down_from_stock_to_one_day():
+    assert config.window_ladder("nl", "data engineer") == [None, config.MAX_DAYS_OLD, 1]
+
+
+def test_ladder_of_a_flow_pair_has_only_the_narrower_window():
+    assert config.window_ladder("gb", "data engineer") == [config.MAX_DAYS_OLD, 1]
+
+
+def test_ladder_of_the_narrowest_pair_is_a_single_step():
+    """Дальше некуда: обрезка здесь означает, что пара не влезает вовсе."""
+    assert config.window_ladder("us", "data engineer") == [1]
+
+
+def test_pair_steps_down_before_the_cap_not_at_it():
+    """Выдача 4 697 из 5 000 уже обрезалась (ca, 09.10), поэтому запас — 90%."""
+    assert config.over_fallback_share(4697)
+    assert not config.over_fallback_share(4500)
+
+
 def test_window_override_narrows_the_day():
     """Пара, которая не влезает в потолок за двое суток, сужается до одних."""
     assert config.window_for("us", "data engineer") == 1

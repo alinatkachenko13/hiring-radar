@@ -74,9 +74,27 @@ def location_parts(vacancy: dict) -> tuple[str | None, str | None, str | None, s
     )
 
 
-def flatten_file(path: Path) -> list[dict]:
+def pair_verdict(meta: dict, statuses: dict[str, dict | None]) -> str:
+    """Вердикт сборщика по паре файла: complete, truncated или failed.
+
+    Нужен складу, чтобы обрезанная выдача «весь запас» не считалась переписью,
+    даже если день загружен (ожидаемая обрезка или --allow-incomplete). Файлы
+    дней без журнала статусов дошли сюда только полными.
+    """
+    day = meta["run_date"]
+    if day not in statuses:
+        statuses[day] = raw_status.read_status(day)
+    status = statuses[day]
+    if status is None:
+        return raw_status.COMPLETE
+    key = raw_status.pair_key(meta["country"], meta["role_query"])
+    return status["pairs"].get(key, {}).get("status") or raw_status.COMPLETE
+
+
+def flatten_file(path: Path, statuses: dict[str, dict | None] | None = None) -> list[dict]:
     document = raw_files.read(path)
     meta = document["_meta"]
+    verdict = pair_verdict(meta, {} if statuses is None else statuses)
     rows = []
     for vacancy in document.get("payload", {}).get("results") or []:
         display_name, region, city, area_json = location_parts(vacancy)
@@ -112,6 +130,7 @@ def flatten_file(path: Path) -> list[dict]:
             "category_label": category.get("label"),
             "redirect_url": vacancy.get("redirect_url"),
             "vacancy_json": json.dumps(vacancy, ensure_ascii=False),
+            "pair_status": verdict,
         })
     return rows
 
@@ -125,8 +144,9 @@ def collect_rows(run_date: str | None) -> tuple[list[dict], list[Path]]:
         raise SystemExit(f"В {RAW_DIR} нет файлов{where}. Сначала python extract.py")
 
     rows = []
+    statuses: dict[str, dict | None] = {}
     for path in files:
-        rows.extend(flatten_file(path))
+        rows.extend(flatten_file(path, statuses))
     return rows, files
 
 
@@ -174,10 +194,13 @@ def load_duckdb(jsonl_path: Path, run_dates: list[str]) -> None:
             category_tag varchar,
             category_label varchar,
             redirect_url varchar,
-            vacancy_json varchar
+            vacancy_json varchar,
+            pair_status varchar
         )
         """
     )
+    # Таблица могла быть создана до появления pair_status.
+    conn.execute("alter table raw.adzuna_results add column if not exists pair_status varchar")
     dates_sql = ", ".join(f"'{day}'" for day in run_dates)
     conn.execute(f"delete from raw.adzuna_results where run_date in ({dates_sql})")
     conn.execute(
@@ -212,7 +235,8 @@ def load_duckdb(jsonl_path: Path, run_dates: list[str]) -> None:
             category_tag,
             category_label,
             redirect_url,
-            vacancy_json
+            vacancy_json,
+            pair_status
         from read_json_auto('{jsonl_path.as_posix()}', format='newline_delimited')
         """
     )
@@ -273,6 +297,7 @@ def load_bigquery(jsonl_path: Path, run_dates: list[str]) -> list[Path]:
         bigquery.SchemaField("category_label", "STRING"),
         bigquery.SchemaField("redirect_url", "STRING"),
         bigquery.SchemaField("vacancy_json", "STRING"),
+        bigquery.SchemaField("pair_status", "STRING"),
     ]
     table = bigquery.Table(table_id, schema=schema)
     table.time_partitioning = bigquery.TimePartitioning(
@@ -292,6 +317,11 @@ def load_bigquery(jsonl_path: Path, run_dates: list[str]) -> list[Path]:
         existing = None
     if existing is None:
         client.create_table(table)
+    elif all(field.name != "pair_status" for field in existing.schema):
+        # Колонка появилась позже таблицы: у старых партиций она пуста,
+        # а dbt читает пустое как complete (грузились только полные дни).
+        existing.schema = [*existing.schema, bigquery.SchemaField("pair_status", "STRING")]
+        client.update_table(existing, ["schema"])
 
     parts: list[Path] = []
     by_date: dict[str, list[str]] = {day: [] for day in run_dates}

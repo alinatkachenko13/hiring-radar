@@ -50,3 +50,22 @@ def test_failed_pair_is_named_in_the_summary(write_status):
 
     assert "Собрано: 1 пар из 2" in line
     assert "Не собрано: de/data analyst: failed" in line
+
+
+def test_unfittable_pair_counts_as_collected_and_demotion_is_named(write_status):
+    write_status(
+        "2026-11-05",
+        ["ca/data engineer", "gb/data engineer"],
+        {
+            "ca/data engineer": {
+                "status": raw_status.COMPLETE, "collected": 900,
+                "window_days": 2, "demoted": True,
+            },
+            "gb/data engineer": {"status": raw_status.COMPLETE, "collected": 100},
+        },
+    )
+
+    line = daily_report.collection_line("2026-11-05")
+
+    assert "Собрано: 2 пар из 2" in line
+    assert "перешли на поток — ca/data engineer: окно 2 дн." in line

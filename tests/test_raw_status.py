@@ -157,3 +157,44 @@ def test_old_day_without_status_file_is_judged_by_files(write_raw):
 
     assert problems == ["de/data analyst: incomplete by files"]
     assert source == "raw files, no status file"
+
+
+def test_pair_that_does_not_fit_is_recorded_as_such(raw_dir):
+    raw_status.record_pair(
+        "2026-11-05", "ca", "data engineer", raw_status.TRUNCATED,
+        pages=100, collected=5000, count_reported=9000,
+        window=1, demoted=True, unfittable=True,
+    )
+
+    entry = raw_status.read_status("2026-11-05")["pairs"]["ca/data engineer"]
+
+    assert (entry["window_days"], entry["demoted"], entry["unfittable"]) == (1, True, True)
+
+
+def test_collection_itself_says_which_truncation_is_expected(write_status):
+    """Не только список в config: пара, не влезшая на самой узкой ступени, не блокирует день."""
+    write_status(
+        "2026-11-05",
+        ["ca/data engineer", "gb/data engineer"],
+        {
+            "ca/data engineer": {"status": raw_status.TRUNCATED, "unfittable": True},
+            "gb/data engineer": {"status": raw_status.COMPLETE},
+        },
+    )
+
+    problems, _ = raw_status.day_problems("2026-11-05")
+
+    assert problems == []
+
+
+def test_truncation_without_the_flag_still_blocks_the_day(write_status):
+    """Так и было с ca / data engineer: запас обрезан, а ступеней ниже никто не пробовал."""
+    write_status(
+        "2026-11-05",
+        ["ca/data engineer"],
+        {"ca/data engineer": {"status": raw_status.TRUNCATED, "unfittable": False}},
+    )
+
+    problems, _ = raw_status.day_problems("2026-11-05")
+
+    assert problems == ["ca/data engineer: truncated"]

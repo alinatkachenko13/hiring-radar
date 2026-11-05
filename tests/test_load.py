@@ -77,3 +77,31 @@ def test_collect_rows_takes_only_the_asked_day(write_raw):
 def test_collect_rows_without_files_says_what_to_run(raw_dir):
     with pytest.raises(SystemExit, match="extract.py"):
         load.collect_rows("2026-09-18")
+
+
+def test_rows_carry_the_collectors_verdict_on_the_pair(write_raw, write_status):
+    """Обрезанный «весь запас» не должен считаться переписью (dbt читает pair_status)."""
+    write_raw("2026-11-05", "ca", "data engineer", 1, vacancies(2), max_days_old=None)
+    write_raw("2026-11-05", "ca", "data analyst", 1, vacancies(2, start=50), max_days_old=None)
+    write_status(
+        "2026-11-05",
+        ["ca/data engineer", "ca/data analyst"],
+        {
+            "ca/data engineer": {"status": "truncated"},
+            "ca/data analyst": {"status": "complete"},
+        },
+    )
+
+    rows, _ = load.collect_rows("2026-11-05")
+
+    verdicts = {row["role_query"]: row["pair_status"] for row in rows}
+    assert verdicts == {"data engineer": "truncated", "data analyst": "complete"}
+
+
+def test_day_without_a_status_file_is_loaded_as_complete(write_raw):
+    """Такие дни дошли до склада только полными."""
+    write_raw("2026-09-17", "gb", "data engineer", 1, vacancies(2))
+
+    rows, _ = load.collect_rows("2026-09-17")
+
+    assert {row["pair_status"] for row in rows} == {"complete"}

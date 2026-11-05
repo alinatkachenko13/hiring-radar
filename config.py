@@ -43,12 +43,25 @@ RESULT_CAP = 100 * RESULTS_PER_PAGE
 #
 # С окном собираются пары, чей запас в потолок не помещается. По ним считается
 # только поток новых вакансий.
-STOCK_COUNTRIES = ["nl", "pl", "de", "ca"]
+STOCK_COUNTRIES = ["nl", "pl", "de"]
 STOCK_PAIRS = {
     ("gb", "analytics engineer"),
     ("gb", "data analyst"),
     ("gb", "ml engineer"),
+    # ca / data engineer вышла из потолка 11.10.2026: запас 4 697 → 6 322 за
+    # месяц, и день с тех пор не грузился. Остальные роли Канады помещаются.
+    ("ca", "analytics engineer"),
+    ("ca", "data analyst"),
+    ("ca", "data scientist"),
+    ("ca", "ml engineer"),
 }
+
+# Страховка от того же сбоя в других парах. Пара, чья выдача близка к потолку,
+# сама спускается на ступень ниже: весь запас → окно MAX_DAYS_OLD → окно в
+# один день. Решение принимается по count первой страницы, а если оно не
+# сработало и выдача всё равно обрезана, — по факту обрезки.
+FALLBACK_WINDOWS = (MAX_DAYS_OLD, 1)
+FALLBACK_SHARE = 0.9    # доля потолка, после которой пара спускается
 # Пары, где даже поток за двое суток не влезает в потолок: окно сужается.
 # Цена — страховка: пропущенный запуск такая пара теряет безвозвратно.
 WINDOW_OVERRIDES = {("us", "data engineer"): 1}
@@ -84,6 +97,23 @@ def window_for(country: str, role: str) -> int | None:
     if country in STOCK_COUNTRIES or (country, role) in STOCK_PAIRS:
         return None
     return WINDOW_OVERRIDES.get((country, role), MAX_DAYS_OLD)
+
+
+def window_ladder(country: str, role: str) -> list[int | None]:
+    """Окна пары от предпочтительного к самому узкому.
+
+    Первое — window_for, остальные — ступени, на которые пара спускается, если
+    выдача не влезает в потолок. Последняя ступень узкее не бывает: если и на
+    ней выдача обрезана, пара не влезает вовсе (ср. PARTIAL_PAIRS).
+    """
+    first = window_for(country, role)
+    narrower = [days for days in FALLBACK_WINDOWS if first is None or days < first]
+    return [first, *narrower]
+
+
+def over_fallback_share(found: int) -> bool:
+    """Близка ли выдача к потолку настолько, что пару пора спускать."""
+    return found > RESULT_CAP * FALLBACK_SHARE
 
 
 def _read_dotenv(path: Path) -> dict:
