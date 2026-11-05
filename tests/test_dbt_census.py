@@ -10,7 +10,9 @@
   то, что случилось с ним 05.11.2026, когда запас перерос потолок выдачи, а
   остальные роли Канады продолжали перепись;
 - de / data analyst переписывается, но в третий день перепись обрезана потолком
-  (truncated): часть объявлений просто не попала в выдачу.
+  (truncated): часть объявлений просто не попала в выдачу;
+- gb / data analyst переписывается, а gb / data engineer идёт потоком: объявление
+  пропало из переписи, но в четвёртый день видно в потоке.
 """
 from __future__ import annotations
 
@@ -86,6 +88,13 @@ def fill(scenario: Scenario) -> None:
                           verdict="truncated")
         else:
             scenario.pair(day, "de", "data analyst", [201, 202, 203], "Data Analyst")
+
+        # gb: id 301 видели переписью аналитиков в первые два дня, потом перепись его
+        # не возвращает, но на четвёртый день он есть в потоке инженеров: открыт.
+        scenario.pair(day, "gb", "data analyst",
+                      [300] + ([301] if number <= 2 else []), "Data Analyst")
+        scenario.pair(day, "gb", "data engineer",
+                      [301] if number == 4 else [302], "Data Engineer", window=2)
     scenario.write_statuses()
 
 
@@ -107,8 +116,8 @@ def run_dbt(database: Path, workdir: Path) -> None:
 
 
 @pytest.fixture(scope="module")
-def gone(tmp_path_factory) -> dict[str, str]:
-    """id → первый день, в который объявление признано снятым. Нет id — не снято."""
+def warehouse(tmp_path_factory) -> Path:
+    """Мини-склад сценария с построенными промежуточными моделями."""
     if not DBT.exists():
         pytest.skip("dbt не установлен")
     workdir = tmp_path_factory.mktemp("scenario")
@@ -127,15 +136,35 @@ def gone(tmp_path_factory) -> dict[str, str]:
         load.load_duckdb(jsonl, DAYS)
 
     run_dbt(database, workdir)
+    return database
+
+
+def query(database: Path, sql: str) -> list[tuple]:
     connection = duckdb.connect(str(database), read_only=True)
     try:
-        found = connection.execute(
-            "select source_id, min(observed_on)::varchar from intermediate.int_vacancy_daily "
-            "where is_gone group by 1"
-        ).fetchall()
+        return connection.execute(sql).fetchall()
     finally:
         connection.close()
-    return dict(found)
+
+
+@pytest.fixture(scope="module")
+def gone(warehouse) -> dict[str, str]:
+    """id → первый день, в который объявление признано снятым. Нет id — не снято."""
+    return dict(query(
+        warehouse,
+        "select source_id, min(observed_on)::varchar from intermediate.int_vacancy_daily "
+        "where is_gone group by 1",
+    ))
+
+
+@pytest.fixture(scope="module")
+def grain(warehouse) -> list[tuple]:
+    """Пары (id, день) с больше чем одной строкой на факте."""
+    return query(
+        warehouse,
+        "select source_id, observed_on from intermediate.int_vacancy_daily "
+        "group by 1, 2 having count(*) > 1",
+    )
 
 
 def test_ad_that_really_left_a_censused_pair_is_gone(gone):
@@ -154,6 +183,15 @@ def test_ads_of_a_pair_that_switched_to_flow_are_not_called_gone(gone):
     «страна переписывалась» принимала такую пропажу за закрытие.
     """
     assert not {"102", "103", "104", "105"} & set(gone)
+
+
+def test_ad_still_visible_in_another_pairs_flow_is_not_gone(gone):
+    """Закрытие и присутствие в один день дали бы две строки на объявление и день."""
+    assert "301" not in gone
+
+
+def test_one_row_per_ad_and_day(grain):
+    assert grain == []
 
 
 def test_truncated_census_day_is_not_evidence_of_closure(gone):
